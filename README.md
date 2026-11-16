@@ -1,4 +1,4 @@
-# Spectrum
+# Care
 
 **A safety layer for care robots: no robot moves without a signed permission, and when the system is not sure, a human decides.**
 
