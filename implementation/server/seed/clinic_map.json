@@ -1,0 +1,1550 @@
+{
+  "marque": "inventé",
+  "name": "Demo clinic",
+  "floors": [
+    {
+      "id": 0,
+      "label": "Ground floor",
+      "outline": [
+        [
+          0,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          14
+        ],
+        [
+          0,
+          14
+        ]
+      ]
+    },
+    {
+      "id": 2,
+      "label": "Floor 2",
+      "outline": [
+        [
+          0,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          14
+        ],
+        [
+          0,
+          14
+        ]
+      ]
+    }
+  ],
+  "rooms": [
+    {
+      "id": "reception",
+      "floor": 0,
+      "label": "Reception",
+      "kind": "care",
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          5.5
+        ],
+        [
+          0,
+          5.5
+        ]
+      ],
+      "label_at": [
+        3.5,
+        1.9
+      ]
+    },
+    {
+      "id": "elevator-0",
+      "floor": 0,
+      "label": "Elevator",
+      "kind": "elevator",
+      "polygon": [
+        [
+          7,
+          0
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          5.5
+        ],
+        [
+          7,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "therapy-1",
+      "floor": 0,
+      "label": "Therapy 1",
+      "kind": "therapy",
+      "polygon": [
+        [
+          10,
+          0
+        ],
+        [
+          17,
+          0
+        ],
+        [
+          17,
+          5.5
+        ],
+        [
+          10,
+          5.5
+        ]
+      ],
+      "label_at": [
+        13.5,
+        3.3
+      ]
+    },
+    {
+      "id": "therapy-2",
+      "floor": 0,
+      "label": "Therapy 2",
+      "kind": "therapy",
+      "polygon": [
+        [
+          17,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          5.5
+        ],
+        [
+          17,
+          5.5
+        ]
+      ],
+      "label_at": [
+        20.5,
+        3.3
+      ]
+    },
+    {
+      "id": "hall",
+      "floor": 0,
+      "label": "Hall",
+      "kind": "corridor",
+      "polygon": [
+        [
+          0,
+          5.5
+        ],
+        [
+          24,
+          5.5
+        ],
+        [
+          24,
+          8.5
+        ],
+        [
+          9,
+          8.5
+        ],
+        [
+          9,
+          14
+        ],
+        [
+          0,
+          14
+        ]
+      ],
+      "label_at": [
+        4.5,
+        10.6
+      ]
+    },
+    {
+      "id": "pool",
+      "floor": 0,
+      "label": "Pool",
+      "kind": "pool",
+      "polygon": [
+        [
+          9,
+          8.5
+        ],
+        [
+          24,
+          8.5
+        ],
+        [
+          24,
+          14
+        ],
+        [
+          9,
+          14
+        ]
+      ],
+      "label_at": [
+        22.6,
+        9.4
+      ]
+    },
+    {
+      "id": "supply",
+      "floor": 2,
+      "label": "Supply room",
+      "kind": "storage",
+      "polygon": [
+        [
+          0,
+          0
+        ],
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          5.5
+        ],
+        [
+          0,
+          5.5
+        ]
+      ],
+      "label_at": [
+        4.2,
+        3.4
+      ]
+    },
+    {
+      "id": "elevator-2",
+      "floor": 2,
+      "label": "Elevator",
+      "kind": "elevator",
+      "polygon": [
+        [
+          7,
+          0
+        ],
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          5.5
+        ],
+        [
+          7,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "room-11",
+      "floor": 2,
+      "label": "Room 11",
+      "kind": "room",
+      "polygon": [
+        [
+          10,
+          0
+        ],
+        [
+          17,
+          0
+        ],
+        [
+          17,
+          5.5
+        ],
+        [
+          10,
+          5.5
+        ]
+      ],
+      "label_at": [
+        14.4,
+        2.6
+      ]
+    },
+    {
+      "id": "room-12",
+      "floor": 2,
+      "label": "Room 12",
+      "kind": "room",
+      "polygon": [
+        [
+          17,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          5.5
+        ],
+        [
+          17,
+          5.5
+        ]
+      ],
+      "label_at": [
+        21.4,
+        2.6
+      ]
+    },
+    {
+      "id": "corridor",
+      "floor": 2,
+      "label": "Corridor",
+      "kind": "corridor",
+      "polygon": [
+        [
+          0,
+          5.5
+        ],
+        [
+          24,
+          5.5
+        ],
+        [
+          24,
+          8.5
+        ],
+        [
+          0,
+          8.5
+        ]
+      ],
+      "label_at": [
+        12,
+        7
+      ]
+    },
+    {
+      "id": "nurse-station",
+      "floor": 2,
+      "label": "Nurse station",
+      "kind": "care",
+      "polygon": [
+        [
+          0,
+          8.5
+        ],
+        [
+          8,
+          8.5
+        ],
+        [
+          8,
+          14
+        ],
+        [
+          0,
+          14
+        ]
+      ],
+      "label_at": [
+        4.3,
+        11.4
+      ]
+    },
+    {
+      "id": "room-13",
+      "floor": 2,
+      "label": "Room 13",
+      "kind": "room",
+      "polygon": [
+        [
+          8,
+          8.5
+        ],
+        [
+          13,
+          8.5
+        ],
+        [
+          13,
+          14
+        ],
+        [
+          8,
+          14
+        ]
+      ],
+      "label_at": [
+        11.2,
+        10.6
+      ]
+    },
+    {
+      "id": "room-14",
+      "floor": 2,
+      "label": "Room 14",
+      "kind": "room",
+      "polygon": [
+        [
+          13,
+          8.5
+        ],
+        [
+          18,
+          8.5
+        ],
+        [
+          18,
+          14
+        ],
+        [
+          13,
+          14
+        ]
+      ],
+      "label_at": [
+        16.2,
+        10.6
+      ]
+    },
+    {
+      "id": "lounge",
+      "floor": 2,
+      "label": "Lounge",
+      "kind": "lounge",
+      "polygon": [
+        [
+          18,
+          8.5
+        ],
+        [
+          24,
+          8.5
+        ],
+        [
+          24,
+          14
+        ],
+        [
+          18,
+          14
+        ]
+      ],
+      "label_at": [
+        20.6,
+        10.2
+      ]
+    }
+  ],
+  "walls": [
+    {
+      "id": "0-w0",
+      "floor": 0,
+      "points": [
+        [
+          0,
+          10
+        ],
+        [
+          0,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          14
+        ],
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          12.2
+        ]
+      ]
+    },
+    {
+      "id": "0-w1",
+      "floor": 0,
+      "points": [
+        [
+          0,
+          5.5
+        ],
+        [
+          2.2,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w2",
+      "floor": 0,
+      "points": [
+        [
+          4.8,
+          5.5
+        ],
+        [
+          12.6,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w3",
+      "floor": 0,
+      "points": [
+        [
+          14.4,
+          5.5
+        ],
+        [
+          19.6,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w4",
+      "floor": 0,
+      "points": [
+        [
+          21.4,
+          5.5
+        ],
+        [
+          24,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w5",
+      "floor": 0,
+      "points": [
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w6",
+      "floor": 0,
+      "points": [
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w7",
+      "floor": 0,
+      "points": [
+        [
+          17,
+          0
+        ],
+        [
+          17,
+          2
+        ]
+      ]
+    },
+    {
+      "id": "0-w8",
+      "floor": 0,
+      "points": [
+        [
+          17,
+          3.8
+        ],
+        [
+          17,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w9",
+      "floor": 0,
+      "points": [
+        [
+          9,
+          14
+        ],
+        [
+          9,
+          8.5
+        ],
+        [
+          13,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "0-w10",
+      "floor": 0,
+      "points": [
+        [
+          14.8,
+          8.5
+        ],
+        [
+          24,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w0",
+      "floor": 2,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          14
+        ],
+        [
+          0,
+          14
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    {
+      "id": "2-w1",
+      "floor": 2,
+      "points": [
+        [
+          0,
+          5.5
+        ],
+        [
+          2.6,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w2",
+      "floor": 2,
+      "points": [
+        [
+          4.4,
+          5.5
+        ],
+        [
+          12.6,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w3",
+      "floor": 2,
+      "points": [
+        [
+          14.4,
+          5.5
+        ],
+        [
+          19.6,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w4",
+      "floor": 2,
+      "points": [
+        [
+          21.4,
+          5.5
+        ],
+        [
+          24,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w5",
+      "floor": 2,
+      "points": [
+        [
+          7,
+          0
+        ],
+        [
+          7,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w6",
+      "floor": 2,
+      "points": [
+        [
+          10,
+          0
+        ],
+        [
+          10,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w7",
+      "floor": 2,
+      "points": [
+        [
+          17,
+          0
+        ],
+        [
+          17,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w8",
+      "floor": 2,
+      "points": [
+        [
+          0,
+          8.5
+        ],
+        [
+          1,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w9",
+      "floor": 2,
+      "points": [
+        [
+          7,
+          8.5
+        ],
+        [
+          9.6,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w10",
+      "floor": 2,
+      "points": [
+        [
+          11.4,
+          8.5
+        ],
+        [
+          14.6,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w11",
+      "floor": 2,
+      "points": [
+        [
+          16.4,
+          8.5
+        ],
+        [
+          19,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w12",
+      "floor": 2,
+      "points": [
+        [
+          23,
+          8.5
+        ],
+        [
+          24,
+          8.5
+        ]
+      ]
+    },
+    {
+      "id": "2-w13",
+      "floor": 2,
+      "points": [
+        [
+          8,
+          8.5
+        ],
+        [
+          8,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "2-w14",
+      "floor": 2,
+      "points": [
+        [
+          13,
+          8.5
+        ],
+        [
+          13,
+          14
+        ]
+      ]
+    },
+    {
+      "id": "2-w15",
+      "floor": 2,
+      "points": [
+        [
+          18,
+          8.5
+        ],
+        [
+          18,
+          14
+        ]
+      ]
+    }
+  ],
+  "places": [
+    {
+      "id": "reception",
+      "label": "Reception",
+      "floor": 0,
+      "x": 3.5,
+      "y": 4.65,
+      "kind": "shelf"
+    },
+    {
+      "id": "linen-shelf",
+      "label": "Linen shelf",
+      "floor": 0,
+      "x": 7.55,
+      "y": 10.6,
+      "kind": "shelf"
+    },
+    {
+      "id": "hall",
+      "label": "Hall",
+      "floor": 0,
+      "x": 4.4,
+      "y": 10.2,
+      "kind": "room"
+    },
+    {
+      "id": "therapy-1",
+      "label": "Therapy 1",
+      "floor": 0,
+      "x": 13.5,
+      "y": 4.2,
+      "kind": "room"
+    },
+    {
+      "id": "therapy-2",
+      "label": "Therapy 2",
+      "floor": 0,
+      "x": 20.5,
+      "y": 4,
+      "kind": "room"
+    },
+    {
+      "id": "pool",
+      "label": "Pool",
+      "floor": 0,
+      "x": 13.9,
+      "y": 9.45,
+      "kind": "room"
+    },
+    {
+      "id": "dock-a",
+      "label": "Dock A",
+      "floor": 0,
+      "x": 1.5,
+      "y": 8.6,
+      "kind": "dock"
+    },
+    {
+      "id": "dock-b",
+      "label": "Dock B",
+      "floor": 0,
+      "x": 22.5,
+      "y": 7,
+      "kind": "dock"
+    },
+    {
+      "id": "supply-a",
+      "label": "Supply shelf A",
+      "floor": 2,
+      "x": 1.55,
+      "y": 2.6,
+      "kind": "shelf"
+    },
+    {
+      "id": "supply-b",
+      "label": "Supply shelf B",
+      "floor": 2,
+      "x": 3.8,
+      "y": 1.5,
+      "kind": "shelf"
+    },
+    {
+      "id": "nurse-cabinet",
+      "label": "Nurse cabinet",
+      "floor": 2,
+      "x": 6.55,
+      "y": 11.6,
+      "kind": "shelf"
+    },
+    {
+      "id": "nurse-station",
+      "label": "Nurse station",
+      "floor": 2,
+      "x": 3.2,
+      "y": 7.8,
+      "kind": "room"
+    },
+    {
+      "id": "room-11",
+      "label": "Room 11",
+      "floor": 2,
+      "x": 13.5,
+      "y": 3.7,
+      "kind": "room"
+    },
+    {
+      "id": "room-12",
+      "label": "Room 12",
+      "floor": 2,
+      "x": 20.5,
+      "y": 3.7,
+      "kind": "room"
+    },
+    {
+      "id": "room-13",
+      "label": "Room 13",
+      "floor": 2,
+      "x": 10.5,
+      "y": 10.4,
+      "kind": "room"
+    },
+    {
+      "id": "room-14",
+      "label": "Room 14",
+      "floor": 2,
+      "x": 15.5,
+      "y": 10.4,
+      "kind": "room"
+    },
+    {
+      "id": "lounge",
+      "label": "Lounge",
+      "floor": 2,
+      "x": 20.4,
+      "y": 10.4,
+      "kind": "room"
+    },
+    {
+      "id": "dock-w",
+      "label": "Dock W",
+      "floor": 2,
+      "x": 1.5,
+      "y": 7,
+      "kind": "dock"
+    },
+    {
+      "id": "dock-n",
+      "label": "Dock N",
+      "floor": 2,
+      "x": 1.5,
+      "y": 11,
+      "kind": "dock"
+    }
+  ],
+  "props": [
+    {
+      "id": "prop-1",
+      "floor": 0,
+      "kind": "counter",
+      "x": 3.5,
+      "y": 3.6,
+      "width": 3.6,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-2",
+      "floor": 0,
+      "kind": "cabinet",
+      "x": 1.6,
+      "y": 0.45,
+      "width": 2.4,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-3",
+      "floor": 0,
+      "kind": "plant",
+      "x": 6.3,
+      "y": 0.7,
+      "width": 0.6,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-4",
+      "floor": 0,
+      "kind": "bench",
+      "x": 0.5,
+      "y": 2.3,
+      "width": 0.6,
+      "depth": 1.8,
+      "solid": true
+    },
+    {
+      "id": "prop-5",
+      "floor": 0,
+      "kind": "door",
+      "x": 8.5,
+      "y": 5.5,
+      "width": 1.4,
+      "depth": 0.2,
+      "solid": false
+    },
+    {
+      "id": "prop-6",
+      "floor": 0,
+      "kind": "bed",
+      "x": 12.1,
+      "y": 1.9,
+      "width": 2,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-7",
+      "floor": 0,
+      "kind": "cabinet",
+      "x": 15.2,
+      "y": 0.45,
+      "width": 2.2,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-8",
+      "floor": 0,
+      "kind": "mat",
+      "x": 15.4,
+      "y": 3.6,
+      "width": 1.8,
+      "depth": 0.9,
+      "solid": false
+    },
+    {
+      "id": "prop-9",
+      "floor": 0,
+      "kind": "bed",
+      "x": 21.9,
+      "y": 1.9,
+      "width": 2,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-10",
+      "floor": 0,
+      "kind": "bars",
+      "x": 19.1,
+      "y": 1.5,
+      "width": 2.6,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-11",
+      "floor": 0,
+      "kind": "cabinet",
+      "x": 22.6,
+      "y": 5.05,
+      "width": 1.6,
+      "depth": 0.5,
+      "solid": true
+    },
+    {
+      "id": "prop-12",
+      "floor": 0,
+      "kind": "sofa",
+      "x": 2.4,
+      "y": 13.35,
+      "width": 2.4,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-13",
+      "floor": 0,
+      "kind": "sofa",
+      "x": 5.6,
+      "y": 13.35,
+      "width": 2.4,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-14",
+      "floor": 0,
+      "kind": "table",
+      "x": 4,
+      "y": 12.1,
+      "width": 1.2,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-15",
+      "floor": 0,
+      "kind": "plant",
+      "x": 0.6,
+      "y": 13.4,
+      "width": 0.6,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-16",
+      "floor": 0,
+      "kind": "plant",
+      "x": 8.4,
+      "y": 13.4,
+      "width": 0.6,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-17",
+      "floor": 0,
+      "kind": "shelf",
+      "x": 8.55,
+      "y": 10.6,
+      "width": 0.6,
+      "depth": 2.4,
+      "solid": true
+    },
+    {
+      "id": "prop-18",
+      "floor": 0,
+      "kind": "dock",
+      "x": 0.5,
+      "y": 8.6,
+      "width": 0.7,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-19",
+      "floor": 0,
+      "kind": "dock",
+      "x": 23.5,
+      "y": 7,
+      "width": 0.7,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-20",
+      "floor": 0,
+      "kind": "pool",
+      "x": 16.5,
+      "y": 11.9,
+      "width": 9,
+      "depth": 3.2,
+      "solid": true
+    },
+    {
+      "id": "prop-21",
+      "floor": 0,
+      "kind": "bench",
+      "x": 11.2,
+      "y": 13.55,
+      "width": 2.4,
+      "depth": 0.5,
+      "solid": true
+    },
+    {
+      "id": "prop-22",
+      "floor": 0,
+      "kind": "bench",
+      "x": 22.9,
+      "y": 11.9,
+      "width": 0.5,
+      "depth": 2.4,
+      "solid": true
+    },
+    {
+      "id": "prop-23",
+      "floor": 2,
+      "kind": "shelf",
+      "x": 0.5,
+      "y": 2.6,
+      "width": 0.6,
+      "depth": 3.6,
+      "solid": true
+    },
+    {
+      "id": "prop-24",
+      "floor": 2,
+      "kind": "shelf",
+      "x": 3.8,
+      "y": 0.45,
+      "width": 4.2,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-25",
+      "floor": 2,
+      "kind": "crate",
+      "x": 6.2,
+      "y": 1.3,
+      "width": 0.9,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-26",
+      "floor": 2,
+      "kind": "crate",
+      "x": 6.2,
+      "y": 2.5,
+      "width": 0.9,
+      "depth": 0.7,
+      "solid": true
+    },
+    {
+      "id": "prop-27",
+      "floor": 2,
+      "kind": "door",
+      "x": 8.5,
+      "y": 5.5,
+      "width": 1.4,
+      "depth": 0.2,
+      "solid": false
+    },
+    {
+      "id": "prop-28",
+      "floor": 2,
+      "kind": "bed",
+      "x": 11.3,
+      "y": 1.5,
+      "width": 1.1,
+      "depth": 2.2,
+      "solid": true
+    },
+    {
+      "id": "prop-29",
+      "floor": 2,
+      "kind": "nightstand",
+      "x": 12.3,
+      "y": 0.5,
+      "width": 0.5,
+      "depth": 0.5,
+      "solid": true
+    },
+    {
+      "id": "prop-30",
+      "floor": 2,
+      "kind": "armchair",
+      "x": 15.9,
+      "y": 1.1,
+      "width": 0.8,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-31",
+      "floor": 2,
+      "kind": "cabinet",
+      "x": 16.6,
+      "y": 3.6,
+      "width": 0.5,
+      "depth": 1.6,
+      "solid": true
+    },
+    {
+      "id": "prop-32",
+      "floor": 2,
+      "kind": "bed",
+      "x": 18.3,
+      "y": 1.5,
+      "width": 1.1,
+      "depth": 2.2,
+      "solid": true
+    },
+    {
+      "id": "prop-33",
+      "floor": 2,
+      "kind": "nightstand",
+      "x": 19.3,
+      "y": 0.5,
+      "width": 0.5,
+      "depth": 0.5,
+      "solid": true
+    },
+    {
+      "id": "prop-34",
+      "floor": 2,
+      "kind": "armchair",
+      "x": 22.9,
+      "y": 1.1,
+      "width": 0.8,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-35",
+      "floor": 2,
+      "kind": "cabinet",
+      "x": 23.6,
+      "y": 3.6,
+      "width": 0.5,
+      "depth": 1.6,
+      "solid": true
+    },
+    {
+      "id": "prop-36",
+      "floor": 2,
+      "kind": "bed",
+      "x": 9.3,
+      "y": 12.5,
+      "width": 1.1,
+      "depth": 2.2,
+      "solid": true
+    },
+    {
+      "id": "prop-37",
+      "floor": 2,
+      "kind": "nightstand",
+      "x": 10.3,
+      "y": 13.5,
+      "width": 0.5,
+      "depth": 0.5,
+      "solid": true
+    },
+    {
+      "id": "prop-38",
+      "floor": 2,
+      "kind": "armchair",
+      "x": 12.1,
+      "y": 13,
+      "width": 0.8,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-39",
+      "floor": 2,
+      "kind": "bed",
+      "x": 14.3,
+      "y": 12.5,
+      "width": 1.1,
+      "depth": 2.2,
+      "solid": true
+    },
+    {
+      "id": "prop-40",
+      "floor": 2,
+      "kind": "nightstand",
+      "x": 15.3,
+      "y": 13.5,
+      "width": 0.5,
+      "depth": 0.5,
+      "solid": true
+    },
+    {
+      "id": "prop-41",
+      "floor": 2,
+      "kind": "armchair",
+      "x": 17.1,
+      "y": 13,
+      "width": 0.8,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-42",
+      "floor": 2,
+      "kind": "counter",
+      "x": 3.2,
+      "y": 9.4,
+      "width": 3.6,
+      "depth": 0.7,
+      "solid": true
+    },
+    {
+      "id": "prop-43",
+      "floor": 2,
+      "kind": "cabinet",
+      "x": 7.55,
+      "y": 11.6,
+      "width": 0.6,
+      "depth": 2.4,
+      "solid": true
+    },
+    {
+      "id": "prop-44",
+      "floor": 2,
+      "kind": "desk",
+      "x": 3.4,
+      "y": 13.3,
+      "width": 2.6,
+      "depth": 0.8,
+      "solid": true
+    },
+    {
+      "id": "prop-45",
+      "floor": 2,
+      "kind": "dock",
+      "x": 0.5,
+      "y": 11,
+      "width": 0.7,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-46",
+      "floor": 2,
+      "kind": "dock",
+      "x": 0.5,
+      "y": 7,
+      "width": 0.7,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-47",
+      "floor": 2,
+      "kind": "sofa",
+      "x": 21.8,
+      "y": 13.35,
+      "width": 2.6,
+      "depth": 0.9,
+      "solid": true
+    },
+    {
+      "id": "prop-48",
+      "floor": 2,
+      "kind": "sofa",
+      "x": 23.4,
+      "y": 11.2,
+      "width": 0.9,
+      "depth": 2.2,
+      "solid": true
+    },
+    {
+      "id": "prop-49",
+      "floor": 2,
+      "kind": "table",
+      "x": 21.7,
+      "y": 11.9,
+      "width": 1,
+      "depth": 1,
+      "solid": true
+    },
+    {
+      "id": "prop-50",
+      "floor": 2,
+      "kind": "plant",
+      "x": 18.6,
+      "y": 13.4,
+      "width": 0.6,
+      "depth": 0.6,
+      "solid": true
+    },
+    {
+      "id": "prop-51",
+      "floor": 2,
+      "kind": "plant",
+      "x": 23.4,
+      "y": 6.1,
+      "width": 0.6,
+      "depth": 0.6,
+      "solid": true
+    }
+  ]
+}

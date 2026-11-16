@@ -1,0 +1,20 @@
+.building { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 16px; align-items: start; }
+.building-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 10px; }
+.plan-error { margin-bottom: 12px; padding: 10px 14px; border: 1px solid color-mix(in srgb, var(--coral) 55%, transparent); border-radius: 10px; background: var(--coral-soft); color: var(--text); font-size: 13px; }
+.plan-error ul { margin: 6px 0 0; padding-left: 18px; }
+.plan-error .row-actions { margin-top: 8px; justify-content: flex-start; }
+.row-actions { display: flex; flex-wrap: wrap; gap: 6px; justify-content: flex-end; }
+.plan-room.is-selected { stroke: var(--mint); stroke-width: 0.1; fill: color-mix(in srgb, var(--mint) 14%, var(--surface)); }
+.plan-room.is-bad, .plan-wall.is-bad, .plan-place.is-bad { stroke: var(--coral); stroke-width: 0.12; }
+.plan-room { cursor: pointer; }
+.plan-wall.is-selected { stroke: var(--mint); }
+.plan-wall-hit { fill: none; stroke: transparent; stroke-width: 0.5; cursor: pointer; }
+.plan-place { fill: var(--blue); stroke: var(--bg); stroke-width: 0.08; cursor: grab; }
+.plan-place.is-selected { fill: var(--mint); }
+.building-side { display: grid; gap: 10px; padding: 14px; }
+.building-side label { display: grid; gap: 4px; font-size: 12px; color: var(--text-3); }
+.plan-slab.is-selected { stroke: var(--mint); stroke-width: 0.1; }
+.plan-slab.is-bad { stroke: var(--coral); stroke-width: 0.12; }
+.building-prop { cursor: grab; }
+.building-prop.is-selected { stroke: var(--mint); stroke-width: 0.1; }
+.building-prop.is-bad { stroke: var(--coral); stroke-width: 0.12; }

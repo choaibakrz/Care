@@ -1,0 +1,99 @@
+# One file maps every source class to (group, fine). Missing or extra classes
+# make the merge fail loudly. Worn PPE and stored boxes have DIFFERENT fine
+# labels on purpose.
+groups: [marker, pack, box, tray, ppe, person, site, waste_state]   # order = class ids of the group detector (append only)
+out_of_scope_groups: [person, site, waste_state]   # kept for completeness, irrelevant to a medical drawer; filter with --exclude-out-of-scope
+
+datasets:
+  hospital_consumables:
+    bandage:        {group: pack,   fine: bandage}
+    syringe:        {group: pack,   fine: syringe}
+    box-of-gloves:  {group: box,    fine: gloves_box}
+    box-of-masks:   {group: box,    fine: masks_box}
+    dressing-tray:  {group: tray,   fine: dressing_tray}
+    square:         {group: marker, fine: marker_square}
+    triangle:       {group: marker, fine: marker_triangle}
+
+  # UNVERIFIED: class names unknown until the export is downloaded.
+  # Run `python scripts/inspect_dataset.py biosafety_ppe` and edit this block.
+  biosafety_ppe:
+    mask:    {group: ppe, fine: mask_worn}
+    gloves:  {group: ppe, fine: gloves_worn}
+    goggles: {group: ppe, fine: goggles_worn}
+
+  # ---- added with the Kaggle / Hugging Face downloads (source names are the ones found in the files) ----
+  cppe5:                      # worn PPE on people (same data as skaarface/medical-personal-protective-equipment-images)
+    Coverall:     {group: ppe, fine: coverall_worn}
+    Face_Shield:  {group: ppe, fine: face_shield_worn}
+    Gloves:       {group: ppe, fine: gloves_worn}
+    Goggles:      {group: ppe, fine: goggles_worn}
+    Mask:         {group: ppe, fine: mask_worn}
+
+  construction_site_safety:   # class order verified by viewing crops; NO-* = person visibly lacking that item
+    Hardhat:        {group: ppe,    fine: hardhat_worn}
+    Mask:           {group: ppe,    fine: mask_worn}
+    NO-Hardhat:     {group: person, fine: no_hardhat}
+    NO-Mask:        {group: person, fine: no_mask}
+    NO-Safety Vest: {group: person, fine: no_safety_vest}
+    Person:         {group: person, fine: person}
+    Safety Cone:    {group: site,   fine: safety_cone}
+    Safety Vest:    {group: ppe,    fine: safety_vest_worn}
+    machinery:      {group: site,   fine: machinery}
+    vehicle:        {group: site,   fine: vehicle}
+
+  medical_waste:              # loose items lying on a surface (not worn), so group pack
+    gauze:                {group: pack, fine: gauze}
+    test tube:            {group: pack, fine: test_tube}
+    urine bag:            {group: pack, fine: urine_bag}
+    medical cap:          {group: pack, fine: medical_cap}
+    medical glasses:      {group: pack, fine: medical_glasses}
+    shoe cover pair:      {group: pack, fine: shoe_cover_pair}
+    shoe cover single:    {group: pack, fine: shoe_cover_single}
+    glove pair latex:     {group: pack, fine: glove_pair_latex}
+    glove pair nitrile:   {group: pack, fine: glove_pair_nitrile}
+    glove pair surgery:   {group: pack, fine: glove_pair_surgery}
+    glove single latex:   {group: pack, fine: glove_single_latex}
+    glove single nitrile: {group: pack, fine: glove_single_nitrile}
+    glove single surgery: {group: pack, fine: glove_single_surgery}
+
+  syringe_imagenet:           # classification only (whole-image label)
+    syringe: {group: pack, fine: syringe}
+
+  medbin:                     # Roboflow "MedBin_dataset 2" v3, 37 classes (category 0 is a Roboflow placeholder, ignored)
+    Mask:                   {group: pack, fine: mask_item}        # loose mask, not worn
+    N95:                    {group: pack, fine: n95_mask}
+    medical_gloves:         {group: pack, fine: medical_gloves}
+    bandage:                {group: pack, fine: bandage}
+    gauze:                  {group: pack, fine: gauze}
+    syringe:                {group: pack, fine: syringe}
+    needle:                 {group: pack, fine: needle}
+    blade:                  {group: pack, fine: blade}
+    scalpel:                {group: pack, fine: scalpel}
+    capsule:                {group: pack, fine: capsule}
+    pill:                   {group: pack, fine: pill}
+    cotton_swab:            {group: pack, fine: cotton_swab}
+    iodine_swab:            {group: pack, fine: iodine_swab}
+    unguent:                {group: pack, fine: unguent}
+    glass_bottle:           {group: pack, fine: glass_bottle}
+    plastic_medical_bottle: {group: pack, fine: plastic_medical_bottle}
+    plastic_medical_bag:    {group: pack, fine: plastic_medical_bag}
+    medical_infusion_bag:   {group: pack, fine: medical_infusion_bag}
+    reagent_tube:           {group: pack, fine: reagent_tube}
+    reagent_tube_cap:       {group: pack, fine: reagent_tube_cap}
+    single_channel_pipette: {group: pack, fine: single_channel_pipette}
+    transferpettor_glass:   {group: pack, fine: transferpettor_glass}
+    transferpettor_plastic: {group: pack, fine: transferpettor_plastic}
+    tweezer_metal:          {group: pack, fine: tweezer_metal}
+    tweezer_plastic:        {group: pack, fine: tweezer_plastic}
+    Electronic_thermometer: {group: pack, fine: electronic_thermometer}
+    mercury_thermometer:    {group: pack, fine: mercury_thermometer}
+    Oxygen_cylinder:        {group: pack, fine: oxygen_cylinder}
+    covid_test_case:        {group: pack, fine: covid_test_case}
+    covid_buffer:           {group: pack, fine: covid_buffer}
+    covid_buffer_box:       {group: box,  fine: covid_buffer_box}
+    drug_packaging:         {group: box,  fine: drug_packaging}
+    paperbox:               {group: box,  fine: paperbox}
+    harris_uni_core:        {group: pack, fine: harris_uni_core}
+    harris_uni_core_cap:    {group: pack, fine: harris_uni_core_cap}
+    Bloody_objects:         {group: waste_state, fine: bloody_objects}        # a waste category, not an object type
+    Radioactive_objects:    {group: waste_state, fine: radioactive_objects}   # same

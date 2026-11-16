@@ -1,0 +1,15 @@
+# Carte d'identité d'exemple : un chien imaginaire à quatre pattes. Il ne peut pas saisir.
+id: faux-chien
+nom: Faux chien
+genre: chien
+fabricant: faux robot (simulation)
+modele: C-0
+vrai_robot: false
+capacites: [se_deplacer, regarder, ecouter, parler, rejouer_geste, arreter, etat]
+limites:
+  vitesse_max_m_s: 1.5
+  portee_max_m: 0.0
+  charge_max_kg: 0.0
+  force_max_n: 0
+gestes: [saluer, assis, donner_la_patte]
+remarques: Rapide, mais sans main.

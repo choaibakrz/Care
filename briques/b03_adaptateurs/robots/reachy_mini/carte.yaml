@@ -1,0 +1,56 @@
+# NON TESTÉ SUR VRAI ROBOT.
+# Carte du robot « reachy_mini » (chemin sdk), créée par l'assistant le 14.11.2026, remplie dans la nuit du 14 au 15.
+# Format : briques/b01_prise/carte.py ; liste des actions : briques/b01_prise/PRISE.md.
+# Ce que la doc publique dit vraiment : briques/b03_adaptateurs/fiches/reachy_mini.md.
+#
+# Règles :
+# - Chaque chiffre vient de la doc du fabricant, avec le lien et la date de lecture.
+#   Pas dans la doc = « à vérifier », et on laisse 0. 0 = le robot refuse de bouger : c'est voulu.
+# - La prise applique EN PLUS les plafonds de reglages.yaml → securite (0,3 m/s, 15 N, 5 m) : la plus petite gagne.
+# - « capacites » : seulement ce qui est branché ET essayé dans la liaison (le test de conformité le vérifie).
+# - « vrai_robot » est écrit par le programme (selon la liaison) : on ne peut pas faire passer du simulé pour du réel.
+
+id: reachy-mini               # sert au ticket du gardien
+nom: Reachy Mini (ébauche non testée sur vrai robot)
+genre: autre                  # une tête expressive posée sur une table : ni humanoïde entier, ni bras, ni roues
+fabricant: Pollen Robotics / Hugging Face   # dit par Hiba le 14.11.2026 ; version Lite (USB) ou Wireless (Wi-Fi) : à vérifier
+modele: Reachy Mini           # version du robot et de son programme de fond : à vérifier sur le robot
+vrai_robot: true              # remplacé par le programme : true avec la vraie liaison, false avec la doublure
+
+# Les deux actions obligatoires, plus deux mouvements de tête ajoutés le 15.11.2026 : « regarder » (tourner lentement
+# la tête vers une direction du fichier directions.yaml) et « rejouer_geste » (« oui » et « non » de la tête).
+# Essayés sur la doublure et sur le programme du fabricant en mode simulé : TESTÉ SUR FAUX ROBOT seulement.
+# Les arrêts de la liaison sont des PROPOSITIONS, à confirmer avec le responsable sécurité avant tout essai sur le
+# vrai robot. Pas branchés : montrer, parler, ecouter (la voix et l'écoute restent au Mac).
+# L'ORDRE compte : le test de conformité essaie les actions dans cet ordre. « rejouer_geste » vient avant « regarder »
+# parce que son premier geste, « lever_la_tete », est notre réveil lent : sans lui la tête est couchée et refuse de tourner.
+capacites: [arreter, etat, rejouer_geste, regarder]
+
+limites:
+  vitesse_max_m_s: 0.0        # à vérifier : il ne se déplace pas ; la vitesse d'un geste se règle par sa durée (lu), pas en m/s
+  portee_max_m: 0.0           # il n'a ni bras ni pince : il ne saisit rien
+  charge_max_kg: 0.0          # il ne porte rien
+  force_max_n: 0.0            # il ne serre rien ; la force de ses moteurs : à vérifier
+
+# Deux gestes écrits par l'équipe (pas ceux du fabricant) : de petits mouvements de tête, lents, autour de la position
+# du moment. « oui » : 10° de haut en bas, deux fois. « non » : 15° de chaque côté. Vitesses : voir les remarques.
+# « lever_la_tete » (15.11.2026) : NOTRE réveil. Il allume les moteurs, puis monte la tête droite en 6 secondes (12 en
+# mode lent). Le « réveil » du fabricant n'est pas utilisé (il finit par un mouvement de 20° en 0,2 seconde).
+# « coucher_la_tete » : repose la tête sur son socle en 6 secondes. Le premier de la liste est essayé par le test complet.
+gestes: [lever_la_tete, oui, non, coucher_la_tete]
+
+position_fixe: table          # il ne se déplace pas : il est posé sur une table
+
+remarques: >-
+  NON TESTÉ SUR VRAI ROBOT. Rien n'a été envoyé au robot. Son kit (Apache-2.0 ; cinq de ses paquets de son et
+  d'image citent aussi la GPL, voir LICENCES.md) est installé à part (~/reachy_env).
+  La tête tourne de peu (40° de côté, 20° de haut-bas au plus) et lentement : 20° par seconde EN MOYENNE pour regarder,
+  25° par seconde en moyenne pour un geste. En pointe, c'est plus : environ 38° par seconde (regarder) et 47° par
+  seconde (« non »), calculé et mesuré sur le faux robot du fabricant, pas sur le vrai. Choix de l'équipe, à vérifier.
+  Son programme de fond, par défaut, RÉVEILLE le robot au démarrage (mouvement rapide, son). On le lance donc SANS
+  réveil (« --no-wake-up-on-start ») : la tête reste couchée, rien ne bouge. C'est notre geste « lever_la_tete »,
+  accordé par le gardien, qui la lève lentement. Le pas à pas : docs/projet/BRANCHER_LA_TETE.md.
+  Il écoute sur le port 8000 par défaut, qui est celui de notre écran : lui donner un autre port (8002).
+  Version Wireless : ses adresses web sont ouvertes à tout le réseau, sans mot de passe : pas sur le Wi-Fi de la salle.
+  Arrêt d'urgence PHYSIQUE : sa prise de courant (où ? à vérifier). Arrêt logiciel proposé : couper les moteurs.
+  Limites lues : tête ±40° (haut-bas, côté), ±180° (rotation), corps ±160°. Voir briques/b03_adaptateurs/fiches/reachy_mini.md.

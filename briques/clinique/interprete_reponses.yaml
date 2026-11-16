@@ -1,0 +1,19 @@
+# Les réponses préparées du mode interprète (demande de Hiba, 12.11.2026) : la version anglaise est écrite d'avance.
+# À l'écran, elles portent l'étiquette « TRADUCTION PRÉPARÉE ». L'équipe peut changer, ajouter, retirer.
+# CES TROIS RÉPONSES SONT DES EXEMPLES ÉCRITS PAR UN AGENT D'IA, pas relus : à remplacer par les vraies réponses de l'équipe.
+# Elles ne disent que des choses écrites ailleurs dans le dépôt (les règles du projet). Aucun chiffre de mesure.
+marque: exemples écrits par un agent d'IA, pas relus, à remplacer par l'équipe
+relu_par:
+reponses:
+  - id: gardien
+    titre: "Qui décide qu'un robot bouge ?"
+    fr: "Tout ordre au robot passe par le gardien. Sans son accord, rien ne bouge."
+    en: "Every order to the robot goes through the guardian. Without its approval, nothing moves."
+  - id: donnees
+    titre: "Les données sont-elles vraies ?"
+    fr: "Toutes les données de la démonstration sont inventées. Rien ne sort de l'ordinateur."
+    en: "All the data in this demonstration is invented. Nothing leaves the computer."
+  - id: sante
+    titre: "Le prototype répond-il aux questions de santé ?"
+    fr: "Non. À une question de santé, le prototype ne répond pas : il transmet à l'équipe."
+    en: "No. The prototype does not answer health questions: it passes them on to the team."

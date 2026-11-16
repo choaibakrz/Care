@@ -1,0 +1,26 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Deux papiers inventés pour une quatrième personne que personne ne connaît encore
+# (avenant 4, tâche L04). Ils n'arrivent que sur demande (« Faire arriver deux papiers »). Texte seulement.
+# La ligne « Motif » de la lettre est là exprès : l'assistant ne doit jamais la reprendre.
+marque: inventé
+papiers:
+  - id: pa-lettre
+    genre: lettre de médecin
+    langue: fr
+    ecriture: tapée
+    texte: |
+      INVENTÉ — Lettre d'un médecin.
+      Concerne : Madame Elena C.
+      Motif : réadaptation après une opération (inventé).
+      Arrivée prévue le 15.11.2026.
+      Dr Exemple, cabinet Exemple.
+  - id: pa-carte
+    genre: carte d'assurance
+    langue: fr
+    ecriture: tapée
+    texte: |
+      INVENTÉ — Carte d'assurance.
+      Assurance Exemple
+      Numéro de carte : EXEMPLE-0001
+      Nom : C.
+      Prénom : Elena
+      Née le 02.02.1950

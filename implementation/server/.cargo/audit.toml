@@ -1,0 +1,8 @@
+# cargo-audit configuration (kept in agreement with deny.toml).
+[advisories]
+# RUSTSEC-2026-0459: waiver approved by the lead and the user (2026-11-14, Task A1 fix round 1).
+# sqlx 0.9.0 (latest) pins libsqlite3-sys < 0.38, whose bundled SQLite < 3.54 is affected.
+# The server opens only its own SQLite database and WAL file inside its own data directory,
+# never files from less trusted parties. Remove when sqlx ships libsqlite3-sys >= 0.39
+# (SQLite >= 3.54).
+ignore = ["RUSTSEC-2026-0459"]

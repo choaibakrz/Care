@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#08110f" />
+    <title>Care · Hospital operations console</title>
+    <script>
+      // The saved theme before the first paint: no flash of the wrong colours.
+      try { if (localStorage.getItem('clinic-pilot-theme') === 'light') document.documentElement.dataset.theme = 'light' } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!--
+      The login screen, in plain HTML, so it shows before any script has run. It has the same
+      markup and classes as src/ui/Login.tsx. What is typed here, and an early press of Enter,
+      are handed to the panel when it starts (src/start.tsx); nothing is sent before that.
+    -->
+    <div id="root">
+      <main class="login" data-boot>
+        <section class="login-card">
+          <div class="logo">
+            <svg width="34" height="34" viewBox="0 0 40 40" aria-hidden="true"><rect x="1" y="1" width="38" height="38" rx="11" fill="var(--mint)" /><path d="M12 26V15a3 3 0 0 1 3-3h10a3 3 0 0 1 3 3v11" fill="none" stroke="#04201a" stroke-width="2.6" stroke-linecap="round" /><circle cx="16.5" cy="18.5" r="2" fill="#04201a" /><circle cx="23.5" cy="18.5" r="2" fill="#04201a" /><path d="M9 28h22" stroke="#04201a" stroke-width="2.6" stroke-linecap="round" /></svg>
+            <div><strong>Care</strong><span>Hospital operations console</span></div>
+          </div>
+          <div class="login-copy">
+            <p class="eyebrow">Admin console · local network</p>
+            <h1>Watch the robots.<br /><span>Stop them in one click.</span></h1>
+            <p>Live 3D map of the clinic, zones, stock and the night round. The panel asks; every robot decides for itself and says why when it refuses.</p>
+          </div>
+          <form class="login-form" id="boot-form">
+            <label class="field">Administrator username or email<input class="input" id="boot-username" type="text" autocomplete="username" required /></label>
+            <label class="field">Password<input class="input" id="boot-password" type="password" autocomplete="current-password" required /></label>
+            <button class="button is-primary is-wide login-submit" id="boot-submit" type="submit">Open the console <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg></button>
+          </form>
+          <ul class="login-facts">
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /><path d="m9 12 2 2 4-4" /></svg>Admin role only. The token stays in memory, never in the address bar.</li>
+            <li><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h.01" /><path d="M8.5 16.429a5 5 0 0 1 7 0" /><path d="M5 12.859a10 10 0 0 1 5.17-2.69" /><path d="M19 12.859a10 10 0 0 0-2.007-1.523" /><path d="M2 8.82a15 15 0 0 1 4.177-2.643" /><path d="M22 8.82a15 15 0 0 0-11.288-3.764" /><path d="m2 2 20 20" /></svg>Runs without Internet: fonts, map and code are all on this computer.</li>
+          </ul>
+        </section>
+        <aside class="login-art" aria-hidden="true">
+          <div class="login-plan">
+            <span class="room room-0"></span><span class="room room-1"></span><span class="room room-2"></span><span class="room room-3"></span><span class="room room-4"></span><span class="room room-5"></span><span class="room room-6"></span><span class="room room-7"></span><span class="room room-8"></span>
+            <i class="bot bot-a"></i><i class="bot bot-b"></i><i class="bot bot-c"></i>
+            <svg viewBox="0 0 600 360" preserveAspectRatio="none"><path d="M70 290 C 160 290, 180 170, 300 170 S 470 90, 540 70" /></svg>
+          </div>
+          <p class="login-caption">Connect to the Iris server to manage the three patient rooms.</p>
+        </aside>
+      </main>
+    </div>
+    <div id="estop-root"></div>
+    <script>
+      // Enter pressed before the panel is ready: remember it, the panel signs in as soon as it starts.
+      document.getElementById('boot-form').addEventListener('submit', function (event) {
+        event.preventDefault()
+        this.dataset.submitted = 'true'
+        var button = document.getElementById('boot-submit')
+        button.disabled = true
+        button.textContent = 'Starting the console…'
+      })
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "spectrum-patient-portal",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Spectrum patient portal and API gateway for Cloud Run",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "check": "node --check server.js && find api -name '*.js' -print0 | xargs -0 -n1 node --check"
+  }
+}

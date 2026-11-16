@@ -1,0 +1,11 @@
+# « À VOUS » — le jury change le scénario (cahier 4.3). DONNÉES INVENTÉES.
+# Changez un mot ici, puis lancez :  python3 lancer.py a-vous
+# (ou sans toucher à ce fichier :   python3 lancer.py a-vous --langue de --point 5 --objet "une guitare")
+#
+# langue        : la langue de la patiente à l'arrivée. it (italien), de (allemand), fr (français) ou en (anglais).
+# point_oublie  : le numéro du point que la soignante oublie dans la liste « installation » (1 à 6).
+# objet         : ce qu'on demande au robot, avec son petit mot devant (« un coussin », « la couverture », « une guitare »).
+#                 S'il n'est pas dans la réserve, le robot le dit et demande à un humain.
+langue: de
+point_oublie: 5
+objet: un fauteuil roulant

@@ -1,0 +1,127 @@
+{
+  "marque": "inventé",
+  "cards": [
+    {
+      "name": "Reception",
+      "permitted_places": [
+        "reception",
+        "linen-shelf",
+        "hall",
+        "therapy-1",
+        "therapy-2",
+        "pool",
+        "dock-a",
+        "dock-b",
+        "supply-a",
+        "supply-b",
+        "nurse-cabinet",
+        "nurse-station",
+        "room-11",
+        "room-12",
+        "room-13",
+        "room-14",
+        "lounge",
+        "dock-w",
+        "dock-n"
+      ],
+      "max_speed_m_s": 1.0
+    },
+    {
+      "name": "Ward",
+      "permitted_places": [
+        "reception",
+        "linen-shelf",
+        "hall",
+        "therapy-1",
+        "therapy-2",
+        "pool",
+        "dock-a",
+        "dock-b",
+        "supply-a",
+        "supply-b",
+        "nurse-cabinet",
+        "nurse-station",
+        "room-11",
+        "room-12",
+        "room-13",
+        "room-14",
+        "lounge",
+        "dock-w",
+        "dock-n"
+      ],
+      "max_speed_m_s": 0.8
+    },
+    {
+      "name": "Therapy",
+      "permitted_places": [
+        "reception",
+        "linen-shelf",
+        "hall",
+        "therapy-1",
+        "therapy-2",
+        "pool",
+        "dock-a",
+        "dock-b",
+        "supply-a",
+        "supply-b",
+        "nurse-cabinet",
+        "nurse-station",
+        "room-11",
+        "room-12",
+        "room-13",
+        "room-14",
+        "lounge",
+        "dock-w",
+        "dock-n"
+      ],
+      "max_speed_m_s": 1.0
+    },
+    {
+      "name": "Night",
+      "permitted_places": [
+        "reception",
+        "linen-shelf",
+        "hall",
+        "dock-a",
+        "dock-b",
+        "supply-a",
+        "supply-b",
+        "nurse-cabinet",
+        "nurse-station",
+        "room-11",
+        "room-12",
+        "room-13",
+        "room-14",
+        "lounge",
+        "dock-w",
+        "dock-n"
+      ],
+      "max_speed_m_s": 0.6
+    },
+    {
+      "name": "demo",
+      "permitted_places": [
+        "reception",
+        "linen-shelf",
+        "hall",
+        "therapy-1",
+        "therapy-2",
+        "pool",
+        "dock-a",
+        "dock-b",
+        "supply-a",
+        "supply-b",
+        "nurse-cabinet",
+        "nurse-station",
+        "room-11",
+        "room-12",
+        "room-13",
+        "room-14",
+        "lounge",
+        "dock-w",
+        "dock-n"
+      ],
+      "max_speed_m_s": 1.0
+    }
+  ]
+}

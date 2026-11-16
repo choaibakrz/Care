@@ -1,0 +1,66 @@
+# Le plan de 48 heures : du samedi 14.11.2026 à 9 h au lundi 16.11.2026 à 9 h.
+# Les heures OFFICIELLES du Carnival (repas, passage devant le jury) sont À VÉRIFIER dans le programme des organisateurs.
+# Si la démonstration est plus tôt, avancer d'autant les gels du code et les répétitions.
+#
+# Une ligne = un bloc qui commence à l'heure « h » et dure « duree » heures (1 par défaut). Le total doit faire 48.
+# Le kit remplace {chantier_1}, {chantier_2}, {chantier_3} (les briques à construire pour CE défi, dans l'ordre)
+# et {robot} (le genre de robot repéré).
+# Sommeil par rotation (nuit 1) : R1 dort 22 h–4 h, R2 dort 1 h–7 h, R3 dort 4 h–10 h. Il y a toujours quelqu'un réveillé.
+# Nuit 2 : code gelé, robot éteint : tout le monde dort 23 h–5 h.
+# Feu orange : tout ce qui touche le vrai robot demande l'accord de Hiba, et le responsable sécurité présent.
+
+rotations:
+  R1: "dort samedi 22 h – dimanche 4 h"
+  R2: "dort dimanche 1 h – 7 h"
+  R3: "dort dimanche 4 h – 10 h"
+
+jours:
+  - jour: "Samedi 14 novembre"
+    blocs:
+      - {h: 9, quoi: "Arrivée. Liste docs/projet/SAMEDI_MATIN.md : réseau local, les deux Mac, python3 lancer.py tests.", qui: "tous", type: installation}
+      - {h: 10, quoi: "Lire le défi avec le kit (python3 lancer.py kit-samedi). Réunion de 20 minutes : ce plan, les équipes, les feux.", qui: "tous", type: point}
+      - {h: 11, quoi: "Brancher le vrai robot ({robot}) — feu orange. Test de conformité sans mouvement. Arrêt d'urgence physique ET logiciel.", qui: "Adaptateurs + Sécurité ; les autres : leurs tâches, sur faux robot", type: securite}
+      - {h: 12, quoi: "Repas, en deux services : deux personnes restent toujours près du robot.", qui: "tous", type: repas}
+      - {h: 13, quoi: "Construire : {chantier_1} et {chantier_2}. Tout sur faux robot d'abord.", qui: "équipes", type: construction}
+      - {h: 14, quoi: "Construire. Adaptateur : premières actions sans mouvement (état, regarder, parler).", qui: "équipes", type: construction}
+      - {h: 15, quoi: "Point de 15 minutes : chaque chef dit « fait / bloqué / besoin d'aide ».", qui: "chefs d'équipe + Hiba", type: point}
+      - {h: 16, quoi: "Construire. Premier mouvement du vrai robot : lent, bouton physique en main — feu orange.", qui: "Adaptateurs + Sécurité ; les autres : construire", type: securite}
+      - {h: 17, quoi: "Premier essai de bout en bout sur faux robot : phrase → gardien → action → fiche de vérité.", qui: "Tests + Démonstration", type: construction}
+      - {h: 18, quoi: "Construire : {chantier_3}. Premier scénario de démonstration écrit (brouillon du kit).", qui: "équipes ; Démonstration", type: construction}
+      - {h: 19, quoi: "Repas.", qui: "tous", type: repas}
+      - {h: 20, quoi: "Point de 15 minutes. Relecture sécurité des changements du jour (gardien, prise, adaptateur).", qui: "chefs + Relecteurs", type: point}
+      - {h: 21, quoi: "Construire. Sauvegarde : commit, journaux copiés sur le second Mac.", qui: "équipes", type: construction}
+      - {h: 22, quoi: "R1 va dormir. Les autres : petites tâches des TACHES.md, sur faux robot.", qui: "R2, R3", type: sommeil}
+      - {h: 23, quoi: "Construire. Vrai robot : seulement si le responsable sécurité ou son adjoint est réveillé.", qui: "R2, R3", type: construction}
+  - jour: "Dimanche 15 novembre"
+    blocs:
+      - {h: 0, quoi: "Construire. Lancer tous les tests (python3 lancer.py tests).", qui: "R2, R3", type: construction}
+      - {h: 1, quoi: "R2 va dormir. R3 : tests, guides, phrases dans les langues du défi. Robot éteint.", qui: "R3", type: sommeil}
+      - {h: 2, quoi: "Petites tâches sans vrai robot.", qui: "R3", type: construction}
+      - {h: 3, quoi: "Répétition « à blanc » du scénario sur faux robot ; noter ce qui casse.", qui: "R3", type: repetition}
+      - {h: 4, quoi: "R1 se lève, R3 va dormir. R1 relit ce que R3 a fait (celui qui écrit n'est pas celui qui vérifie).", qui: "R1", type: sommeil}
+      - {h: 5, quoi: "Construire.", qui: "R1", type: construction}
+      - {h: 6, quoi: "Construire. Préparer la zone de démonstration (vide, marquée au sol).", qui: "R1", type: construction}
+      - {h: 7, quoi: "R2 se lève. Petit-déjeuner.", qui: "R1, R2", type: repas}
+      - {h: 8, quoi: "Construire. Vrai robot : essais lents — feu orange.", qui: "R1, R2", type: construction}
+      - {h: 9, quoi: "Construire.", qui: "R1, R2", type: construction}
+      - {h: 10, quoi: "R3 se lève. Point de 20 minutes avec tout le monde : ce qui marche, ce qu'on abandonne.", qui: "tous", type: point}
+      - {h: 11, quoi: "Construire : finir {chantier_1} et {chantier_2}.", qui: "équipes", type: construction}
+      - {h: 12, quoi: "Repas. GEL DES FONCTIONS après le repas : plus de nouvelle fonction, on finit et on corrige.", qui: "tous", type: gel}
+      - {h: 13, quoi: "Finir, corriger, tester. Plans B prêts : tablette, main humaine, mode local.", qui: "équipes", type: construction}
+      - {h: 14, quoi: "Répétition 1 : le scénario entier sur faux robot, chronométré.", qui: "Démonstration + tous", type: repetition}
+      - {h: 15, quoi: "Corriger ce que la répétition 1 a montré.", qui: "équipes", type: construction}
+      - {h: 16, quoi: "Répétition 2 : avec le vrai robot — feu orange. Provoquer exprès chaque plan B.", qui: "Démonstration + Sécurité + Adaptateurs", type: repetition}
+      - {h: 17, quoi: "Corriger. Relire la fiche de vérité et la boîte noire des répétitions.", qui: "équipes", type: construction}
+      - {h: 18, quoi: "Répétition 3 : devant trois personnes qui jouent le jury ; préparer les réponses aux questions.", qui: "tous", type: repetition}
+      - {h: 19, quoi: "Repas.", qui: "tous", type: repas}
+      - {h: 20, quoi: "GEL DU CODE : plus aucun changement, sauf correction acceptée par Hiba et un relecteur. Version finale gardée sur les deux Mac.", qui: "Architecte + Relecteurs", type: gel}
+      - {h: 21, quoi: "Pitch : textes, chiffres de la fiche de vérité, réponses au jury.", qui: "Démonstration + Rédacteur", type: repetition}
+      - {h: 22, quoi: "Matériel : batteries, câbles, Mac, micros. Charger seulement sous surveillance.", qui: "Sécurité + Adaptateurs", type: securite}
+      - {h: 23, duree: 6, quoi: "Tout le monde dort (code gelé, robot éteint).", qui: "tous", type: sommeil}
+  - jour: "Lundi 16 novembre"
+    blocs:
+      - {h: 5, quoi: "Lever, petit-déjeuner.", qui: "tous", type: repas}
+      - {h: 6, quoi: "Liste docs/projet/SAMEDI_MATIN.md une seconde fois : tests, robot, arrêt d'urgence physique et logiciel.", qui: "Sécurité + Adaptateurs + Tests", type: securite}
+      - {h: 7, quoi: "Répétition générale, la dernière. Rien ne change après.", qui: "tous", type: repetition}
+      - {h: 8, quoi: "DÉMONSTRATION devant le jury (heure exacte à vérifier dans le programme officiel).", qui: "Démonstration + Sécurité ; les autres : public", type: demonstration}

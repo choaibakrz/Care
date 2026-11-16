@@ -1,0 +1,47 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root { height: 100%; }
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 14px;
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+a { color: inherit; }
+h1, h2, h3, h4, p { margin: 0; }
+code, .mono { font-family: var(--font-mono); font-feature-settings: 'zero' 1; }
+
+:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+
+::selection { background: var(--mint-soft); }
+
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { border: 3px solid transparent; border-radius: 10px; background: var(--line-strong) padding-box; }
+::-webkit-scrollbar-track { background: transparent; }
+
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; }
+}
+
+/* Start-up: what shows while a page downloads, or when the panel failed to load at all. */
+.page-loading { padding: 48px; color: var(--text-3); font-size: 13px; text-align: center; }
+.boot-failed { max-width: 520px; margin: 18vh auto 0; padding: 0 16px; color: var(--text-2); line-height: 1.5; text-align: center; }
+
+/* Placeholders while data arrives. The shimmer stops for people who ask for less motion. */
+.skeleton { display: block; border-radius: 6px; background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%); background-size: 200% 100%; animation: skeleton 1.4s ease-in-out infinite; }
+.skeleton.is-number { width: 64px; height: 26px; margin: 4px 0; }
+.skeleton.is-line { width: 100%; height: 10px; margin: 3px 0; }
+.skeleton.is-short { width: 55%; }
+.skeleton.is-badge { width: 100%; height: 30px; border-radius: 8px; }
+@keyframes skeleton { from { background-position: 100% 0; } to { background-position: -100% 0; } }

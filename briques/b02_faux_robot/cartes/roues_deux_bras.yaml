@@ -1,0 +1,22 @@
+# Carte d'identité d'EXEMPLE — non testé sur vrai robot. Clinique en boîte, cahier 5.12 : « un robot à roues à deux bras ».
+# Un robot imaginaire, pour le FAUX ROBOT seulement. Aucun robot de ce genre n'a été vu. Chiffres : tous à vérifier.
+# L'ébauche d'adaptateur pour un vrai robot de ce genre : briques/b03_adaptateurs/robots/roues_deux_bras/.
+id: faux-roues-deux-bras
+nom: Robot à roues à deux bras (exemple)
+genre: roues
+fabricant: aucun (exemple pour le faux robot)
+modele: exemple
+vrai_robot: false
+capacites: [se_deplacer, parler, saisir, poser, arreter, etat]
+limites:
+  vitesse_max_m_s: 0.15   # vitesse lente : un choix de prudence pour l'exemple, pas un chiffre de fabricant ; à vérifier
+  portee_max_m: 0.6   # pour le faux robot seulement ; à vérifier
+  charge_max_kg: 5.0   # 5 kg par bras, chiffre du cahier pour l'exemple ; à vérifier
+  force_max_n: 15   # pour le faux robot seulement ; à vérifier
+gestes: []
+remarques: >-
+  Carte d'exemple — non testé sur vrai robot.
+  Un robot à roues à deux bras. Il roule. Il ne monte pas les escaliers et ne prend pas l'ascenseur.
+  Il porte peu : 5 kg par bras, à vérifier. Il roule lentement.
+  Pour le faux robot seulement : on fait comme s'il pouvait saisir et poser un objet léger.
+  Avec un vrai robot : chaque chiffre vient de la documentation du fabricant, sinon il reste à vérifier.

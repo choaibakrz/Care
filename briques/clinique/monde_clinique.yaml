@@ -1,0 +1,26 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Le plan du deuxième étage, pour le faux robot.
+# Positions inventées, en mètres, posées dans la halle de démonstration de l'ossature (10 m × 6 m, commun/monde.yaml).
+# Elles ne suivent PAS les distances de faux_dossier/lieux.yaml : la halle est plus petite que l'étage inventé.
+# Samedi : remplacer par les vraies positions dans la salle. Les noms sont ceux de lieux.yaml et de reserve.yaml.
+marque: inventé
+# Le rez-de-chaussée n'est PAS sur le plan du robot de l'étage. Ces deux lieux ne s'ajoutent que si on le demande
+# (`monde_de_la_clinique(rez_de_chaussee=True)`) : pour la scène du hall et pour les cartes de rôle (T22b), quand la
+# même salle de démonstration joue à la fois le hall et l'étage. Positions inventées, au bord de la halle.
+lieux_du_rez_de_chaussee:
+  Hall: {x: 0.8, y: 2.6}
+  Accueil: {x: 0.8, y: 3.8}
+lieux:
+  Poste de soins: {x: 2.5, y: 3.2}
+  Réserve: {x: 3.2, y: 4.6}
+  Chambre 11: {x: 4.6, y: 5.3}
+  Chambre 12: {x: 6.0, y: 5.3}
+  Chambre 13: {x: 6.5, y: 1.8}
+  Chambre 14: {x: 7.4, y: 3.1}
+  Salon: {x: 3.5, y: 1.6}
+# Les objets de la réserve : posés à la Réserve, à portée de bras. Poids inventés.
+objets:
+  grand coussin: {x: 3.4, y: 4.7, poids_kg: 0.8}
+  coussin de nuque: {x: 3.0, y: 4.8, poids_kg: 0.3}
+  couverture: {x: 3.4, y: 4.5, poids_kg: 1.0}
+  bouteille d'eau: {x: 3.0, y: 4.5, poids_kg: 0.5}
+  feuille d'exercices: {x: 3.2, y: 4.9, poids_kg: 0.05}

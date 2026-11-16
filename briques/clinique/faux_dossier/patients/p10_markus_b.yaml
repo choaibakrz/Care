@@ -1,0 +1,41 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p10
+  nom_affiche: Monsieur Markus B.
+  nom_complet_affiche: Monsieur Markus B. (personnage inventé)
+  age: 70
+  langue: de
+  comprend_un_peu: []
+Encounter:
+  chambre: 20
+  etage: null
+  arrivee:
+    jour: -2
+    heure: 09:00
+  duree_jours: 18
+  sortie_jour: 16
+  raison: réadaptation du dos
+habitudes:
+- écoute de la musique avec un casque
+- se couche tôt
+Appointment:
+- jour: 1
+  heure: 08:30
+  quoi: physiothérapie
+  lieu: Salle 2
+DocumentReference:
+- id: p10-d1
+  genre: carte d'assurance
+  titre: Versichertenkarte
+  langue: de
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Versicherung Exemple
+
+    Karte von Markus B.
+
+    Erfundene Nummer: EX-0000-0020'
+CarePlan:
+- avant_physio

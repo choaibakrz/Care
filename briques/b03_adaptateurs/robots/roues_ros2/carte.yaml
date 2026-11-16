@@ -1,0 +1,33 @@
+# PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot.
+# Carte d'identité de l'ébauche « robot à roues qui parle ROS 2 », 12.11.2026. Nous ne savons pas quel robot nous aurons.
+# Seule une personne de l'équipe enlève la marque, avec la date où le robot a été vu. Format : briques/b01_prise/carte.py.
+#
+# AUCUN CHIFFRE DE FABRICANT ici : il n'y a pas encore de fabricant. Les limites ci-dessous sont des CHOIX DE PRUDENCE
+# de l'équipe, les mêmes que pour les autres cartes préparées (question Q10, acceptée par Hiba le 12.11.2026).
+# La prise applique EN PLUS les plafonds de reglages.yaml : la plus petite limite gagne.
+
+id: roues-ros2
+nom: Robot à roues ROS 2 (ébauche préparée sans le robot)
+genre: roues
+fabricant: à vérifier samedi
+modele: à vérifier samedi      # et la version de ROS 2 du robot : à vérifier samedi
+vrai_robot: true              # remplacé par le programme : false avec la doublure
+
+# Ce que l'ébauche sait faire : s'arrêter, dire son état (sa position), recevoir une vitesse.
+capacites: [arreter, etat, se_deplacer]
+
+limites:
+  vitesse_max_m_s: 0.3        # choix de prudence (il roule lentement), pas un chiffre de fabricant ; la vraie limite : à vérifier samedi
+  portee_max_m: 0.0           # pas de bras branché ; à vérifier samedi
+  charge_max_kg: 0.0          # il ne porte rien tant que sa charge n'est pas lue ; à vérifier samedi
+  force_max_n: 0.0            # pas de main branchée ; à vérifier samedi
+
+gestes: []
+
+remarques: >-
+  PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot. Essayée seulement avec une doublure (le faux ROS 2 du projet).
+  Canaux « /cmd_vel » et « /odom » : noms courants, pas garantis ; les vrais noms : à vérifier samedi.
+  Premier mouvement : 0,1 m/s (mode lent), zone vide, au moins 1 m entre lui et toute personne, une personne à l'arrêt.
+  Arrêt d'urgence PHYSIQUE : où est-il ? à vérifier samedi. Le robot s'arrête-t-il seul si les messages cessent ? à vérifier samedi.
+  Pas d'escalier. Batterie, unités, autre pilote sur le même canal (manette, navigation) : à vérifier samedi.
+  Voir docs/projet/PREMIERE_HEURE.md.

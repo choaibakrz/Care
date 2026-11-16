@@ -1,0 +1,18 @@
+# Paquets de base (étape 1). Versions testées le 11.11.2026 sur Linux, Python 3.13.
+fastapi==0.162.4
+uvicorn==0.54.0
+websockets==17.4
+pydantic==2.14.3
+PyYAML==6.0.3
+pytest==9.2.0
+httpx==0.28.1
+psutil==7.2.2
+# Voix (étape 2), testés sur Linux le 11.11.2026
+faster-whisper==1.2.1
+sherpa-onnx==2.0.1
+numpy==2.5.4
+soundfile==0.14.0
+# Porte des agents (brique 14), testé sur Linux le 11.11.2026 : SDK officiel MCP, licence MIT (~6 Mo avec ses dépendances)
+mcp==2.3.0
+# Codes QR de la clinique (H19), installé sur l'iMac le 13.11.2026 avec l'accord de Hiba (Q30) : licence BSD-3-Clause, 77 Ko
+segno==1.6.6

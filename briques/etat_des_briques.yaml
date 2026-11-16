@@ -1,0 +1,352 @@
+# L'état des 17 briques, lisible par la machine (lu par le kit du samedi matin, brique 17).
+# Rempli le 11.11.2026 d'après le code et NON_TESTE.md ; noms des briques : message de Hiba du début. À mettre à jour à chaque fusion.
+#
+# etat :
+#   prete  = construite, avec ses tests, utilisable samedi
+#   socle  = version minimale : marche, mais il manque des morceaux (voir TACHES.md)
+#   a_faire = pas encore construite dans cette copie (le dossier n'existe pas)
+# faux_robot : oui = testé sur faux robot ; non = jamais lancé ; sans_objet = ne touche pas de robot.
+# vrai_robot : AUCUNE brique n'a été essayée sur un vrai robot (NON_TESTE.md).
+# idee : le numéro de l'idée liée dans docs/projet/IDEES.md (les 16 interrupteurs).
+
+briques:
+  1:
+    nom: La prise universelle
+    dossier: briques/b01_prise
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture sécurité indépendante en deux tours (12 + 8 points), corrigée
+    sait_faire:
+      - 10 actions dites pareil pour tous les robots (PRISE.md)
+      - carte d'identité du robot (capacités, limites, gestes)
+      - ticket signé du gardien, à usage unique
+      - suivre et annuler une action longue
+      - arrêt d'urgence logiciel, puis réarmement par un humain
+      - test de conformité d'un adaptateur (conformite.py)
+    commandes:
+      - python3 lancer.py tests briques/b01_prise
+      - python3 lancer.py tests briques/b02_faux_robot -k conformite
+    taches: briques/b01_prise/TACHES.md
+
+  2:
+    nom: Le faux robot
+    dossier: briques/b02_faux_robot
+    etat: prete
+    faux_robot: oui
+    vrai_robot: sans_objet
+    relecture: relecture sécurité de l'étape 1
+    sait_faire:
+      - trois cartes (humanoïde, chien, bras), chiffres inventés pour la simulation
+      - pannes d'entraînement (lenteur, refus, perte de liaison, batterie faible, arrêt ignoré)
+      - chien de garde simulé
+      - vue de dessus à l'écran
+    commandes:
+      - python3 lancer.py
+      - python3 lancer.py --robot bras
+      - python3 lancer.py --robot chien
+      - python3 lancer.py demo
+    taches: briques/b02_faux_robot/TACHES.md
+
+  3:
+    nom: Les adaptateurs, un par vrai robot
+    idee: 12
+    dossier: briques/b03_adaptateurs
+    etat: socle
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture sécurité indépendante faite (18 constats, 9c0ef26), corrigée (branche corrections-b3) ; corrections à relire
+    sait_faire:
+      - "modèle vide commenté : la mécanique commune (arrêt d'urgence d'abord, chien de garde, vitesse bridée) + une liaison à brancher"
+      - "assistant : python3 lancer.py brancher NOM crée le dossier du robot (carte, liaison, adaptateur, test prêt à lancer)"
+      - "test de conformité en deux temps : sans mouvement, puis complet (lent) ; vrai robot = phrase tapée au clavier (contre l'oubli, pas contre un agent)"
+      - "deux chemins : kit Python du fabricant (SDK) ou pont ROS 2, chacun avec son faux pour les tests"
+      - "fiches Unitree G1 et Go2, AGIBOT, Flexiv Rizon : ce que dit la doc publique, et ce qui est à vérifier"
+      - "chronomètre « robot inconnu » dans le terminal (temps depuis la création du dossier)"
+    limites_connues:
+      - "aucun vrai robot, aucun vrai kit, ROS 2 jamais installé : tout est testé sur faux robot"
+      - "aller à un lieu nommé : pas branché (seulement dx, dy) ; position du vrai robot non donnée au gardien"
+      - "l'arrêt de marche proposé pour un robot à jambes ne bloque pas le robot (décision de Hiba et du responsable sécurité)"
+    deja_pret_ailleurs:
+      - le modèle commun d'adaptateur (briques/b01_prise/adaptateur.py)
+      - le test de conformité (briques/b01_prise/conformite.py), réutilisé par le test en deux temps
+    premieres_taches:
+      - Samedi, suivre BRANCHER_UN_ROBOT.md (skill brancher-un-robot) avec le robot du défi.
+      - Chronomètre « robot inconnu » à l'écran du jury (idée 12), avec la personne de l'écran (brique 13).
+    commandes:
+      - python3 lancer.py brancher NOM --genre humanoide --chemin sdk
+      - python3 lancer.py brancher NOM --conformite
+      - python3 lancer.py brancher NOM --conformite --vrai            (feu orange, à taper par un humain)
+      - python3 lancer.py brancher NOM --conformite --vrai --complet  (feu orange, mouvements lents)
+      - python3 lancer.py tests briques/b03_adaptateurs
+    taches: briques/b03_adaptateurs/TACHES.md
+
+  4:
+    nom: Les oreilles et la voix
+    dossier: briques/b04_oreilles_voix
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture indépendante de la voix (12 constats), corrigée
+    sait_faire:
+      - écoute en fr, de, gsw, it, en, zh ; langue reconnue ; réponse dans la même langue
+      - suisse allemand compris, réponse en allemand
+      - fin de parole, interruption, mot d'appel, bouton « je parle »
+      - « stop » prioritaire partout ; confirmation avant saisir et poser
+      - voix chinoise (Piper) ; voix du Mac (non essayée) ; sinon sous-titres
+    limites_connues:
+      - testé sur Linux seulement ; vrai micro et vrai haut-parleur jamais essayés
+      - la voix du Mac (say) n'a jamais été lancée ; noms des voix à vérifier
+    commandes:
+      - python3 lancer.py micro
+      - python3 lancer.py micro --declenchement bouton
+      - python3 lancer.py banc-voix
+      - python3 lancer.py enregistrer gsw --prenom …
+    taches: briques/b04_oreilles_voix/TACHES.md
+
+  5:
+    nom: Les yeux
+    idee: 16
+    dossier: briques/b05_yeux
+    etat: socle
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: "à faire ; le petit ajout dans perception.py (heure de la photo) demande le relecteur sécurité"
+    sait_faire:
+      - "prise des yeux : voir(image) → personnes, objets nommés, marqueurs ArUco, textes ; un outil absent est dit, les autres continuent"
+      - "caméra simulée du faux robot (image dessinée du faux monde, humanoïde, chien, bras), vérité du dessin pour les personnes"
+      - "personnes vues → gardien, au sol, avec l'heure de la photo et la zone vue ; hors du champ ou caméra en panne → le gardien demande un humain"
+      - "« prends la bouteille » : vue → l'action continue (direction notée) ; pas vue → une question, en 5 langues"
+      - "calibration au sol avec 3 marqueurs ArUco (mesuré en simulation : 1 à 3 cm d'erreur jusqu'à 3 m) ; RapidOCR lit un panneau"
+    limites_connues:
+      - "yeux ÉTEINTS par défaut (reglages.yaml → yeux.actif)"
+      - "MediaPipe jamais lancé (Linux du nuage sans libEGL) : vraies personnes à vérifier sur Mac"
+      - "caméra sur le robot : tout mouvement ou geste demande un humain (son pied n'est pas vu) ; vrai robot : personnes jamais données au gardien (gardien_vrai_robot: true refusé au démarrage)"
+      - "aucune vraie caméra essayée ; testé sur caméra simulée seulement"
+    decide: MediaPipe pour les personnes et objets courants ; OpenCV + RapidOCR pour lire ; ArUco ; OWLv2 plus tard, en option (DECISIONS.md)
+    premieres_taches:
+      - Installer requirements-yeux.txt sur le Mac, lancer les tests et le banc (MediaPipe jamais lancé).
+      - Samedi, brancher et calibrer la caméra du robot (GUIDE.md de la brique 5).
+    commandes:
+      - python3 lancer.py tests briques/b05_yeux
+      - .venv/bin/python -m pip install --no-deps -r requirements-yeux.txt
+      - .venv/bin/python -m briques.b05_yeux.calibrer --essai
+      - .venv/bin/python -m briques.b05_yeux.calibrer --camera opencv:0
+      - .venv/bin/python -m briques.b05_yeux.marqueurs --imprimer marqueurs_a_imprimer/
+      - .venv/bin/python -m briques.b05_yeux.banc_yeux
+    taches: briques/b05_yeux/TACHES.md
+
+  6:
+    nom: Le cerveau
+    dossier: briques/b06_cerveau
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture indépendante de l'étape 3 (12 constats), corrigée
+    sait_faire:
+      - cascade Apertus 8B → Apertus 4B → cerveau à règles, passage automatique
+      - "formulaire forcé : une action de la carte ou une question, rien d'autre"
+      - filets « cible non nommée » et « verrou des chiffres »
+      - banc d'essai de 30 demandes × 6 langues
+    limites_connues:
+      - Apertus 8B et 4B jamais lancés (testé ici avec Apertus 0,5B seulement)
+    commandes:
+      - python3 lancer.py cerveau
+      - python3 lancer.py cerveau --partager
+      - python3 lancer.py banc-cerveau
+    taches: briques/b06_cerveau/TACHES.md
+
+  7:
+    nom: Le gardien
+    dossier: briques/b07_gardien
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture indépendante du lot B à faire (obligatoire pour la sécurité)
+    sait_faire:
+      - règles en phrases simples (regles.yaml) ; phrase et chiffre doivent aller ensemble, sinon pas de démarrage
+      - vitesse, force, distance aux personnes (1 m), escalier, zones, valise, poids, objets fragiles
+      - "trois réponses : oui (ticket), non (expliqué dans la langue), « demande à un humain » (main levée)"
+      - seul à fabriquer les tickets ; tout revérifié après l'accord d'un humain
+      - règles changées en direct (vote du public), jamais au-dessus des limites de reglages.yaml
+    limites_connues:
+      - positions et personnes simulées ; jamais avec de vrais yeux
+    commandes:
+      - python3 lancer.py tests briques/b07_gardien
+    taches: briques/b07_gardien/TACHES.md
+
+  8:
+    nom: « Je ne suis pas sûr »
+    dossier: briques/b08_doute
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture indépendante du lot B à faire
+    sait_faire:
+      - ordre flou, deux lieux ou deux objets → une question, jamais une action (20 demandes floues testées)
+      - main levée après deux « pas compris » ou deux échecs de suite
+      - un humain apprend un mot au robot (« frigo » = cuisine), gardé au démarrage suivant
+    limites_connues:
+      - le robot ne comprend pas encore la réponse à sa propre question (« Où ? » → « à la cuisine »)
+    commandes:
+      - python3 lancer.py tests briques/b08_doute
+    taches: briques/b08_doute/TACHES.md
+
+  9:
+    nom: La mémoire
+    idee: 6
+    dossier: null
+    etat: a_faire
+    faux_robot: non
+    vrai_robot: jamais
+    sait_faire: []
+    premieres_taches:
+      - Retenir le prénom dit par la personne pendant la conversation, et la remercier par son prénom (idée 6).
+      - Retenir ce qui a été fait et où sont les objets, sans données personnelles gardées après l'événement.
+    commandes: []
+    taches: null
+
+  10:
+    nom: Apprendre un geste
+    idee: 7
+    dossier: null
+    etat: a_faire
+    faux_robot: non
+    vrai_robot: jamais
+    sait_faire: []
+    premieres_taches:
+      - Enregistrer un geste montré (ou dicté), le rejouer par son nom, toujours via le gardien.
+      - Le mode village (idée 7) — un geste offert par le public, signé du prénom.
+    commandes: []
+    taches: null
+
+  11:
+    nom: La main humaine
+    idee: 13
+    dossier: briques/b11_main_humaine
+    etat: socle
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: "relecture sécurité indépendante du lot D faite (rien de grave par défaut), corrigée (points 2, 3, 7, 8, 9, 10, 12) ; corrections à relire"
+    sait_faire:
+      - "écran de l'équipe : « Je prends la main » / « Je rends la main » (code d'équipe, jeton de la tablette) ; événement pilotage_humain avec qui"
+      - "prendre la main arrête toujours le robot (par le gardien) ; les demandes à un humain de l'autre camp sont oubliées"
+      - "pendant la main humaine, la voix, la tablette et les agents reçoivent « un humain pilote » ; « stop » et ARRÊT passent toujours"
+      - "ordres par boutons (actions de la carte : lieu, objet, cible, geste, dx/dy, vitesse) : formulaire → gardien → ticket → prise ; refus expliqué à l'écran"
+      - "panneau « Demandes à un humain » : accepter ou refuser (le gardien revérifie tout), apprendre un mot, vote du public"
+      - "écran du jury : bandeau « UN HUMAIN PILOTE » et qui ; fiche de vérité : part de l'humain (la simulée à part), ordres de l'humain, réussites « dont N par l'humain »"
+      - "chef de démonstration : OperateurEcran (plan B « main humaine » par l'écran, consigne affichée)"
+    limites_connues:
+      - "jamais sur une vraie tablette ni avec un vrai robot (testé dans Chromium sans écran, sur Linux)"
+      - "lancer.py scenario n'a pas d'écran : l'OperateurEcran ne sert que si le chef tourne dans le même programme que l'écran"
+      - "qui n'est pas vérifié (un prénom, pas un mot de passe) ; un seul humain à la fois ; après un redémarrage, personne n'a la main"
+      - "visite à distance (idée 13) : seulement sur le Wi-Fi local, rien par Internet"
+    commandes:
+      - python3 lancer.py   (puis http://<cet-ordinateur>:8000, encadré « La main humaine »)
+      - python3 lancer.py tests briques/b11_main_humaine
+    taches: briques/b11_main_humaine/TACHES.md
+
+  12:
+    nom: La boîte noire et la fiche de vérité
+    dossier: briques/b12_boite_noire
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture sécurité de l'étape 1
+    sait_faire:
+      - journal d'événements, une ligne par événement (journal/)
+      - fiche de vérité calculée depuis les événements (réussites, ratés, refus, part de l'humain, temps)
+      - mention automatique « faux robot » ou « vrai robot »
+      - rejeu d'une session
+    commandes:
+      - python3 lancer.py rejouer
+      - python3 lancer.py demo
+    taches: briques/b12_boite_noire/TACHES.md
+
+  13:
+    nom: L'écran du jury
+    dossier: briques/b13_ecran
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture indépendante du lot B à faire
+    sait_faire:
+      - écran de l'équipe (vue de dessus, ARRÊT, Réarmer, tablette) et écran du jury /jury
+      - entendu / compris / va faire / refuse parce que / question / aide, en direct
+      - sous-titres dans la langue parlée et dans une 2e langue ; fiche de vérité en grand
+      - bouton « Internet coupé » (vraie coupure du programme), mode silence, flux pour le motion design
+    limites_connues:
+      - jamais sur le grand écran du Carnival, ni Safari, ni iPad, ni Mac
+    commandes:
+      - python3 lancer.py   (puis http://<cet-ordinateur>:8000/jury)
+    taches: briques/b13_ecran/TACHES.md
+
+  14:
+    nom: La porte des agents (MCP)
+    dossier: briques/b14_porte_agents
+    etat: socle
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: "à faire ; le petit ajout dans le gardien (accord humain pour les agents) demande le relecteur sécurité"
+    sait_faire:
+      - "serveur MCP sur stdio (paquet officiel mcp 2.3.0, MIT) ; cinq outils : dire_au_robot, voir_carte, voir_etat, voir_fiche, arreter"
+      - "chaque ordre d'un agent passe par la chaîne de la voix (cerveau, gardien, ticket, prise), source « agent:nom »"
+      - "accord d'un humain pour chaque action d'un agent (allumé par défaut) ; ordres par minute limités ; « stop » et arrêt toujours permis"
+      - "fiche de vérité et boîte noire : demandes des agents, ordres refusés par la porte"
+    manque:
+      - "version HTTP dans le même programme que l'écran principal (nécessaire avant un vrai robot)"
+    limites_connues:
+      - "jamais essayée dans une vraie session de l'assistant de code ; l'enregistrement dans l'assistant de code est un réglage de Hiba (feu orange)"
+      - "la commande crée son propre système : faux robot seulement"
+    commandes:
+      - python3 lancer.py porte-agents --agent assistant
+      - python3 lancer.py tests briques/b14_porte_agents
+    taches: briques/b14_porte_agents/TACHES.md
+
+  15:
+    nom: Le chef de démonstration
+    dossier: briques/b15_chef_demo
+    etat: prete
+    faux_robot: oui
+    vrai_robot: jamais
+    relecture: relecture indépendante du lot A en cours
+    sait_faire:
+      - jouer un scénario YAML vérifié avant de jouer (toute clé inconnue refusée)
+      - plans B dans l'ordre (tablette, mode local, main humaine, sauter), notés dans la boîte noire
+      - répétition avec pannes provoquées ou tirées au hasard, accélération
+      - compte rendu de la démonstration ; essai de 3 minutes mesuré à 174,81 s (faux robot, cerveau à règles)
+    limites_connues:
+      - jamais joué avec Apertus ni avec la vraie voix
+    commandes:
+      - python3 lancer.py scenario essai_3_minutes.yaml
+      - python3 lancer.py scenario essai_3_minutes.yaml --repetition --panne robot@7 --acceleration 20
+      - python3 -m briques.b15_chef_demo.verifier MON_SCENARIO.yaml
+    taches: briques/b15_chef_demo/TACHES.md
+
+  16:
+    nom: Deux robots
+    dossier: null
+    etat: a_faire
+    faux_robot: non
+    vrai_robot: jamais
+    sait_faire: []
+    premieres_taches:
+      - Deux faux robots dans le même monde — tâche de la brique 2.
+      - Une seule boîte noire et un seul gardien pour deux robots ; un robot demande, l'autre agit.
+    commandes: []
+    taches: null
+
+  17:
+    nom: Le kit du samedi matin
+    dossier: briques/b17_kit_samedi
+    etat: socle
+    faux_robot: sans_objet
+    vrai_robot: sans_objet
+    relecture: relecture indépendante du lot A en cours
+    sait_faire:
+      - lire le texte du défi, hors ligne, par mots-clés (fr, de, en)
+      - rendre un plan de 48 heures, la répartition de 35 personnes, les risques
+      - un brouillon de scénario au format du chef de démonstration (brique 15), joué par un test sur le faux robot
+    commandes:
+      - python3 lancer.py kit-samedi DEFI.md --sortie plan.md
+    taches: briques/b17_kit_samedi/TACHES.md

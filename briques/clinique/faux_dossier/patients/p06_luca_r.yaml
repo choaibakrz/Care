@@ -1,0 +1,41 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p06
+  nom_affiche: Monsieur Luca R.
+  nom_complet_affiche: Monsieur Luca R. (personnage inventé)
+  age: 59
+  langue: it
+  comprend_un_peu: []
+Encounter:
+  chambre: 16
+  etage: null
+  arrivee:
+    jour: -8
+    heure: 09:00
+  duree_jours: 20
+  sortie_jour: 12
+  raison: réadaptation de l'épaule
+habitudes:
+- téléphone à sa famille à midi
+- préfère la douche le matin
+Appointment:
+- jour: 1
+  heure: '14:30'
+  quoi: physiothérapie
+  lieu: Salle 2
+DocumentReference:
+- id: p06-d1
+  genre: carte d'assurance
+  titre: Tessera
+  langue: it
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Assicurazione Exemple
+
+    Tessera di Luca R.
+
+    Numero inventato: EX-0000-0016'
+CarePlan:
+- avant_physio

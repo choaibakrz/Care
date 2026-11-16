@@ -1,0 +1,34 @@
+# Starting points to tune, not results. Keys under `options` go to the backend untouched.
+datasets:
+  hospital_consumables:
+    source: null        # path / zip / URL / hf:<repo>; or pass --source to scripts
+  biosafety_ppe:
+    source: null
+
+phases:
+  ppe_warmup:           # optional; keep only if the ablation shows it helps
+    primary: biosafety_ppe
+    epochs: 40
+    image_size: 640
+    freeze_layers: 10
+    options: {patience: 15}
+
+  hospital_main:
+    primary: hospital_consumables
+    replay: {biosafety_ppe: 0.25}     # fraction of that dataset's train images mixed in
+    epochs: 120
+    image_size: 960
+    learning_rate: 0.001
+    options:
+      cos_lr: true
+      patience: 30
+      degrees: 180
+      flipud: 0.5
+      fliplr: 0.5
+      mosaic: 1.0
+      close_mosaic: 15
+      copy_paste: 0.3
+      mixup: 0.0
+      hsv_h: 0.01
+      hsv_s: 0.3
+      hsv_v: 0.2

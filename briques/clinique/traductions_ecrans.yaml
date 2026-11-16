@@ -1,0 +1,83 @@
+# PAS RELU — toutes les phrases traduites des écrans, dans ce seul fichier (demande de Hiba, réponse à Q19, 12.11.2026).
+# Écrit par un agent d'IA. Personne qui parle allemand, italien ou anglais ne l'a relu.
+# POUR RELIRE : corriger la phrase à droite, sans toucher à la phrase française à gauche (c'est elle que le programme
+# cherche à l'écran). Quand tout est relu : écrire son prénom et la date dans « relu_par ».
+# DONNÉES INVENTÉES : les lignes de programme et les genres de documents viennent du faux dossier.
+marque: écrit par un agent d'IA, pas relu par une personne qui parle la langue
+relu_par:
+
+# ---------------------------------------------------------------------------------------------------------------------
+# 1. Les textes fixes des écrans du SOIGNANT et du MÉDECIN, en allemand.
+ecrans_de:
+  # Un texte entier à l'écran (un titre, un bouton, une ligne).
+  entiers:
+    "Point de prise de poste": "Übersicht bei Schichtbeginn"
+    "Fin de poste": "Schichtende"
+    "Ce qui a changé": "Was sich geändert hat"
+    "Ce que le poste d'avant n'a pas fini": "Was die vorige Schicht nicht erledigt hat"
+    "Rien.": "Nichts."
+    "Fait": "Erledigt"
+    "C'est fait": "Ist erledigt"
+    "Je l'ai vu": "Ich habe es gesehen"
+    "Aucun robot n'est branché : les demandes « pour un robot » attendent.": "Kein Roboter ist angeschlossen: Anfragen «für einen Roboter» warten."
+    "Ouvrir": "Öffnen"
+    "Pourquoi il est là": "Warum er oder sie hier ist"
+    "Ce qui a changé depuis hier": "Was sich seit gestern geändert hat"
+    "Ce qui attend une décision": "Was auf eine Entscheidung wartet"
+    "Ses questions": "Seine oder ihre Fragen"
+    "Prévu aujourd'hui": "Heute geplant"
+    "Demander quelque chose à l'équipe": "Das Team um etwas bitten"
+    "Pourquoi ?": "Warum?"
+    ": rien de nouveau": ": nichts Neues"
+  # Un morceau de texte, suivi ou précédé d'autre chose (un nombre, un nom).
+  morceaux:
+    "Mes patients :": "Meine Patienten:"
+    "Points qui restent :": "Offene Punkte:"
+    "arrive aujourd'hui": "kommt heute an"
+    ", chambre ": ", Zimmer "
+    "Demandes (": "Anfragen ("
+    "Messages du hall (": "Nachrichten aus der Eingangshalle ("
+    "Tâches pour moi (": "Aufgaben für mich ("
+    "le robot attend :": "der Roboter wartet:"
+    "demandé par ": "angefragt von "
+    "— pour : ": "— für: "
+    "Chercher un document :": "Dokument suchen:"
+    "Résumé — ": "Zusammenfassung — "
+    "Version : ": "Version: "
+    "règles simples, sans modèle": "einfache Regeln, ohne Modell"
+    "Préparé : ": "Vorbereitet: "
+    "Refait : ": "Neu erstellt: "
+    "Il recopie ses sources, il ne conclut pas.": "Sie übernimmt ihre Quellen wörtlich und zieht keine Schlüsse. Die Sätze der Zusammenfassung stehen auf Französisch (nicht übersetzt)."
+    "Source : ": "Quelle: "
+
+# ---------------------------------------------------------------------------------------------------------------------
+# 2. La table pour les DONNÉES du faux dossier : le programme du patient, le genre des documents, les lieux.
+#    Une valeur qui n'est pas dans la table reste en français à l'écran : le programme n'invente rien.
+#    Aujourd'hui : servie sur les écrans du soignant et du médecin en allemand. Sur l'écran du PATIENT (de, it, en) : prête,
+#    mais éteinte en attendant la réponse de Hiba à la question Q25.
+donnees:
+  programme:
+    "installation en chambre": {de: "Einrichten im Zimmer", it: "sistemazione in camera", en: "settling into the room"}
+    "physiothérapie": {de: "Physiotherapie", it: "fisioterapia", en: "physiotherapy"}
+    "bain accompagné": {de: "begleitetes Bad", it: "bagno assistito", en: "assisted bath"}
+    "marche accompagnée": {de: "begleitetes Gehen", it: "camminata assistita", en: "assisted walk"}
+    "visite du médecin": {de: "Arztvisite", it: "visita del medico", en: "doctor's visit"}
+    "sortie": {de: "Austritt", it: "dimissione", en: "discharge"}
+  lieux:   # le premier mot d'un lieu ; le numéro reste (« Salle 2 » → « Raum 2 »)
+    "Chambre": {de: "Zimmer", it: "Camera", en: "Room"}
+    "Salle": {de: "Raum", it: "Sala", en: "Room"}
+    "Bassin": {de: "Therapiebad", it: "Piscina", en: "Pool"}
+    "Salon": {de: "Aufenthaltsraum", it: "Salotto", en: "Lounge"}
+    "Accueil": {de: "Empfang", it: "Accoglienza", en: "Reception"}
+  genres_de_documents:
+    "lettre du médecin traitant": {de: "Brief der Hausärztin oder des Hausarztes", it: "lettera del medico curante", en: "letter from the family doctor"}
+    "liste de médicaments": {de: "Medikamentenliste", it: "elenco dei medicinali", en: "medication list"}
+    "carte d'assurance": {de: "Versicherungskarte", it: "tessera dell'assicurazione", en: "insurance card"}
+    "rapport de radiologie": {de: "Radiologiebericht", it: "referto radiologico", en: "radiology report"}
+    "ordonnance de physiothérapie": {de: "Physiotherapie-Verordnung", it: "prescrizione di fisioterapia", en: "physiotherapy prescription"}
+    "formulaire d'admission": {de: "Aufnahmeformular", it: "modulo di ammissione", en: "admission form"}
+    "liste des rendez-vous": {de: "Terminliste", it: "elenco degli appuntamenti", en: "appointment list"}
+  listes_de_soin:   # le titre des listes, en allemand seulement (écrans du soignant et du médecin)
+    "Installation à l'arrivée": "Einrichten bei der Ankunft"
+    "Avant la séance de physiothérapie": "Vor der Physiotherapie"
+    "Préparation de la sortie": "Vorbereitung des Austritts"

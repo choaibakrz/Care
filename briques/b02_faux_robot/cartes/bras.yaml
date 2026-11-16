@@ -1,0 +1,16 @@
+# Carte d'identité d'exemple : un bras fixe sur une table. Il ne se déplace pas.
+id: faux-bras
+nom: Faux bras
+genre: bras
+fabricant: faux robot (simulation)
+modele: B-0
+vrai_robot: false
+position_fixe: table   # lu par le faux robot : le bras est posé à la table
+capacites: [regarder, saisir, poser, montrer, rejouer_geste, arreter, etat]
+limites:
+  vitesse_max_m_s: 0.0
+  portee_max_m: 0.8
+  charge_max_kg: 3.0
+  force_max_n: 40
+gestes: [saluer, verser]
+remarques: Fixe. Il prend et pose ce qui est à sa portée.

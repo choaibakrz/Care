@@ -1,0 +1,84 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Le scénario : une matinée à la clinique, en sept scènes (cahier 4.2).
+# Lu et vérifié par chef_clinique.py AVANT de jouer : une clé inconnue, une scène sans plan B, un repère inconnu
+# ou une étape oubliée sont refusés à la lecture.
+#
+# Pour chaque scène :
+#   repere  : l'heure du scénario où l'horloge saute (un nom de heures_scenario.yaml). Sans repère : l'heure ne bouge pas.
+#   etapes  : les étapes de la grande répétition (cahier, partie 8) que la scène joue. Chaque étape est dans une scène.
+#   annonce : ce que la personne qui présente peut dire en ouvrant la scène.
+#   plan_b  : que faire si la scène rate, dans l'ordre. Les moyens sont ceux du chef de démonstration (brique 15) :
+#             tablette, main_humaine, mode_local, sauter. La consigne dit, en clair, qui fait quoi.
+#             Un plan B sauve la démonstration, jamais la répétition : une étape ratée reste ratée.
+marque: inventé
+titre: "La clinique en boîte : une matinée à la clinique"
+langue: fr
+scenes:
+  - numero: 1
+    titre: "L'arrivée"
+    repere: "arrivée"
+    etapes: [1, 2, 3]
+    annonce: "Une patiente arrive. Elle parle italien. Le robot du hall lui répond dans sa langue."
+    plan_b:
+      - moyen: tablette
+        consigne: "La phrase d'arrivée est tapée sur la page du hall (/clinique/hall) au lieu d'être dite."
+      - moyen: main_humaine
+        consigne: "La personne de l'accueil reçoit la patiente elle-même et prévient l'étage."
+  - numero: 2
+    titre: "Les papiers"
+    repere: "papiers"
+    etapes: [4, 5]
+    annonce: "Elle tend trois feuilles. L'écran de l'accueil propose où les ranger. Un humain valide."
+    plan_b:
+      - moyen: main_humaine
+        consigne: "La personne de l'accueil choisit elle-même le type de chaque papier sur son écran."
+      - moyen: sauter
+        consigne: "Les papiers restent dans « à trier ». Rien n'est rangé sans un humain."
+  - numero: 3
+    titre: "Le soin"
+    repere: "installation en chambre"
+    etapes: [6, 7, 8]
+    annonce: "La soignante entre dans la chambre. Un mannequin est dans le lit. Sa tablette montre la liste."
+    plan_b:
+      - moyen: tablette
+        consigne: "La soignante coche au doigt et demande l'objet par le bouton « Il manque un objet »."
+      - moyen: main_humaine
+        consigne: "Le robot ne bouge pas : un humain va chercher le coussin, la tâche passe « pour un humain »."
+  - numero: 4
+    titre: "Le soir"
+    repere: "questions du soir"
+    etapes: [9]
+    annonce: "Le soir. La tablette de la patiente lui demande si elle a des questions pour le médecin."
+    plan_b:
+      - moyen: tablette
+        consigne: "La patiente tape ses questions sur sa tablette au lieu de les dire."
+      - moyen: sauter
+        consigne: "On passe au lendemain ; le résumé du médecin dit qu'il n'a reçu aucune question."
+  - numero: 5
+    titre: "Le médecin, le lendemain"
+    repere: "visite"
+    etapes: [10, 11]
+    annonce: "Le lendemain matin. Le médecin lit cinq lignes. Chaque ligne ouvre sa source. Il demande deux documents : la lettre du médecin de Madame B., qui s'ouvre ; puis son rapport de radiologie, qu'elle n'a pas. Le prototype répond vrai : « Je ne trouve pas ce document »."
+    plan_b:
+      - moyen: tablette
+        consigne: "Le médecin tape sa demande pour le thérapeute au lieu de la dicter."
+      - moyen: main_humaine
+        consigne: "Le médecin ouvre lui-même les documents de la patiente, sans le résumé."
+  - numero: 6
+    titre: "La flotte"
+    repere: "panne d'un robot"
+    etapes: [12]
+    annonce: "Quatre robots à l'écran, dont trois simulés. L'un tombe en panne."
+    plan_b:
+      - moyen: main_humaine
+        consigne: "Aucun robot ne reprend la course : un humain la finit, et c'est écrit."
+      - moyen: sauter
+        consigne: "On montre le tableau des tâches tel qu'il est, avec la course en panne."
+  - numero: 7
+    titre: "La vérité"
+    etapes: [13, 14]
+    annonce: "Voici ce qui était réel, ce qui était simulé, et ce qui était joué. Puis : à vous."
+    plan_b:
+      - moyen: tablette
+        consigne: "La fiche de vérité est montrée à l'écran au lieu d'être dite."
+      - moyen: main_humaine
+        consigne: "La personne qui présente dit elle-même ce qui était simulé, sans la fiche."

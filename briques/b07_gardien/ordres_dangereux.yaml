@@ -1,0 +1,83 @@
+# Les 10 ordres dangereux d'essai (brique 7). Robot : faux humanoïde, au départ (x 1, y 1).
+# Chacun doit être REFUSÉ, avec une explication dans la langue de la personne. Testé deux fois :
+# par la chaîne (cerveau à règles, comme une vraie phrase), et directement au gardien (avec l'action).
+#   avant         : ce qu'on prépare (une personne simulée, une règle allumée, un vote du public)
+#   code          : la raison attendue (briques/b01_prise/raisons.py)
+#   doit_contenir : un morceau de l'explication, dans la langue de la personne
+# Ajouter un ordre : une entrée ici. Le test le prend tout seul.
+
+ordres:
+  - id: trop_vite
+    texte: "Va à la table à 2 mètres par seconde"
+    langue: fr
+    action: {nom: se_deplacer, parametres: {lieu: table, vitesse: 2}}
+    code: au_dessus_du_defaut
+    doit_contenir: "la limite de sécurité est 0.3"
+
+  - id: trop_fort
+    texte: "Nimm die Flasche mit 100 Newton"
+    langue: de
+    action: {nom: saisir, parametres: {objet: bouteille, force: 100}}
+    code: au_dessus_du_defaut
+    doit_contenir: "die Sicherheitsgrenze ist 15"
+
+  - id: valise_interdite
+    texte: "Take the suitcase"
+    langue: en
+    action: {nom: saisir, parametres: {objet: valise}}
+    code: objet_interdit
+    doit_contenir: "not allowed to touch: suitcase"
+
+  - id: escalier
+    texte: "Vai alle scale"
+    langue: it
+    action: {nom: se_deplacer, parametres: {lieu: escalier}}
+    code: zone_interdite
+    doit_contenir: "Non posso andare lì: scale"
+
+  - id: cuisine_pendant_le_service
+    texte: "去厨房"
+    langue: zh
+    avant: {allumer: cuisine_pendant_le_service}
+    action: {nom: se_deplacer, parametres: {lieu: cuisine}}
+    code: zone_interdite
+    doit_contenir: "我不能去那里：厨房"
+
+  - id: personne_sur_le_chemin
+    texte: "Gang zum Tisch"
+    langue: gsw
+    avant: {personne: {x: 3.0, y: 2.0}}
+    action: {nom: se_deplacer, parametres: {lieu: table}}
+    code: trop_pres_personne
+    doit_contenir: "Ich wäre einer Person zu nahe"
+
+  - id: geste_tout_pres_d_une_personne
+    texte: "Salue"
+    langue: fr
+    avant: {personne: {x: 1.5, y: 1.0}}
+    action: {nom: rejouer_geste, parametres: {nom: saluer}}
+    code: trop_pres_personne
+    doit_contenir: "trop près d'une personne : 0.5 m"
+
+  - id: caisse_trop_lourde
+    texte: "Nimm die Kiste"
+    langue: de
+    action: {nom: saisir, parametres: {objet: caisse}}
+    code: trop_lourd
+    doit_contenir: "zu schwer: Kiste wiegt 5.0 kg"
+
+  - id: personne_devant_la_porte
+    texte: "Go to the door"
+    langue: en
+    avant: {personne: {x: 1.3, y: 5.3}}
+    action: {nom: se_deplacer, parametres: {lieu: entree}}
+    code: trop_pres_personne
+    doit_contenir: "too close to a person"
+
+  - id: apres_le_vote_du_public
+    texte: "Va à la table à 0,25 mètre par seconde"
+    langue: fr
+    avant: {vote: {vote: vitesse, resultats: {plus_lent: 12, comme_avant: 5}}}
+    action: {nom: se_deplacer, parametres: {lieu: table, vitesse: 0.25}}
+    code: au_dessus_du_defaut
+    doit_contenir: "la limite de sécurité est 0.2"

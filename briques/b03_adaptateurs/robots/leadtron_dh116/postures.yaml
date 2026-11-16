@@ -1,0 +1,33 @@
+# CE FICHIER N'EST PLUS LU depuis le 15.11.2026 : les gestes sont maintenant dans gestes.yaml (même dossier).
+# Il est gardé pour mémoire (les réglages d'avant). Le changer ne change plus rien.
+#
+# NON TESTÉ SUR VRAI ROBOT (ces valeurs-ci : voir plus bas ce qui a été essayé).
+# Les postures de la main Leadtron DH116 (main gauche). C'est l'ÉQUIPE qui les règle, sur place, main fixée sur la table.
+#
+# Une position va de 0 (doigt ouvert, la position de départ) à 10000 (toute la course) : lu dans le manuel du fabricant
+# le 15.11.2026. La liaison REFUSE toute position au-dessus de 6000 (la main ne se ferme jamais à fond) et tout courant
+# au-dessus de 600 pour mille (six dixièmes de la force). Elle refuse aussi une valeur qui n'est pas un nombre entier
+# (« oui », « .nan », « .inf », 3500.5, un texte), un doigt en trop ou en moins, et une ligne écrite DEUX FOIS (un
+# doigt, le courant, la posture). Refusé = RIEN ne part vers la main.
+# Une valeur n'est jamais ramenée en silence dans les limites.
+#
+# CE QUI A ÉTÉ ESSAYÉ SUR LA VRAIE MAIN (15.11.2026, main vide, rapporté par le coordinateur) : des cibles de 800 et 600
+# avec un courant de 150 pour mille. Le geste a RATÉ, et a été dit raté : le pouce (flexion) et l'auriculaire n'ont
+# presque pas avancé ; les quatre autres moteurs sont arrivés. Hypothèse, pas prouvée : 150 pour mille ne suffit pas.
+# DÉCISION DE HIBA (responsable du projet) : « personne ne s'approche de la main, seuls des objets seront à son
+# contact ; ne pas être trop prudent ». D'où le courant de 400 et les positions ci-dessous.
+# CES VALEURS-CI NE SONT PAS ESSAYÉES SUR LA VRAIE MAIN : PAS MESURÉES, à régler en répétition, main vide d'abord, puis
+# avec le petit ours en peluche. À vérifier : le sens de chaque moteur (plus = plus fermé ?), et que le pouce et
+# l'index ne se touchent pas en se fermant.
+# Le geste « bouger_les_doigts » se sert aussi de cette posture (fermer vers elle, rouvrir, trois fois).
+postures:
+  tenir_doucement:              # tenir le petit ours. Réglé PLUS FORT le 15.11.2026 au soir : à 400 et un tiers de course,
+    # « les doigts n'ont pas assez de force pour tenir le doudou » (essai de Hiba sur la vraie main).
+    courant_pour_mille: 600     # le plus que notre limite permet aujourd'hui (pas mesuré en newtons)
+    positions:                  # le plus fermé que notre limite permet (6000 = 60 % de la course) ; à régler sur l'ours
+      pouce_ecartement: 5000    # le pouce vient en face des doigts (sens à vérifier)
+      pouce_flexion: 5000
+      index: 6000
+      majeur: 6000
+      annulaire: 6000
+      auriculaire: 6000

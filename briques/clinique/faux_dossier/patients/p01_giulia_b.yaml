@@ -1,0 +1,90 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p01
+  nom_affiche: Madame Giulia B.
+  nom_complet_affiche: Madame Giulia B. (personnage inventé)
+  age: 71
+  langue: it
+  comprend_un_peu:
+  - fr
+Encounter:
+  chambre: 12
+  etage: 2
+  arrivee:
+    jour: 1
+    heure: 09:00
+  duree_jours: 18
+  sortie_jour: 19
+  raison: réadaptation après une opération de la hanche
+habitudes:
+- entend mal de l'oreille gauche
+- préfère la douche le soir
+- se déplace avec un déambulateur
+- aime qu'on frappe deux fois avant d'entrer
+- boit du thé, pas de café
+Appointment:
+- jour: 1
+  heure: '10:00'
+  quoi: installation en chambre
+  lieu: Chambre 12
+- jour: 1
+  heure: '11:00'
+  quoi: physiothérapie
+  lieu: Salle 2
+- jour: 1
+  heure: '14:00'
+  quoi: bain accompagné
+  lieu: Bassin
+- jour: 2
+  heure: 08:00
+  quoi: visite du médecin
+  lieu: Chambre 12
+- jour: 2
+  heure: '10:00'
+  quoi: physiothérapie
+  lieu: Salle 2
+DocumentReference:
+- id: p01-d1
+  genre: lettre du médecin traitant
+  titre: Lettera del medico curante
+  langue: it
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Studio medico Exemple, Dott. Exemple.
+
+    Lettera per la signora Giulia B.
+
+    La signora inizia un soggiorno di riabilitazione dopo un intervento all''anca.
+
+    Cordiali saluti.'
+- id: p01-d2
+  genre: liste de médicaments
+  titre: Elenco dei medicinali
+  langue: it
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Elenco dei medicinali della signora Giulia B.
+
+    Medicinale A
+
+    Medicinale B
+
+    Medicinale C
+
+    Elenco consegnato dalla paziente all''arrivo.'
+- id: p01-d3
+  genre: carte d'assurance
+  titre: Carte de l'Assurance Exemple
+  langue: fr
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Assurance Exemple
+
+    Carte d''assurée : Giulia B.
+
+    Numéro inventé : EX-0000-0012'
+CarePlan:
+- installation
+- avant_physio

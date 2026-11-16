@@ -1,0 +1,36 @@
+# PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot.
+# Carte d'identité de l'ébauche « Unitree Go2 programmable » (chien, kit Python public du fabricant), 12.11.2026.
+# Personne de l'équipe n'a vu ce robot. Seule une personne de l'équipe enlève la marque, avec la date où il a été vu.
+# Format : briques/b01_prise/carte.py.
+#
+# AUCUN CHIFFRE DU FABRICANT ici : nous n'en avons lu aucun dans la documentation publique.
+# Les limites ci-dessous sont les CHOIX DE PRUDENCE de l'équipe, déjà acceptés par Hiba (question Q10, carte
+# briques/b02_faux_robot/cartes/unitree_go2.yaml) : « nous les reverrons samedi avec le fabricant ».
+# La prise applique EN PLUS les plafonds de reglages.yaml : la plus petite limite gagne.
+
+id: unitree-go2
+nom: Unitree Go2 (ébauche préparée sans le robot)
+genre: chien
+fabricant: Unitree            # la version exacte du robot et de son logiciel : à vérifier samedi
+modele: Go2                   # faut-il la version pour développeurs ? à vérifier samedi
+vrai_robot: true              # remplacé par le programme : false avec la doublure
+
+# Ce que l'ébauche sait faire : s'arrêter, dire son état, avancer à une vitesse donnée, et un seul geste : se lever.
+capacites: [arreter, etat, se_deplacer, rejouer_geste]
+
+limites:
+  vitesse_max_m_s: 0.3        # choix de prudence (marche lente, ni course ni saut), pas un chiffre du fabricant ; la vraie limite : à vérifier samedi
+  portee_max_m: 0.0           # pas de bras : il ne saisit rien ; à vérifier samedi
+  charge_max_kg: 1.0          # choix de prudence pour le dos, s'il y a un panier ; la vraie charge : à vérifier samedi
+  force_max_n: 0.0            # pas de main ; à vérifier samedi
+
+# Un seul geste : « se_lever » → StandUp() du kit public (lu en ligne le 12.11.2026). Jamais de saut, salto, danse.
+gestes: [se_lever]
+
+remarques: >-
+  PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot. Essayée seulement avec une doublure.
+  Le chien ne se lève jamais tout seul : seulement sur un ordre « se_lever » passé par le gardien et la prise.
+  Premier mouvement : 0,1 m/s (mode lent), zone vide, au moins 1 m entre lui et toute personne, une personne à l'arrêt.
+  Arrêt d'urgence PHYSIQUE : où est-il ? à vérifier samedi. Le chien s'arrête-t-il seul si les ordres cessent ? à vérifier samedi.
+  Temps pour se lever, batterie, cap, unités de la position : à vérifier samedi.
+  Voir docs/projet/PREMIERE_HEURE.md et briques/b03_adaptateurs/fiches/unitree_go2.md.

@@ -1,0 +1,15 @@
+# Carte d'identité d'exemple : un humanoïde imaginaire. Chiffres inventés pour la simulation.
+id: faux-humanoide
+nom: Faux humanoïde
+genre: humanoide
+fabricant: faux robot (simulation)
+modele: H-0
+vrai_robot: false
+capacites: [se_deplacer, regarder, ecouter, parler, saisir, poser, montrer, rejouer_geste, arreter, etat]
+limites:
+  vitesse_max_m_s: 0.6
+  portee_max_m: 0.6
+  charge_max_kg: 2.0
+  force_max_n: 30
+gestes: [saluer, applaudir, incliner]
+remarques: Marche lentement, porte de petits objets.

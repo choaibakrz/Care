@@ -1,0 +1,28 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION — SIMULÉ. La liste administrative du « faux logiciel administratif » (avenant 4, L02).
+# Ce n'est pas un vrai logiciel de clinique, et il n'est relié à aucun. Seulement des lignes administratives.
+# Les douze premières personnes sont recopiées du faux dossier de la clinique en boîte (mêmes numéros de patient) ;
+# elles sont verrouillées : le faux logiciel ne les change jamais. Le faux dossier ne donne ni numéro de séjour (ils
+# sont donnés ici : s01 à s12) ni date de naissance (le champ reste vide). Une vérification compare les deux fichiers.
+# Les trois dernières personnes sont inventées ici, « en attente » : la clinique en boîte ne les connaît pas.
+# « jour » : le jour de l'horloge de démonstration. Convention inventée : le jour 1 est le 14.11.2026.
+marque: inventé
+jour_1: '2026-11-14'
+etablissement: CLINIQUE_EXEMPLE
+assurance: Assurance Exemple
+chambres: ['11', '12', '13', '14']   # les chambres du cahier (partie 6.5)
+personnes:
+  - {numero_patient: p01, numero_sejour: s01, nom: "Madame Giulia B.", date_naissance: '', langue: it, chambre: '12', jour_entree: 1, jour_sortie_prevue: 19, statut: admis, verrouille: true}
+  - {numero_patient: p02, numero_sejour: s02, nom: "Monsieur Hans K.", date_naissance: '', langue: de, chambre: '11', jour_entree: -6, jour_sortie_prevue: 15, statut: admis, verrouille: true}
+  - {numero_patient: p03, numero_sejour: s03, nom: "Madame Claire D.", date_naissance: '', langue: fr, chambre: '13', jour_entree: -3, jour_sortie_prevue: 11, statut: admis, verrouille: true}
+  - {numero_patient: p04, numero_sejour: s04, nom: "Monsieur Peter S.", date_naissance: '', langue: de, chambre: '14', jour_entree: 0, jour_sortie_prevue: 16, statut: admis, verrouille: true}
+  - {numero_patient: p05, numero_sejour: s05, nom: "Madame Jeanne M.", date_naissance: '', langue: fr, chambre: '15', jour_entree: -1, jour_sortie_prevue: 11, statut: admis, verrouille: true}
+  - {numero_patient: p06, numero_sejour: s06, nom: "Monsieur Luca R.", date_naissance: '', langue: it, chambre: '16', jour_entree: -8, jour_sortie_prevue: 12, statut: admis, verrouille: true}
+  - {numero_patient: p07, numero_sejour: s07, nom: "Madame Ursula W.", date_naissance: '', langue: de, chambre: '17', jour_entree: -10, jour_sortie_prevue: 14, statut: admis, verrouille: true}
+  - {numero_patient: p08, numero_sejour: s08, nom: "Monsieur James T.", date_naissance: '', langue: en, chambre: '18', jour_entree: -4, jour_sortie_prevue: 11, statut: admis, verrouille: true}
+  - {numero_patient: p09, numero_sejour: s09, nom: "Madame Sophie L.", date_naissance: '', langue: fr, chambre: '19', jour_entree: -12, jour_sortie_prevue: 2, statut: admis, verrouille: true}
+  - {numero_patient: p10, numero_sejour: s10, nom: "Monsieur Markus B.", date_naissance: '', langue: de, chambre: '20', jour_entree: -2, jour_sortie_prevue: 16, statut: admis, verrouille: true}
+  - {numero_patient: p11, numero_sejour: s11, nom: "Madame Ana P.", date_naissance: '', langue: pt, chambre: '21', jour_entree: -5, jour_sortie_prevue: 12, statut: admis, verrouille: true}
+  - {numero_patient: p12, numero_sejour: s12, nom: "Monsieur André G.", date_naissance: '', langue: fr, chambre: '22', jour_entree: -7, jour_sortie_prevue: 14, statut: admis, verrouille: true}
+  - {numero_patient: p13, numero_sejour: s13, nom: "Monsieur Paolo V.", date_naissance: '1955-03-12', langue: it, chambre: '', jour_entree: null, jour_sortie_prevue: null, statut: en attente, verrouille: false}
+  - {numero_patient: p14, numero_sejour: s14, nom: "Madame Greta N.", date_naissance: '1948-09-30', langue: de, chambre: '', jour_entree: null, jour_sortie_prevue: null, statut: en attente, verrouille: false}
+  - {numero_patient: p15, numero_sejour: s15, nom: "Madame Louise F.", date_naissance: '1961-06-04', langue: fr, chambre: '', jour_entree: null, jour_sortie_prevue: null, statut: en attente, verrouille: false}

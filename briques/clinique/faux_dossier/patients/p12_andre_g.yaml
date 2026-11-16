@@ -1,0 +1,42 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p12
+  nom_affiche: Monsieur André G.
+  nom_complet_affiche: Monsieur André G. (personnage inventé)
+  age: 82
+  langue: fr
+  comprend_un_peu: []
+Encounter:
+  chambre: 22
+  etage: null
+  arrivee:
+    jour: -7
+    heure: 09:00
+  duree_jours: 21
+  sortie_jour: 14
+  raison: réadaptation après une chute
+habitudes:
+- entend mieux de l'oreille droite
+- aime qu'on annonce les visites
+- garde ses lunettes sur la table de nuit
+Appointment:
+- jour: 1
+  heure: '11:00'
+  quoi: physiothérapie
+  lieu: Salle 1
+DocumentReference:
+- id: p12-d1
+  genre: ordonnance de physiothérapie
+  titre: Ordonnance de physiothérapie
+  langue: fr
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Cabinet Exemple, Docteur Exemple.
+
+    Ordonnance de physiothérapie pour Monsieur André G.
+
+    Douze séances.'
+CarePlan:
+- avant_physio

@@ -1,0 +1,7 @@
+allow-unwrap-in-tests = false
+allow-expect-in-tests = false
+allow-panic-in-tests = false
+allow-indexing-slicing-in-tests = false
+allow-print-in-tests = false
+# Project words that are not code (doc_markdown). ".." keeps clippy's default list.
+doc-valid-idents = ["SQLite", "OpenAPI", "WebSocket", "WebSockets", "PyO3", "Three.js", "SplitMix64", ".."]

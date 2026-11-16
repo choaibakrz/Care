@@ -1,0 +1,36 @@
+# Les yeux (brique 5). EN OPTION : le reste du projet marche sans ces paquets (les yeux disent ce qui manque).
+# Installer AVEC --no-deps (un seul OpenCV, sinon deux paquets écrivent le même dossier « cv2 ») :
+#     .venv/bin/python -m pip install --no-deps -r requirements-yeux.txt
+# Après, « pip check » signale deux faux manques, connus et sans effet : mediapipe demande opencv-contrib-python et
+# rapidocr demande opencv-python-headless ; opencv-contrib-python-headless (ci-dessous) contient les deux.
+# Licences et tailles : briques/b05_yeux/NOTES_POUR_COORDINATEUR.md (lues le 11.11.2026). Testé sur Linux seulement.
+# Déjà dans le projet et utilisés aussi par les yeux : numpy, onnxruntime, PyYAML, tqdm, certifi, flatbuffers, cffi.
+
+# OpenCV (Apache-2.0) : images, marqueurs ArUco. Version « contrib, sans écran » (pas de Qt). Contient FFmpeg (LGPL-2.1).
+opencv-contrib-python-headless==5.0.0.93
+
+# MediaPipe (Apache-2.0) : personnes et objets courants (modèle EfficientDet-Lite0, téléchargé à part).
+mediapipe==1.2.2
+absl-py==2.5.1
+sounddevice==0.5.6
+# matplotlib : MediaPipe l'importe au démarrage. Licence « matplotlib » (type PSF, permissive, compatible BSD).
+matplotlib==3.11.2
+contourpy==1.4.0
+cycler==0.12.1
+fonttools==4.68.0
+kiwisolver==1.5.1
+pyparsing==3.3.3
+python-dateutil==4.0.0
+tzdata==2026.6
+six==1.17.0
+pillow==13.0.0
+
+# RapidOCR (Apache-2.0) : lire un texte. Les modèles PP-OCRv6 (Apache-2.0, Baidu/PaddleOCR) sont dans le paquet.
+rapidocr==3.10.0
+pyclipper==1.4.0
+shapely==2.2.0
+omegaconf==2.4.0
+colorlog==6.12.0
+requests==2.34.2
+urllib3==2.8.0
+charset-normalizer==3.5.2

@@ -1,0 +1,39 @@
+# NON TESTÉ SUR VRAI ROBOT.
+# Les directions que la tête du Reachy Mini connaît. C'est l'ÉQUIPE qui les règle, sur place, robot posé sur la table.
+# lacet_deg   : vers le côté (0 = devant). Le SENS (plus = vers sa gauche ?) est à vérifier sur le vrai robot.
+# tangage_deg : vers le haut ou le bas (0 = droit devant). Le sens est à vérifier aussi.
+# La liaison REFUSE toute direction au-delà de 40° de côté ou 20° de haut-bas (ses petites limites, choisies exprès).
+# Tous ces angles sont des valeurs de départ, PAS mesurées : les régler en répétition, à vitesse lente.
+directions:
+  devant:    {lacet_deg: 0,   tangage_deg: 0}
+  # Pas de « gauche » ni de « droite » : le cerveau n'a pas de mots pour elles. « Regarde à gauche » fait donc
+  # regarder DEVANT, et le robot dit « Je regarde : devant » (il dit ce qu'il fait).
+  patient:   {lacet_deg: 30,  tangage_deg: 0}    # la personne assise à côté de lui (mannequin ou membre de l'équipe)
+  collegue:  {lacet_deg: -30, tangage_deg: 0}    # le bras, son « collègue »
+  soignant:  {lacet_deg: 0,   tangage_deg: -10}  # la soignante debout devant lui (lever un peu la tête : sens à vérifier)
+
+# Les mots que le cerveau entend pour ces directions (« regarde la patiente », « guarda la paziente »…).
+# Ils ne sont ajoutés au monde que si CE robot est le robot du système (briques/clinique/table_des_robots.py).
+# Écrits par un agent, PAS relus par quelqu'un qui parle la langue : à faire relire (NON_TESTE.md).
+noms:
+  patient:
+    fr: [patient, patiente, madame]
+    de: [patientin, patient]
+    gsw: [patiäntin, patient]
+    it: [paziente, signora]
+    en: [patient, lady]
+    zh: [病人]
+  collegue:
+    fr: [collègue, bras]
+    de: [kollege, kollegen, arm]
+    gsw: [kolleg, arm]
+    it: [collega, braccio]
+    en: [colleague, arm]
+    zh: [同事, 手臂]
+  soignant:
+    fr: [soignante, soignant, infirmière]
+    de: [pflegerin, pfleger]
+    gsw: [pflegerin, pfleger]
+    it: [infermiera, infermiere]
+    en: [nurse]
+    zh: [护士]

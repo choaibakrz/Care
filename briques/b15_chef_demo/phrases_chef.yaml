@@ -1,0 +1,63 @@
+# Les phrases du chef de démonstration (brique 15), dites à voix haute et affichées à l'écran.
+# Mots simples, phrases courtes. Le suisse allemand (gsw) reçoit l'allemand, comme partout dans le projet.
+# {demandes}, {reussites}... sont remplacés automatiquement.
+
+fr:
+  tablette: "Je passe à la tablette."
+  mode_local: "Je passe en mode local, sans réseau."
+  main_humaine: "Un humain prend le relais."
+  main_rendue: "Merci, je reprends."
+  sauter: "On passe à la suite."
+  arret_urgence: "Arrêt d'urgence : la démonstration s'arrête. Un humain doit vérifier puis réarmer le robot."
+  stop_entendu: "Stop entendu : la démonstration s'arrête. Le robot ne bouge plus."
+  fiche: "Fiche de vérité : demandes {demandes}, actions réussies {reussites}, refus du gardien {refus}, questions {questions}, plans B {plans_b}. {mention}."
+  mention_faux: "Testé sur faux robot"
+  mention_vrai: "Testé sur vrai robot"
+
+de:
+  tablette: "Ich wechsle zum Tablet."
+  mode_local: "Ich wechsle in den lokalen Modus, ohne Netzwerk."
+  main_humaine: "Ein Mensch übernimmt."
+  main_rendue: "Danke, ich mache weiter."
+  sauter: "Wir machen weiter."
+  arret_urgence: "Notstopp: Die Vorführung hört auf. Ein Mensch muss den Roboter prüfen und wieder freigeben."
+  stop_entendu: "Stopp gehört: Die Vorführung hört auf. Der Roboter bewegt sich nicht mehr."
+  fiche: "Wahrheitsblatt: Anfragen {demandes}, gelungene Aktionen {reussites}, Ablehnungen durch den Wächter {refus}, Fragen {questions}, Pläne B {plans_b}. {mention}."
+  mention_faux: "Getestet mit simuliertem Roboter"
+  mention_vrai: "Getestet mit echtem Roboter"
+
+it:
+  tablette: "Passo al tablet."
+  mode_local: "Passo in modalità locale, senza rete."
+  main_humaine: "Una persona prende il comando."
+  main_rendue: "Grazie, riprendo io."
+  sauter: "Andiamo avanti."
+  arret_urgence: "Arresto di emergenza: la dimostrazione si ferma. Una persona deve controllare e riattivare il robot."
+  stop_entendu: "Stop ricevuto: la dimostrazione si ferma. Il robot non si muove più."
+  fiche: "Scheda della verità: richieste {demandes}, azioni riuscite {reussites}, rifiuti del guardiano {refus}, domande {questions}, piani B {plans_b}. {mention}."
+  mention_faux: "Testato su robot simulato"
+  mention_vrai: "Testato su robot vero"
+
+en:
+  tablette: "Switching to the tablet."
+  mode_local: "Switching to local mode, without the network."
+  main_humaine: "A human takes over."
+  main_rendue: "Thank you, I take it from here."
+  sauter: "Let's move on."
+  arret_urgence: "Emergency stop: the demonstration stops. A human must check and re-arm the robot."
+  stop_entendu: "Stop heard: the demonstration stops. The robot no longer moves."
+  fiche: "Truth sheet: requests {demandes}, successful actions {reussites}, refusals by the guardian {refus}, questions {questions}, plan Bs {plans_b}. {mention}."
+  mention_faux: "Tested on a simulated robot"
+  mention_vrai: "Tested on a real robot"
+
+zh:
+  tablette: "我改用平板电脑。"
+  mode_local: "我改用本地模式，不用网络。"
+  main_humaine: "由人来接手。"
+  main_rendue: "谢谢，我继续。"
+  sauter: "我们继续下一步。"
+  arret_urgence: "紧急停止：演示停止。需要有人检查并重新启动机器人。"
+  stop_entendu: "听到停止：演示停止。机器人不再移动。"
+  fiche: "真实记录：请求 {demandes}，成功动作 {reussites}，守护者拒绝 {refus}，问题 {questions}，备用方案 {plans_b}。{mention}。"
+  mention_faux: "在模拟机器人上测试"
+  mention_vrai: "在真实机器人上测试"

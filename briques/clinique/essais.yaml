@@ -1,0 +1,30 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Les vingt essais comptés (avenant jury, J01).
+# Liste FIXE, écrite une fois, le 12.11.2026 : on rejoue exactement les mêmes essais à chaque fois.
+# On n'ajuste PAS cette liste pour obtenir vingt sur vingt. Un essai raté est une information : il reste.
+#   langue        : la langue de l'arrivée (it, de, fr, en)
+#   point_oublie  : le point de la liste « installation » que la soignante oublie (1 à 6)
+#   objet         : ce qu'elle demande au robot (« il manque … en chambre 12 »)
+#   objet_absent  : vrai si cet objet n'est pas dans la réserve (le robot doit le dire et passer à un humain)
+#   cerveau_lent  : un cerveau plus lent. SANS EFFET aujourd'hui : aucune pièce de la version simple n'appelle le cerveau.
+marque: inventé
+essais:
+  - {numero: 1, langue: it, point_oublie: 3, objet: "un coussin", objet_absent: false, cerveau_lent: false}
+  - {numero: 2, langue: de, point_oublie: 1, objet: "une couverture", objet_absent: false, cerveau_lent: false}
+  - {numero: 3, langue: fr, point_oublie: 5, objet: "une bouteille d'eau", objet_absent: false, cerveau_lent: false}
+  - {numero: 4, langue: en, point_oublie: 2, objet: "un fauteuil roulant", objet_absent: true, cerveau_lent: false}
+  - {numero: 5, langue: it, point_oublie: 4, objet: "la feuille d'exercices", objet_absent: false, cerveau_lent: true}
+  - {numero: 6, langue: de, point_oublie: 6, objet: "le coussin de nuque", objet_absent: false, cerveau_lent: false}
+  - {numero: 7, langue: fr, point_oublie: 3, objet: "un coussin", objet_absent: false, cerveau_lent: false}
+  - {numero: 8, langue: en, point_oublie: 1, objet: "le grand coussin", objet_absent: false, cerveau_lent: false}
+  - {numero: 9, langue: it, point_oublie: 2, objet: "un oreiller", objet_absent: true, cerveau_lent: true}
+  - {numero: 10, langue: de, point_oublie: 5, objet: "une couverture", objet_absent: false, cerveau_lent: false}
+  - {numero: 11, langue: fr, point_oublie: 4, objet: "une bouteille d'eau", objet_absent: false, cerveau_lent: false}
+  - {numero: 12, langue: en, point_oublie: 6, objet: "la feuille d'exercices", objet_absent: false, cerveau_lent: false}
+  - {numero: 13, langue: it, point_oublie: 1, objet: "un déambulateur", objet_absent: true, cerveau_lent: false}
+  - {numero: 14, langue: de, point_oublie: 3, objet: "un coussin", objet_absent: false, cerveau_lent: true}
+  - {numero: 15, langue: fr, point_oublie: 2, objet: "le coussin de nuque", objet_absent: false, cerveau_lent: false}
+  - {numero: 16, langue: en, point_oublie: 5, objet: "le grand coussin", objet_absent: false, cerveau_lent: false}
+  - {numero: 17, langue: it, point_oublie: 6, objet: "une couverture", objet_absent: false, cerveau_lent: false}
+  - {numero: 18, langue: de, point_oublie: 4, objet: "un fauteuil roulant", objet_absent: true, cerveau_lent: false}
+  - {numero: 19, langue: fr, point_oublie: 1, objet: "la feuille d'exercices", objet_absent: false, cerveau_lent: true}
+  - {numero: 20, langue: en, point_oublie: 3, objet: "une bouteille d'eau", objet_absent: false, cerveau_lent: false}

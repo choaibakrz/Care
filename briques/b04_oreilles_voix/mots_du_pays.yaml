@@ -1,0 +1,29 @@
+# Les mots du pays : noms de lieux et expressions, pour qu'ils soient bien compris (donnés à l'écoute comme « indices »).
+# Ajouter un mot : une ligne. Garder la liste courte (une trentaine de mots au plus), sinon l'écoute se trompe davantage.
+mots:
+  - Leukerbad
+  - Loèche-les-Bains
+  - Leuk
+  - Wallis
+  - Valais
+  - Sion
+  - Sitten
+  - Brig
+  - Visp
+  - Gemmi
+  - Torrent
+  - Dala
+  - Raclette
+  - Grüezi
+  - Merci vilmal
+  - Robot
+  - Roboter
+  - 机器人
+
+# Mots typiques du suisse allemand : s'ils apparaissent dans ce que l'écoute a compris, la langue devient « gsw ».
+# Seulement des mots qui n'existent pas en allemand standard (pas « nimm », « Gang », « merci »).
+# À enrichir avec les vraies phrases de l'équipe (et à mesurer : Whisper écrit souvent en allemand standard).
+suisse_allemand:
+  [isch, nöd, nüt, öppis, gsi, hüt, chunsch, chum, gönd, chuchi, grüezi, sali, hoi, zmorge, znüni,
+   zvieri, chli, chasch, wotsch, gits, lueg, säg, hesch, bisch, gseh, emol, vilmal, uf, wiederluege,
+   d'chuchi, ufe, abe, dörf, mues, gäll]

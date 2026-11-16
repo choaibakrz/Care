@@ -1,0 +1,24 @@
+[package]
+name = "python-bindings"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+domain.workspace = true
+optimization.workspace = true
+thiserror.workspace = true
+pyo3 = { workspace = true, optional = true }
+
+[features]
+# Off by default: the workspace builds and tests with no Python present (Task 20).
+python = ["dep:pyo3"]
+
+[dev-dependencies]
+locations.workspace = true
+serde.workspace = true
+serde_json.workspace = true

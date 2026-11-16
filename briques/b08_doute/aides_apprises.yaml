@@ -1,0 +1,4 @@
+# ANCIEN emplacement des aides apprises (brique 8). Ne plus rien écrire ici.
+# Les mots appris sont maintenant dans journal/aides_apprises.yaml (hors du dépôt suivi par git).
+# S'il reste des mots ici, ils y sont recopiés au prochain démarrage, puis ce fichier est vidé.
+mots: []

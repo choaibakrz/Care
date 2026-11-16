@@ -1,0 +1,12 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Une feuille sans nom de patient : elle ne doit pas être rangée.
+feuilles:
+- id: f-01
+  genre: feuille volante
+  langue: fr
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Feuille volante.
+
+    Rappel : apporter des chaussures fermées pour la séance.
+
+    Aucun nom sur cette feuille.'

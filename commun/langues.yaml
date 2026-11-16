@@ -1,0 +1,11 @@
+# Les langues. Ajouter une langue = une ligne ici + un bloc dans phrases.yaml (+ noms dans monde.yaml).
+# reponse : langue dans laquelle le robot répond (s'il n'a pas de voix pour la langue entendue).
+# code_ecoute : code de la langue pour l'écoute (Whisper). Le suisse allemand n'existe pas dans Whisper.
+langues:
+  fr:  {nom: français,        reponse: fr, code_ecoute: fr}
+  de:  {nom: Deutsch,         reponse: de, code_ecoute: de}
+  gsw: {nom: Schweizerdeutsch, reponse: de, code_ecoute: de, remarque: "Pas de voix suisse allemande : réponse en allemand, et le robot le dit."}
+  it:  {nom: italiano,        reponse: it, code_ecoute: it}
+  en:  {nom: English,         reponse: en, code_ecoute: en}
+  zh:  {nom: 中文,             reponse: zh, code_ecoute: zh}
+defaut: fr

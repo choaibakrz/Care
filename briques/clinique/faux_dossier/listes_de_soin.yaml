@@ -1,0 +1,108 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Listes d'exemple inventées, non médicales, à remplacer par les listes de la clinique.
+# Chaque point a un nom court (« la sonnette ») et quelques mots proches, pour le reconnaître à la voix.
+listes:
+- id: installation
+  titre: Installation à l'arrivée
+  marque: exemple inventé, non médical, à remplacer par les listes de la clinique
+  pour: soignant
+  points:
+  - numero: 1
+    nom: la présentation
+    mots: [présentation, présenté, présentée, mon rôle]
+    texte: Se présenter et dire son rôle.
+    pour: soignant
+  - numero: 2
+    nom: le bracelet
+    mots: [bracelet, nom vérifié]
+    texte: Vérifier le nom au bracelet.
+    pour: soignant
+  - numero: 3
+    nom: la sonnette
+    mots: [sonnette, sonnerie, bouton d'appel]
+    texte: Montrer la sonnette et la laisser à portée de main.
+    pour: soignant
+  - numero: 4
+    nom: le lit
+    mots: [lit, hauteur du lit]
+    texte: Régler la hauteur du lit.
+    pour: soignant
+  - numero: 5
+    nom: la salle de bain
+    mots: [salle de bain, lumière de nuit, veilleuse]
+    texte: Montrer la salle de bain et la lumière de nuit.
+    pour: soignant
+  - numero: 6
+    nom: le déambulateur
+    mots: [déambulateur, rollator]
+    texte: Mettre le déambulateur à portée de main.
+    pour: soignant
+- id: avant_physio
+  titre: Avant la séance de physiothérapie
+  marque: exemple inventé, non médical, à remplacer par les listes de la clinique
+  pour: soignant ou thérapeute
+  points:
+  - numero: 1
+    nom: les chaussures
+    mots: [chaussures, souliers]
+    texte: Chaussures fermées.
+    pour: soignant ou thérapeute
+  - numero: 2
+    nom: la bouteille d'eau
+    mots: [bouteille, eau, gourde]
+    texte: Bouteille d'eau.
+    pour: soignant ou thérapeute
+  - numero: 3
+    nom: la feuille d'exercices
+    mots: [feuille, exercices]
+    texte: Feuille d'exercices.
+    pour: soignant ou thérapeute
+  - numero: 4
+    nom: les lunettes ou l'appareil auditif
+    mots: [lunettes, appareil auditif]
+    texte: Lunettes ou appareil auditif.
+    pour: soignant ou thérapeute
+  - numero: 5
+    nom: l'heure de retour
+    mots: [heure de retour, retour]
+    texte: Heure de retour notée.
+    pour: soignant ou thérapeute
+- id: sortie
+  titre: Préparation de la sortie
+  marque: exemple inventé, non médical, à remplacer par les listes de la clinique
+  pour: médecin, soignant, accueil
+  points:
+  - numero: 1
+    nom: la lettre de sortie
+    mots: [lettre de sortie, lettre]
+    texte: Lettre de sortie remise.
+    pour: médecin
+  - numero: 2
+    nom: la liste des rendez-vous
+    mots: [rendez-vous]
+    texte: Liste des rendez-vous remise.
+    pour: accueil
+  - numero: 3
+    nom: le transport
+    mots: [transport, taxi]
+    texte: Transport confirmé.
+    pour: accueil
+  - numero: 4
+    nom: les aides
+    mots: [aides, aides commandées]
+    texte: Aides commandées.
+    pour: soignant
+  - numero: 5
+    nom: les proches
+    mots: [proches, famille]
+    texte: Proches prévenus.
+    pour: soignant
+  - numero: 6
+    nom: les affaires
+    mots: [affaires, valise]
+    texte: Affaires rassemblées.
+    pour: soignant
+  - numero: 7
+    nom: les documents à envoyer
+    mots: [documents à envoyer, dossier électronique]
+    texte: 'Documents à envoyer au dossier électronique du patient : à faire par un humain.'
+    pour: accueil

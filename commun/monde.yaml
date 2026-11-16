@@ -1,0 +1,113 @@
+# Le monde autour du robot : lieux et objets, avec leurs noms dans chaque langue.
+# Sert au faux robot (pour simuler), au cerveau (pour comprendre les noms) et au gardien (zones, poids, chemins).
+# Samedi : remplacer par les vrais lieux de la halle. Positions en mètres, vue de dessus.
+# Langues : fr, de, gsw (suisse allemand), it, en, zh.
+# Les mots appris d'un humain (brique 8) sont ajoutés au démarrage : journal/aides_apprises.yaml (hors du dépôt).
+
+taille: {largeur: 10, hauteur: 6}
+depart: {x: 1.0, y: 1.0, cap: 0}
+
+lieux:
+  - id: cuisine
+    position: {x: 8.0, y: 4.5}
+    noms:
+      fr: [cuisine]
+      de: [küche]
+      gsw: [chuchi, kuchi]
+      it: [cucina]
+      en: [kitchen]
+      zh: [厨房]
+  - id: entree
+    position: {x: 1.0, y: 5.0}
+    noms:
+      fr: [entrée, porte]
+      de: [eingang, tür]
+      gsw: [igang, tür, türe]
+      it: [ingresso, porta]
+      en: [entrance, door]
+      zh: [入口, 门口]
+  - id: table
+    position: {x: 5.0, y: 3.0}
+    noms:
+      fr: [table]
+      de: [tisch]
+      gsw: [tisch]
+      it: [tavolo]
+      en: [table]
+      zh: [桌子]
+  - id: scene
+    position: {x: 5.0, y: 0.8}
+    noms:
+      fr: [scène, jury]
+      de: [bühne, jury]
+      gsw: [bühni, jury]
+      it: [palco, giuria]
+      en: [stage, jury]
+      zh: [舞台, 评委]
+  - id: escalier   # lieu d'exemple, toujours interdit au robot (règle « escalier » du gardien)
+    position: {x: 9.3, y: 0.8}
+    noms:
+      fr: [escalier]
+      de: [treppe]
+      gsw: [stege, treppe]   # pas « stäge » : sans accent, il deviendrait « stage » (la scène, en anglais)
+      it: [scale, scala]
+      en: [stairs, staircase]
+      zh: [楼梯]
+
+objets:
+  - id: bouteille
+    position: {x: 5.2, y: 3.0}
+    poids_kg: 0.5
+    noms:
+      fr: [bouteille]
+      de: [flasche]
+      gsw: [fläsche, flasche]
+      it: [bottiglia]
+      en: [bottle]
+      zh: [瓶子, 水瓶]
+  - id: tasse
+    position: {x: 4.8, y: 3.1}
+    poids_kg: 0.3
+    noms:
+      fr: [tasse]
+      de: [tasse]
+      gsw: [tasse, chacheli]
+      it: [tazza]
+      en: [cup, mug]
+      zh: [杯子]
+  - id: valise
+    position: {x: 1.5, y: 4.8}
+    poids_kg: 12.0
+    noms:
+      fr: [valise]
+      de: [koffer]
+      gsw: [koffer, gofere]
+      it: [valigia]
+      en: [suitcase]
+      zh: [行李箱]
+  - id: objet_test
+    position: {x: 1.2, y: 1.0}
+    poids_kg: 0.1
+    noms:
+      fr: [objet de test]
+      de: [testobjekt]
+      gsw: [testobjekt]
+      it: [oggetto di prova]
+      en: [test object]
+      zh: [测试物体]
+  - id: caisse   # lourde : plus que ce que les faux robots peuvent porter (règle « poids » du gardien)
+    position: {x: 2.2, y: 5.3}
+    poids_kg: 5.0
+    noms:
+      fr: [caisse]
+      de: [kiste]
+      gsw: [chischte, kiste]
+      it: [cassa]
+      en: [crate, box]
+      zh: [箱子]
+
+# Personnes SIMULÉES, pour le faux robot seulement. Le gardien garde le robot à distance (règle « distance_personnes »).
+# Avec un vrai robot, ces personnes ne sont JAMAIS utilisées : ce sont les yeux (brique 5) qui disent où sont les gens.
+personnes:
+  - id: visiteur
+    position: {x: 8.6, y: 2.2}

@@ -1,0 +1,8 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Les traductions FIXES du scénario (cahier 6.1), pour les questions du soir (T19).
+# Ce n'est pas un traducteur : seulement les deux questions de la patiente du scénario, dont le cahier donne le français.
+# L'italien est écrit par l'agent, pas relu. Toute autre question reste « non traduite » tant qu'aucun modèle ne traduit.
+marque: inventé
+it:
+  fr:
+    "Quando potrò camminare senza deambulatore?": "Quand pourrai-je marcher sans déambulateur ?"
+    "Mia figlia può venire domenica?": "Ma fille peut-elle venir dimanche ?"

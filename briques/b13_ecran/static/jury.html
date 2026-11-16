@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>Écran du jury</title>
+<!-- Aucun fichier venu d'Internet : ni police, ni bibliothèque. Tout est servi par l'ordinateur-cerveau. -->
+<link rel="stylesheet" href="/static/jury.css">
+</head>
+<body data-pret="0">
+<!-- Les pictogrammes (SVG intégré). Le flux simple (/api/flux_simple) donne le même nom : picto "aller" = #p-aller. -->
+<svg class="cache" width="0" height="0" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="p-aller" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 24h24M29 15l9 9-9 9"/><path d="M5 17h9M5 31h9"/></g></symbol>
+    <symbol id="p-prendre" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4v8M14 12h20M14 12l-3 10 5 7M34 12l3 10-5 7"/><circle cx="24" cy="31" r="6"/></g></symbol>
+    <symbol id="p-poser" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 6v24M15 21l9 9 9-9"/><path d="M8 40h32"/></g></symbol>
+    <symbol id="p-regarder" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 24c5-9 12-14 20-14s15 5 20 14c-5 9-12 14-20 14S9 33 4 24z"/><circle cx="24" cy="24" r="6"/></g></symbol>
+    <symbol id="p-montrer" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="33" cy="24" r="10"/><circle cx="33" cy="24" r="2.5" fill="currentColor" stroke="none"/><path d="M4 24h17M15 18l6 6-6 6"/></g></symbol>
+    <symbol id="p-geste" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 40c-3-3-5-7-5-11v-9a2.5 2.5 0 0 1 5 0v6M17 26V11a2.5 2.5 0 0 1 5 0v13M22 24V8a2.5 2.5 0 0 1 5 0v16M27 24V11a2.5 2.5 0 0 1 5 0v17c0 7-4 12-10 12h-1"/><path d="M38 10c2 2 3 5 3 8M36 14c1 1 1.5 2.5 1.5 4"/></g></symbol>
+    <symbol id="p-arret" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 4h14l13 13v14L31 44H17L4 31V17z"/><rect x="17" y="17" width="14" height="14" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="p-etat" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="14" width="34" height="20" rx="3"/><path d="M43 21v6"/><rect x="10" y="19" width="12" height="10" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="p-refus" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M11.3 36.7L36.7 11.3"/></g></symbol>
+    <symbol id="p-question" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h32a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H22l-10 8v-8H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z"/><path d="M19 15a5 5 0 1 1 7 4.6c-1.4.6-2 1.6-2 3v1.4"/><circle cx="24" cy="28.5" r="1.7" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="p-aide" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><circle cx="24" cy="24" r="8"/><path d="M11.3 11.3l7 7M36.7 11.3l-7 7M11.3 36.7l7-7M36.7 36.7l-7-7"/></g></symbol>
+    <symbol id="p-entendu" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 19a11 11 0 0 1 22 0c0 6-4 8-6 11s-1 7-5 9c-3 1.5-6 0-7-2"/><path d="M19 19a5 5 0 0 1 10 0c0 3-3 4-3 6"/><path d="M41 12c2 3 3 7 3 11s-1 8-3 11"/></g></symbol>
+    <symbol id="p-compris" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 31c-3-3-5-6.5-5-11a12 12 0 0 1 24 0c0 4.5-2 8-5 11-1.5 1.5-2 3-2 5H19c0-2-.5-3.5-2-5z"/><path d="M19 40h10M21 44h6"/></g></symbol>
+    <symbol id="p-faire" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M20 15l12 9-12 9z" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="p-parle" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h32a4 4 0 0 1 4 4v20a4 4 0 0 1-4 4H22l-10 8v-8H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4z"/><path d="M13 16h22M13 24h14"/></g></symbol>
+    <symbol id="p-fait" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M15 24.5l6 6 12-13"/></g></symbol>
+    <symbol id="p-rate" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="18"/><path d="M17 17l14 14M31 17L17 31"/></g></symbol>
+    <symbol id="p-panne" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5L44 41H4z"/><path d="M24 18v11"/><circle cx="24" cy="35" r="1.8" fill="currentColor" stroke="none"/></g></symbol>
+    <symbol id="p-internet" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="17"/><path d="M7 24h34M24 7c-5 5-7 11-7 17s2 12 7 17c5-5 7-11 7-17S29 12 24 7z"/><path d="M6 6l36 36"/></g></symbol>
+    <symbol id="p-silence" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18h8l10-8v28l-10-8H5z"/><path d="M31 18l11 12M42 18L31 30"/></g></symbol>
+  </defs>
+</svg>
+
+<header class="haut">
+  <div class="identite">
+    <strong id="nom-robot">…</strong>
+    <span id="mention-haut" class="mention">testé sur faux robot</span>
+    <span id="liaison" class="pastille">liaison ?</span>
+    <span id="pastille-silence" class="pastille" hidden><svg class="ico"><use href="#p-silence"/></svg> mode silence</span>
+  </div>
+  <div class="commandes">
+    <label class="choix"><span>2<sup>e</sup> langue</span>
+      <select id="langue2" aria-label="Deuxième langue des sous-titres">
+        <option value="">aucune</option>
+        <option value="fr">français</option><option value="de">Deutsch</option><option value="it">italiano</option>
+        <option value="en">English</option><option value="zh">中文</option>
+      </select>
+    </label>
+    <button id="b-silence" class="bascule" aria-pressed="false" title="Mode silence : la voix passe en sous-titres, pictogrammes en grand (code d'équipe)">
+      <svg class="ico"><use href="#p-silence"/></svg><span>Mode silence</span></button>
+    <button id="b-internet" class="bascule" aria-pressed="false" title="Couper les sorties vers Internet ; un second clic rétablit (code d'équipe)">
+      <svg class="ico"><use href="#p-internet"/></svg><span>Internet coupé</span></button>
+    <button id="b-theme" class="petit theme-toggle" title="Changer de thème" aria-label="Changer de thème" aria-pressed="false"><span aria-hidden="true">◐</span><span class="theme-label">Thème</span></button>
+    <button id="arret" class="arret" title="Arrêt d'urgence (ouvert à tous, toujours)">ARRÊT</button>
+  </div>
+</header>
+
+<div id="bandeaux">
+  <div id="bandeau-arret" class="bandeau b-arret" role="alert" hidden>
+    <svg class="ico"><use href="#p-arret"/></svg>
+    <strong>ARRÊT D'URGENCE</strong><span>un humain doit réarmer le robot</span>
+    <button id="rearmer">Réarmer</button>
+  </div>
+  <div id="bandeau-pilote" class="bandeau b-pilote" role="status" hidden><!-- brique 11 : la main humaine -->
+    <svg class="ico"><use href="#p-geste"/></svg>
+    <strong id="pilote-titre">UN HUMAIN PILOTE</strong>
+    <span id="pilote-qui"></span>
+    <span class="t2" data-etiquette="pilote"></span>
+    <span id="pilote-detail" class="preuve"></span>
+  </div>
+  <div id="bandeau-internet" class="bandeau b-internet" role="status" hidden>
+    <svg class="ico"><use href="#p-internet"/></svg>
+    <strong>Internet coupé — tout continue</strong>
+    <span class="t2" data-etiquette="internet"></span>
+    <span id="preuve-internet" class="preuve"></span>
+  </div>
+</div>
+
+<section id="sous-titres" aria-live="polite" aria-label="Sous-titres">
+  <div class="st" id="st-personne">
+    <div class="qui"><svg class="ico"><use href="#p-entendu"/></svg><span>Personne</span><span class="t2" data-etiquette="personne"></span></div>
+    <p class="l1"><b class="lg"></b><span class="txt">En attente d'une phrase…</span></p>
+    <p class="l2"><b class="lg"></b><span class="txt"></span></p>
+  </div>
+  <div class="st" id="st-robot">
+    <div class="qui"><svg class="ico"><use href="#p-parle"/></svg><span>Robot</span><span class="t2" data-etiquette="robot"></span></div>
+    <p class="l1"><b class="lg"></b><span class="txt"></span></p>
+    <p class="l2"><b class="lg"></b><span class="txt"></span></p>
+  </div>
+  <figure id="situation" class="situation">
+    <img class="q1-model" src="/static/primebot-q1.png" alt="PrimeBOT Q1" width="1200" height="1200">
+    <svg role="img" aria-label="situation"><use href="#p-entendu"/></svg>
+    <figcaption>en attente</figcaption>
+  </figure>
+</section>
+
+<section id="panneaux" aria-label="Ce que le robot entend, comprend, décide et fait">
+  <article class="panneau" id="pan-entendu" data-actif="0">
+    <svg class="ico grand" aria-hidden="true"><use href="#p-entendu"/></svg>
+    <div class="corps">
+      <h2><span class="t1">J'ai entendu</span><span class="t2" data-etiquette="entendu"></span></h2>
+      <p class="principal"></p><p class="second"></p>
+      <p class="detail"></p>
+    </div>
+  </article>
+  <article class="panneau" id="pan-compris" data-actif="0">
+    <svg class="ico grand" aria-hidden="true"><use href="#p-compris"/></svg>
+    <div class="corps">
+      <h2><span class="t1">J'ai compris</span><span class="t2" data-etiquette="compris"></span></h2>
+      <p class="principal"></p><p class="second"></p>
+      <p class="detail"></p>
+    </div>
+  </article>
+  <article class="panneau" id="pan-faire" data-actif="0">
+    <svg class="ico grand" aria-hidden="true"><use href="#p-faire"/></svg>
+    <div class="corps">
+      <h2><span class="t1">Je vais faire</span><span class="t2" data-etiquette="faire"></span></h2>
+      <p class="principal"></p><p class="second"></p>
+      <div class="barre" hidden><span></span></div>
+      <p class="detail"></p>
+    </div>
+  </article>
+  <article class="panneau" id="pan-refus" data-actif="0">
+    <svg class="ico grand" aria-hidden="true"><use href="#p-refus"/></svg>
+    <div class="corps">
+      <h2><span class="t1">Je refuse parce que…</span><span class="t2" data-etiquette="refus"></span></h2>
+      <p class="principal"></p><p class="second"></p>
+      <p class="detail"></p>
+    </div>
+  </article>
+  <article class="panneau" id="pan-question" data-actif="0">
+    <svg class="ico grand" aria-hidden="true"><use href="#p-question"/></svg>
+    <div class="corps">
+      <h2><span class="t1">Je pose une question</span><span class="t2" data-etiquette="question"></span></h2>
+      <p class="principal"></p><p class="second"></p>
+      <p class="detail"></p>
+    </div>
+  </article>
+  <article class="panneau" id="pan-aide" data-actif="0">
+    <svg class="ico grand" aria-hidden="true"><use href="#p-aide"/></svg>
+    <div class="corps">
+      <h2><span class="t1">J'ai besoin d'aide</span><span class="t2" data-etiquette="aide"></span></h2>
+      <p class="principal"></p><p class="second"></p>
+      <p class="detail"></p>
+    </div>
+  </article>
+</section>
+
+<section id="fiche" aria-label="Fiche de vérité">
+  <div class="tuile"><span class="n" id="f-demandes">0</span><span class="nom">Demandes</span><span class="t2" data-etiquette="demandes"></span></div>
+  <div class="tuile ok"><span class="n" id="f-reussites">0</span><span class="nom">Réussites</span><span class="t2" data-etiquette="reussites"></span><span class="d" id="f-reussites-d"></span></div>
+  <div class="tuile non"><span class="n" id="f-rates">0</span><span class="nom">Ratés</span><span class="t2" data-etiquette="rates"></span></div>
+  <div class="tuile non"><span class="n" id="f-refus">0</span><span class="nom">Refus</span><span class="t2" data-etiquette="refusees"></span><span class="d" id="f-refus-d"></span></div>
+  <div class="tuile"><span class="n" id="f-questions">0</span><span class="nom">Questions</span><span class="t2" data-etiquette="questions"></span><span class="d" id="f-questions-d"></span></div>
+  <div class="tuile"><span class="n" id="f-aides">0</span><span class="nom">Aides demandées</span><span class="t2" data-etiquette="aides"></span></div>
+  <div class="tuile"><span class="n"><span id="f-humain">0</span><small class="unite"> %</small></span><span class="nom">Part de l'humain</span><span class="t2" data-etiquette="humain"></span><span class="d" id="f-humain-d"></span></div>
+  <div class="tuile"><span class="n"><span id="f-temps">—</span><small class="unite"> ms</small></span><span class="nom">Temps de réponse</span><span class="t2" data-etiquette="temps"></span><span class="d" id="f-temps-d"></span></div>
+  <div class="tuile tuile-mention"><span id="f-mention" class="mention">testé sur faux robot</span><span class="d" id="f-mention-d">fiche de vérité, calculée par la boîte noire</span></div>
+</section>
+
+<form id="ecrire" autocomplete="off">
+  <select id="langue-dite" aria-label="Langue de la phrase">
+    <option value="">langue auto</option>
+    <option value="fr">français</option><option value="de">Deutsch</option><option value="gsw">Schweizerdeutsch</option>
+    <option value="it">italiano</option><option value="en">English</option><option value="zh">中文</option>
+  </select>
+  <input id="texte" placeholder="Écrire une phrase au robot (en attendant la voix)" aria-label="Phrase pour le robot">
+  <button type="submit">Dire</button>
+  <a href="/" class="lien">écran de l'équipe</a>
+</form>
+<script src="/static/jury.js"></script>
+</body>
+</html>

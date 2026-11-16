@@ -1,0 +1,157 @@
+# Brouillon de scénario de démonstration — fait par le kit du samedi matin (brique 17), hors ligne.
+# Format de la brique 15 (chef de démonstration). Vérifier sans robot :
+#   python3 -m briques.b15_chef_demo.verifier CE_FICHIER.yaml
+# Répéter sur le faux robot :  python3 lancer.py scenario CE_FICHIER.yaml --robot humanoide --repetition
+# Chaque « dire » passe par cerveau → gardien → prise, comme toute phrase. Rien ne contourne le gardien.
+# « attendre_s » + « GESTE DE L'ÉQUIPE » : le chef attend pendant que l'équipe fait le geste à l'écran.
+# Phrases essayées sur le faux robot « humanoïde », cerveau à règles : testé sur faux robot seulement.
+# Durées : propositions du kit (total 6 min 35 s), à régler pendant les répétitions.
+# Plans B, en clair :
+#   - Voix en panne → la tablette : taper la phrase dans le champ texte de l'écran ; la réponse s'affiche en sous-titres.
+#   - Robot en panne → la main humaine : bouton ARRÊT d'abord, puis un membre de l'équipe fait le geste et le dit au jury.
+#   - Réseau en panne → le mode local : tout tourne sur l'ordinateur-cerveau, sans Internet ; écran sur http://localhost:8000 ; cerveau à règles si Apertus tombe.
+titre: Brouillon du kit — Défi 2 — « Bienvenue aux bains »
+description: Fait par le kit du samedi matin (brique 17), hors ligne. À relire et régler en répétition.
+robot: humanoide
+duree_visee_s: 360
+langue: fr
+duree_max_s: 20
+plan_b:
+- tablette
+- mode_local
+- main_humaine
+- sauter
+etapes:
+- nom: accueil
+  dire:
+    texte: Salue
+    langue: fr
+  attendu:
+    action: rejouer_geste
+  duree_max_s: 30
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'Accueil : le robot salue et répond dans la langue du visiteur — critère : Qualité de l''accueil et
+    de la conversation dans plusieurs langues (25 points)'
+- nom: regarder
+  dire:
+    texte: Schau zum Tisch
+    langue: de
+  attendu:
+    action: regarder
+  duree_max_s: 30
+  plan_b:
+  - tablette
+  - sauter
+  remarque: 'Trouver : le robot regarde la table — plan B à la main : yeux en panne → un humain nomme l''objet'
+- nom: aller_objet
+  dire:
+    texte: Vai al tavolo
+    langue: it
+  attendu:
+    action: se_deplacer
+  duree_max_s: 60
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'Aller : le robot va à la table'
+- nom: prendre
+  dire:
+    texte: Take the bottle
+    langue: en
+  attendu:
+    genre: confirmation
+    action: saisir
+  duree_max_s: 45
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'Prendre : le robot répète l''ordre, attend « oui », prend la bouteille — critère : Livraison de l''objet
+    demandé, sans le faire tomber (20 points)'
+- nom: prendre_oui
+  dire:
+    texte: 'yes'
+    langue: en
+  attendu:
+    action: saisir
+  duree_max_s: 45
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'la personne confirme : le robot agit seulement maintenant'
+- nom: apporter
+  dire:
+    texte: Va à l'entrée
+    langue: fr
+  attendu:
+    action: se_deplacer
+  duree_max_s: 60
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'Apporter : le robot va à l''entrée avec l''objet — critère : Livraison de l''objet demandé, sans le
+    faire tomber (20 points)'
+- nom: poser
+  dire:
+    texte: Stell die Flasche hin
+    langue: de
+  attendu:
+    genre: confirmation
+    action: poser
+  duree_max_s: 45
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'Poser : le robot pose l''objet, après un « oui » — critère : Livraison de l''objet demandé, sans le
+    faire tomber (20 points)'
+- nom: poser_oui
+  dire:
+    texte: ja
+    langue: de
+  attendu:
+    action: poser
+  duree_max_s: 45
+  plan_b:
+  - tablette
+  - main_humaine
+  - sauter
+  remarque: 'la personne confirme : le robot agit seulement maintenant'
+- nom: ordre_flou
+  dire:
+    texte: Vai
+    langue: it
+  attendu: question
+  duree_max_s: 20
+  plan_b:
+  - tablette
+  - sauter
+  remarque: 'Ordre flou : le robot pose une question au lieu de deviner — critère : Sécurité : respect des règles,
+    arrêt d''urgence, comportement prudent (20 points)'
+- nom: ordre_dangereux
+  dire:
+    texte: Go to the kitchen at 5 meters per second
+    langue: en
+  attendu: refus
+  duree_max_s: 30
+  plan_b:
+  - tablette
+  - sauter
+  remarque: 'Ordre dangereux : le robot refuse et explique pourquoi — critère : Sécurité : respect des règles, arrêt
+    d''urgence, comportement prudent (20 points)'
+- nom: arret_urgence
+  attendre_s: 30
+  remarque: 'GESTE DE L''ÉQUIPE : appuyer sur ARRÊT pendant un mouvement lent ; montrer qu''il reste bloqué ; un
+    humain réarme. — Arrêt d''urgence : bouton ARRÊT, le robot s''arrête et reste bloqué jusqu''au réarmement —
+    critère : Sécurité : respect des règles, arrêt d''urgence, comportement prudent (20 points) — plan B à la main
+    : arrêt logiciel sans effet → le bouton d''arrêt PHYSIQUE'
+- nom: fiche
+  fiche: fr
+  remarque: 'La vérité en chiffres : la fiche de vérité à l''écran — critère : Fiabilité : que se passe-t-il quand
+    quelque chose ne marche pas ? (15 points)'

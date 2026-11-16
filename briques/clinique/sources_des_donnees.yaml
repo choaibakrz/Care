@@ -1,0 +1,113 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. La table des sources (avenant 4, tâche L01).
+# Pour chaque sorte de donnée : d'où elle viendrait dans une VRAIE clinique. Aucun lien avec un vrai logiciel de clinique :
+# le prototype ne se connecte à rien. Ce fichier est à côté du faux dossier ; il ne change aucune fiche.
+#   champs   : les lignes des fiches du faux dossier (faux_dossier/patients/*.yaml)
+#   genres   : les genres de documents (DocumentReference) de cette sorte
+#   fichiers : les autres fichiers du faux dossier
+#   vue, acces : ce que la porte de lecture donne (sert à calculer quels badges lisent cette ligne)
+#   carnet, lu_par : pour ce que le prototype crée (le carnet) ; « lu_par » est écrit ici, pas calculé
+marque: inventé
+sources:
+  ADMIN: le logiciel administratif
+  SOINS: le dossier de soins
+  INCONNU: nous ne savons pas quel outil
+  NOUS: ce que le prototype crée (le carnet)
+lignes:
+  - sorte: l'identité
+    source: ADMIN
+    explication: Le numéro du patient, le nom, l'âge.
+    champs: [Patient.id, Patient.nom_affiche, Patient.nom_complet_affiche, Patient.age]
+    vue: [id, nom, nom_complet, prenom, initiale, age]
+  - sorte: la langue
+    source: ADMIN
+    explication: La langue de la personne, et celles qu'elle comprend un peu.
+    champs: [Patient.langue, Patient.comprend_un_peu]
+    vue: [langue, comprend_un_peu]
+  - sorte: le séjour et ses dates
+    source: ADMIN
+    explication: Le jour et l'heure d'arrivée, la durée, le jour de sortie. La direction n'en voit que des comptes par étage.
+    champs: [Encounter.arrivee, Encounter.duree_jours, Encounter.sortie_jour]
+    vue: [arrivee, duree_jours, sortie_jour]
+    acces: [comptes]
+  - sorte: la chambre
+    source: ADMIN
+    explication: La chambre et l'étage.
+    champs: [Encounter.chambre, Encounter.etage]
+    vue: [chambre, etage]
+  - sorte: l'assurance
+    source: ADMIN
+    explication: La carte d'assurance (une assurance « Exemple », inventée).
+    genres: [carte d'assurance]
+    vue: [documents]
+  - sorte: les papiers administratifs
+    source: ADMIN
+    explication: Le formulaire d'admission.
+    genres: [formulaire d'admission]
+    vue: [documents]
+  - sorte: l'arrivée par message
+    source: ADMIN
+    explication: Pour une personne arrivée par un message du logiciel administratif (SIMULÉ dans le prototype), la marque « arrivée par message » et la mention « dossier de soins, rien pour ce patient ».
+    vue: [par_message, dossier_de_soins]
+  - sorte: la raison du séjour
+    source: SOINS
+    explication: Pourquoi la personne est là. Seul le médecin la lit.
+    champs: [Encounter.raison]
+    vue: [raison]
+  - sorte: les habitudes
+    source: SOINS
+    explication: Les habitudes de la personne, notées par les soignants.
+    champs: [habitudes]
+    vue: [habitudes]
+  - sorte: les listes de soin
+    source: SOINS
+    explication: Les listes de soin prévues pour la personne, et leurs points.
+    champs: [CarePlan]
+    fichiers: [listes]
+    vue: [listes]
+    acces: [liste_de_soin]
+  - sorte: les documents médicaux
+    source: SOINS
+    explication: Les lettres, ordonnances, listes de médicaments et rapports.
+    genres: [lettre du médecin traitant, ordonnance de physiothérapie, liste de médicaments, rapport de radiologie]
+    vue: [documents]
+  - sorte: le résumé
+    source: SOINS
+    explication: Le résumé du matin pour le médecin. Dans le prototype, il est écrit dans le carnet ; dans une vraie clinique, il irait dans le dossier de soins.
+    carnet: [résumé du médecin]
+    lu_par: [médecin]
+  - sorte: les questions pour le médecin
+    source: SOINS
+    explication: Les questions du soir de la personne. Dans le prototype, elles sont dans le carnet ; dans une vraie clinique, elles iraient dans le dossier de soins.
+    carnet: [question du soir]
+    lu_par: [médecin]
+  - sorte: le programme des thérapies
+    source: INCONNU
+    explication: Les rendez-vous de thérapie et la liste des rendez-vous. Nous ne savons pas quel outil le planifie. Le robot du hall n'en reçoit que la première heure.
+    champs: [Appointment]
+    genres: [liste des rendez-vous]
+    vue: [programme, premiere_heure]
+  - sorte: le plan des lieux
+    source: INCONNU
+    explication: Les lieux et les couloirs. Nous ne savons pas quel outil tient le plan d'une clinique.
+    fichiers: [lieux]
+    acces: [lieux]
+  - sorte: la réserve
+    source: INCONNU
+    explication: Les objets de la réserve. Nous ne savons pas quel outil tient le stock.
+    fichiers: [reserve]
+    acces: [reserve]
+  - sorte: les feuilles sans nom de patient
+    source: INCONNU
+    explication: Une feuille volante apportée à l'accueil, sans nom. Elle ne vient d'aucun logiciel ; nous ne savons pas où elle serait rangée.
+    fichiers: [feuilles_sans_patient]
+    acces: [feuilles_sans_patient]
+  - sorte: le carnet
+    source: NOUS
+    explication: Tout ce que le prototype crée (points cochés, tâches, rangements de papiers, messages, pannes, brouillons). Chaque ligne du carnet a ses propres règles de lecture.
+    carnet: [tout le reste]
+    lu_par: [selon la ligne du carnet]
+  - sorte: la marque « inventé »
+    source: NOUS
+    explication: La marque que nous mettons sur chaque fiche et chaque document de démonstration. Elle n'existe pas dans une vraie clinique.
+    champs: [marque]
+    fichiers: [reserve_marque]

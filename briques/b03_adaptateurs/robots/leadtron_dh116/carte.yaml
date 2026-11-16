@@ -1,0 +1,66 @@
+# CETTE VERSION : NON TESTÉ SUR VRAI ROBOT (une version d'avant a été essayée sur la vraie main le 15.11.2026 ; voir les remarques).
+# Carte du robot « leadtron_dh116 » (chemin sdk), créée par l'assistant le 15.11.2026 16:04, remplie le 15.11.2026.
+# Format : briques/b01_prise/carte.py ; liste des actions : briques/b01_prise/PRISE.md.
+# Ce qui a été lu dans le kit du fabricant : briques/b03_adaptateurs/fiches/leadtron_dh116.md.
+#
+# Règles :
+# - Chaque chiffre vient de la doc du fabricant, avec l'endroit et la date de lecture.
+#   Pas dans la doc = « à vérifier », et on laisse 0. 0 = le robot refuse : c'est voulu.
+# - La prise applique EN PLUS les plafonds de reglages.yaml → securite (0,3 m/s, 15 N, 5 m) : la plus petite gagne.
+# - « capacites » : seulement ce qui est branché ET essayé dans la liaison (le test de conformité le vérifie).
+# - « vrai_robot » est écrit par le programme (selon la liaison) : on ne peut pas faire passer du simulé pour du réel.
+
+id: leadtron-dh116            # sert au ticket du gardien
+nom: Main Leadtron DH116 (ébauche non testée sur vrai robot)
+genre: autre                  # une main seule, posée ou fixée sur une table : ni bras, ni humanoïde, ni roues
+fabricant: Leadtron           # écrit dans la demande du 15.11.2026 (pas lu dans le kit, qui s'appelle « LHandProLib ») : à vérifier sur la boîte
+modele: DH116, main gauche, 6 moteurs   # version du logiciel de la main : à vérifier sur la main
+vrai_robot: true              # remplacé par le programme : true avec la vraie liaison, false avec la doublure
+
+# Les deux actions obligatoires, plus « rejouer_geste » (quatorze gestes écrits par l'équipe, voir plus bas).
+# Dans cette version : essayés sur la doublure seulement (TESTÉ SUR FAUX ROBOT). Ce qui a été essayé sur la vraie main
+# avec une version d'avant est écrit dans les remarques et dans la fiche.
+# Les arrêts de la liaison sont des PROPOSITIONS, à confirmer avec le responsable sécurité avant tout essai.
+# PAS « saisir » ni « poser » : la prise demande une force en newtons, et la main ne connaît qu'un courant en pour
+# mille. On ne sait pas passer de l'un à l'autre (à vérifier, à mesurer) : la carte ne promet que ce qui est vrai.
+capacites: [arreter, etat, rejouer_geste]
+
+limites:
+  vitesse_max_m_s: 0.0        # à vérifier : elle ne se déplace pas ; la vitesse d'un doigt est en « positions par seconde », pas en m/s
+  portee_max_m: 0.0           # à vérifier : la main seule ne va chercher aucun objet (pas de bras)
+  charge_max_kg: 0.0          # à vérifier : pas lu dans le kit ; un petit ours en peluche seulement
+  force_max_n: 0.0            # à vérifier : la force de serrage en newtons n'est pas connue (seulement un courant en pour mille)
+
+# Quatorze gestes écrits par l'équipe (pas ceux du fabricant). L'ORDRE compte : le test de conformité essaie le PREMIER.
+# « preparer_la_main » (écrit dans liaison.py) : allume les moteurs, attend 1 seconde, écrit notre vitesse et notre
+#   courant les plus grands, puis lance la « mise en position de départ » du fabricant : la main S'OUVRE, à la vitesse
+#   du fabricant. Main vide, personne ne la touche. Sans lui la main refuse tout autre geste.
+# Les treize autres : cette carte donne leurs NOMS (elle fait partie de l'empreinte du test de conformité) ; leurs
+#   FORMES (positions, vitesses, courants, pauses) sont dans gestes.yaml, que l'équipe règle sans refaire le test.
+#   ouvrir_la_main, tenir_doucement (prise douce), attraper (tenir fort le doudou), bouger_les_doigts, poing, victoire,
+#   pouce_leve, pointer, rock, je_t_aime, compter (jusqu'à cinq), vague, pierre_feuille_ciseaux (une forme tirée au hasard).
+#   Aucun n'est essayé sur la vraie main dans cette version.
+gestes: [preparer_la_main, ouvrir_la_main, tenir_doucement, attraper, bouger_les_doigts, poing, victoire, pouce_leve,
+         pointer, rock, je_t_aime, compter, vague, pierre_feuille_ciseaux]
+
+position_fixe: table          # elle ne se déplace pas : elle est posée ou fixée sur une table
+
+remarques: >-
+  CETTE VERSION : NON TESTÉ SUR VRAI ROBOT. Des versions d'avant ont été essayées sur la vraie main le 15.11.2026, main
+  vide, commandes tapées par Hiba. Premier essai (limites 2500 et 200) : le test de conformité a réussi,
+  « preparer_la_main » a ouvert la main, « tenir_doucement » à 150 pour mille a raté et a été dit raté. Deuxième essai
+  (limites 5000 et 600) : les gestes marchent, mais les doigts n'ont pas assez de force pour tenir le doudou et ne
+  bougent pas très bien.
+  Décisions de Hiba (responsable du projet), le 15.11.2026 : « personne ne s'approche de la main, seuls des objets
+  seront à son contact ; ne pas être trop prudent », puis « je te laisse faire le max de ton intelligence, je veux
+  vraiment que tu me sortes des commandes qui sortent de l'ordinaire, je veux que ça fasse un effet waouh de suite ».
+  Les limites de CETTE version sont donc les valeurs des exemples du fabricant, choisies par Hiba pour une main qui ne
+  touche que des objets : 20000 positions par seconde (toute la course en une demi-seconde), 1000 pour mille du courant
+  (toute la force), et toute la course (10000). Elles ne sont PAS essayées sur la vraie main par notre système, et le
+  test de conformité sur la vraie main est à refaire. JAMAIS un doigt de personne dans la main.
+  À VÉRIFIER avant tout essai : ce que fait la main quand ses moteurs sont coupés (lâche-t-elle l'objet, ou le
+  garde-t-elle serré ?), et la vitesse de sa mise en position de départ.
+  Alimentation : 12 à 24 V (étiquette de la boîte ; c'est l'étiquette qui compte).
+  Arrêt d'urgence PHYSIQUE : débrancher son alimentation (où est la prise ? à vérifier). Arrêt logiciel proposé :
+  arrêter les moteurs, puis les couper. Le logiciel du fabricant doit être fermé quand notre système parle à la main.
+  Voir briques/b03_adaptateurs/fiches/leadtron_dh116.md.

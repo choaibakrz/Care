@@ -1,0 +1,70 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Plan inventé d'une clinique qui n'existe pas.
+marque: inventé
+note: 'Plan inventé, distances inventées et simples. Les robots ne prennent pas l''ascenseur : aucun chemin entre
+  les deux étages. Les chambres 15 à 24 existent pour les patients, mais ne sont pas sur ce plan.'
+lieux:
+- nom: Hall
+  etage: 0
+- nom: Accueil
+  etage: 0
+- nom: Ascenseur (rez-de-chaussée)
+  etage: 0
+- nom: Salle 1
+  etage: 0
+- nom: Salle 2
+  etage: 0
+- nom: Bassin
+  etage: 0
+- nom: Ascenseur (étage 2)
+  etage: 2
+- nom: Poste de soins
+  etage: 2
+- nom: Réserve
+  etage: 2
+- nom: Chambre 11
+  etage: 2
+- nom: Chambre 12
+  etage: 2
+- nom: Chambre 13
+  etage: 2
+- nom: Chambre 14
+  etage: 2
+- nom: Salon
+  etage: 2
+voisins:
+- de: Hall
+  a: Accueil
+  metres: 5
+- de: Hall
+  a: Ascenseur (rez-de-chaussée)
+  metres: 10
+- de: Hall
+  a: Salle 1
+  metres: 12
+- de: Salle 1
+  a: Salle 2
+  metres: 6
+- de: Hall
+  a: Bassin
+  metres: 20
+- de: Ascenseur (étage 2)
+  a: Poste de soins
+  metres: 8
+- de: Poste de soins
+  a: Réserve
+  metres: 4
+- de: Poste de soins
+  a: Chambre 11
+  metres: 6
+- de: Chambre 11
+  a: Chambre 12
+  metres: 4
+- de: Chambre 12
+  a: Chambre 13
+  metres: 4
+- de: Chambre 13
+  a: Chambre 14
+  metres: 4
+- de: Chambre 14
+  a: Salon
+  metres: 6

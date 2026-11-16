@@ -1,0 +1,37 @@
+/* Brique 11 — La main humaine, sur l'écran de l'équipe (couleurs de ecran.css, brique 13). Rien d'Internet. */
+.mh [hidden] { display:none !important; }  /* « hidden » doit gagner sur display:flex */
+.mh { background:var(--carte); border:1px solid var(--bord); border-radius:10px; padding:8px 12px; margin:0 0 12px; }
+.mh h2 { margin:4px 0 8px; }
+.mh h3 { font-size:14px; margin:10px 0 4px; color:var(--doux); }
+.mh.actif { border:3px solid var(--attention); }
+.mh-etat { font-weight:600; margin:4px 0; }
+.mh-etat.actif { color:var(--attention); }
+.mh-consigne { border-left:4px solid var(--info); padding:4px 8px; margin:6px 0; }
+.mh-ligne { display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:6px 0; }
+.mh-prenom { display:flex; gap:6px; align-items:center; flex:1 1 180px; min-width:0; }
+.mh-prenom input, .mh-form input, .mh-form select { font:inherit; padding:6px; border-radius:8px; border:1px solid var(--bord);
+  background:var(--carte); color:var(--texte); min-width:0; max-width:100%; }
+.mh-prenom input { flex:1; }
+.mh-gros { font-weight:700; padding:8px 16px; }
+#mh-prendre { background:var(--attention); color:#000; border:none; }
+.mh-aide { color:var(--doux); font-size:13px; margin:4px 0; }
+.mh-ordres { display:flex; flex-direction:column; gap:6px; margin:8px 0; }
+.mh-form { display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin:0; }
+.mh-form input { flex:0 1 auto; }
+.mh-form .mh-nombre { width:8.5em; }
+.mh-action { border-top:1px solid var(--bord); padding-top:6px; }
+.mh-nom { font-weight:600; min-width:9em; }
+.mh-arreter button { background:#c1121f; color:#fff; font-weight:700; border:none; }
+.mh-reponse { margin:6px 0; min-height:1.2em; }
+.mh-reponse.ok { color:var(--ok); } .mh-reponse.non { color:var(--non); } .mh-reponse.attention { color:var(--attention); }
+.dh-liste { list-style:none; margin:0; padding:0; max-height:none; border:none; background:none; }
+.dh-liste li { display:flex; flex-direction:column; gap:2px; padding:6px 0; border-bottom:1px solid var(--bord); font-size:15px; }
+.dh-vide { color:var(--doux); }
+.dh-pourquoi { color:var(--attention); }
+.dh-detail { color:var(--doux); font-size:13px; }
+.dh-boutons { display:flex; gap:8px; flex-wrap:wrap; }
+.dh-oui { border-color:var(--ok); color:var(--ok); font-weight:700; }
+.dh-non { border-color:var(--non); color:var(--non); font-weight:700; }
+.dh-mot summary { cursor:pointer; color:var(--info); margin:6px 0; }
+.dh-vote { border-top:1px solid var(--bord); padding-top:6px; }
+.dh-vote label { display:flex; gap:6px; align-items:center; }

@@ -1,0 +1,52 @@
+.zones { display: grid; grid-template-columns: 290px minmax(0, 1fr) 340px; gap: 16px; align-items: start; }
+
+.zone-list ul { display: grid; gap: 4px; margin: 0; padding: 0 10px 12px; list-style: none; }
+.zone-row { --c: var(--blue); display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; gap: 10px; align-items: center; width: 100%; padding: 9px 10px; border: 1px solid transparent; border-radius: 11px; background: transparent; text-align: left; transition: background var(--fast), border-color var(--fast); }
+.zone-row.kind-restricted { --c: var(--pink); }
+.zone-row:hover { background: var(--surface-2); }
+.zone-row.is-selected { border-color: color-mix(in srgb, var(--c) 50%, transparent); background: color-mix(in srgb, var(--c) 9%, var(--surface)); }
+.zone-icon { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 9px; background: color-mix(in srgb, var(--c) 16%, transparent); color: var(--c); }
+.zone-row strong { display: block; overflow: hidden; font-size: 13px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+.zone-row small { display: block; color: var(--text-3); font-size: 11.5px; }
+.zone-row b { color: var(--text-2); font-size: 11.5px; }
+
+.plan-help { color: var(--text-3); font-size: 12px; }
+.plan-help b { color: var(--amber); }
+
+.plan { display: block; width: 100%; height: auto; max-height: calc(100vh - 230px); background: var(--bg-raised); touch-action: none; user-select: none; }
+.plan.is-drawing { cursor: crosshair; }
+.plan-slab { fill: var(--surface-2); }
+.plan-room { fill: var(--surface); stroke: none; }
+.plan-room.kind-corridor { fill: var(--surface-2); }
+.plan-room.kind-elevator { fill: var(--surface-3); }
+.plan-room.kind-pool { fill: color-mix(in srgb, var(--blue) 12%, var(--surface)); }
+.plan-prop { fill: var(--surface-3); stroke: var(--line-strong); stroke-width: 0.03; }
+.plan-wall { fill: none; stroke: var(--text-2); stroke-width: 0.16; stroke-linecap: square; stroke-linejoin: miter; }
+.plan-label { fill: var(--text-3); font-family: var(--font-sans); font-size: 0.42px; font-weight: 600; letter-spacing: 0.03px; text-anchor: middle; text-transform: uppercase; pointer-events: none; }
+.plan-zone-other { fill-opacity: 0.08; stroke-width: 0.06; stroke-opacity: 0.6; stroke-dasharray: 0.2 0.15; pointer-events: none; }
+.plan-zone { fill: currentcolor; fill-opacity: 0.22; stroke: currentcolor; stroke-width: 0.1; stroke-linejoin: round; cursor: move; }
+.plan-zone.is-open { fill: none; cursor: crosshair; }
+.plan-corner { fill: var(--surface); stroke: currentcolor; stroke-width: 0.1; cursor: grab; transition: r var(--fast); }
+.plan-corner:hover { r: 0.38px; fill: currentcolor; }
+.plan-mid { fill: currentcolor; fill-opacity: 0.35; stroke: none; cursor: copy; }
+.plan-mid:hover { fill-opacity: 1; }
+.plan-robot { pointer-events: none; }
+.plan-robot circle { fill: currentcolor; stroke: var(--bg); stroke-width: 0.1; transition: transform 0.5s linear; }
+.plan-robot text { fill: var(--text); font-family: var(--font-mono); font-size: 0.4px; font-weight: 600; text-anchor: middle; paint-order: stroke; stroke: var(--bg-raised); stroke-width: 0.12px; }
+
+.zone-explain { display: grid; gap: 8px; justify-items: start; padding: 12px; border-left: 3px solid var(--blue); border-radius: 0 10px 10px 0; background: var(--blue-soft); color: var(--text) !important; }
+.zone-explain.kind-restricted { border-left-color: var(--pink); background: var(--pink-soft); }
+.kv dd { display: flex; flex-wrap: wrap; gap: 4px; }
+.deliveries { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0 0; padding: 0; list-style: none; }
+.deliveries li { display: inline-flex; align-items: center; gap: 5px; height: 26px; padding: 0 9px; border-radius: 8px; background: var(--surface-2); color: var(--text-2); font-size: 12px; }
+.deliveries .is-received { background: var(--mint-soft); color: var(--mint); }
+.deliveries .is-pending { background: var(--amber-soft); color: var(--amber); }
+.deliveries .is-failed { background: var(--coral-soft); color: var(--coral); }
+.deliveries b { color: var(--text); }
+
+@media (max-width: 1400px) {
+  .zones { grid-template-columns: 260px minmax(0, 1fr); }
+  .zone-form { grid-column: 1 / -1; }
+}
+
+@media (max-width: 860px) { .zones { grid-template-columns: 1fr; } }

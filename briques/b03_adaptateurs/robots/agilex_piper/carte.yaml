@@ -1,0 +1,42 @@
+# NON TESTÉ SUR VRAI ROBOT.
+# Carte du robot « agilex_piper » (bras, chemin sdk), créée par l'assistant le 14.11.2026 20:48, remplie le 14.11.2026.
+# Format : briques/b01_prise/carte.py ; liste des actions : briques/b01_prise/PRISE.md.
+# Ce que la doc publique dit vraiment : briques/b03_adaptateurs/fiches/agilex_piper.md.
+#
+# Règles :
+# - Chaque chiffre vient de la doc du fabricant, avec le lien et la date de lecture. Ici : aucun n'a pu être relu.
+#   Pas dans la doc = « à vérifier », et on laisse 0. 0 = le robot refuse de bouger : c'est voulu.
+# - La prise applique EN PLUS les plafonds de reglages.yaml → securite (0,3 m/s, 15 N, 5 m) : la plus petite gagne.
+# - « capacites » : seulement ce qui est branché ET essayé dans la liaison (le test de conformité le vérifie).
+# - « vrai_robot » est écrit par le programme (selon la liaison) : on ne peut pas faire passer du simulé pour du réel.
+
+id: agilex-piper              # sert au ticket du gardien
+nom: AgileX PiPER (bras, ébauche non testée sur vrai robot)
+genre: bras
+fabricant: AgileX             # étiquettes « AGILEX » et « PiPER » vues sur le bras (photos de Hiba, 14.11.2026)
+modele: PiPER                 # variante (PiPER, PiPER-H, PiPER-L, PiPER-X) et version du logiciel du bras : à vérifier sur la plaque
+vrai_robot: true              # remplacé par le programme : true avec la vraie liaison, false avec le faux kit
+
+# Rien d'autre que les deux actions obligatoires. Dans la liaison, seul « etat » est écrit ; les trois arrêts
+# attendent le choix du responsable sécurité (voir la fiche). Proposition pour plus tard, UNE PAR UNE :
+# montrer, saisir, poser, rejouer_geste.
+capacites: [arreter, etat]
+
+limites:
+  vitesse_max_m_s: 0.0        # à vérifier : le kit donne un pourcentage (0 à 100), pas des m/s ; aucune vitesse du bout du bras lue
+  portee_max_m: 0.0           # à vérifier : 626 mm vu dans un résumé de recherche, pas relu sur la page du fabricant (PiPER-H : 636 mm ?)
+  charge_max_kg: 0.0          # à vérifier : 1,5 kg vu dans le même résumé (PiPER-H : 2 kg ?) ; la main DH116 pèse 545 g ±10 g (leadshine.com/robot-detail/DH116-R1.html, lu le 14.11.2026)
+  force_max_n: 0.0            # à vérifier : le kit donne un couple de pince (0 à 5 N·m), pas une force en newtons
+
+# Aucun geste enregistré : les poses (« montrer ») sont à enregistrer avec le bras. Jamais de mouvement rapide.
+gestes: []
+
+position_fixe: table          # le bras ne se déplace pas : il est posé (et doit être FIXÉ) sur une table
+
+remarques: >-
+  NON TESTÉ SUR VRAI ROBOT. Rien n'a été envoyé au bras. Le kit du fabricant (piper_sdk, MIT) n'est pas installé.
+  Arrêt d'urgence PHYSIQUE : aucun bouton vu dans la doc lue ; couper l'alimentation fait-il tomber le bras ? à vérifier.
+  L'arrêt « rapide » du kit fait DESCENDRE le bras lentement ; la remise à zéro le fait TOMBER : choix des arrêts
+  avec le responsable sécurité. Chien de garde du fabricant : à vérifier. Le bras doit être fixé à la table avant
+  toute mise sous tension ; la distance à garder autour de lui se décide avec le responsable sécurité.
+  Voir briques/b03_adaptateurs/fiches/agilex_piper.md.

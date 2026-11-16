@@ -1,0 +1,17 @@
+# Carte d'identité d'exemple (clinique en boîte, avenant J04) : un petit robot à roues imaginaire, sans bras, avec un
+# plateau. Il porte, il ne saisit pas, il roule lentement, il n'a pas d'écran. Un humain pose et prend l'objet.
+# Chiffres inventés pour la simulation : TOUS « à vérifier » avec le vrai robot.
+id: faux-plateau
+nom: Faux robot à plateau
+genre: roues
+fabricant: faux robot (simulation)
+modele: P-0
+vrai_robot: false
+capacites: [se_deplacer, parler, arreter, etat]
+limites:
+  vitesse_max_m_s: 0.4   # à vérifier
+  portee_max_m: 0.0      # pas de bras
+  charge_max_kg: 3.0     # sur le plateau ; à vérifier
+  force_max_n: 0
+gestes: []
+remarques: "Sans bras, sans écran. Un humain pose l'objet sur le plateau et le reprend. Tous les chiffres : à vérifier."

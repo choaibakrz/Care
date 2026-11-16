@@ -1,0 +1,53 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p08
+  nom_affiche: Monsieur James T.
+  nom_complet_affiche: Monsieur James T. (personnage inventé)
+  age: 71
+  langue: en
+  comprend_un_peu: []
+Encounter:
+  chambre: 18
+  etage: null
+  arrivee:
+    jour: -4
+    heure: 09:00
+  duree_jours: 15
+  sortie_jour: 11
+  raison: réadaptation après une opération du genou
+habitudes:
+- boit du thé au lait
+- marche chaque après-midi
+- préfère qu'on lui écrive les heures
+Appointment:
+- jour: 1
+  heure: '16:00'
+  quoi: physiothérapie
+  lieu: Salle 1
+DocumentReference:
+- id: p08-d1
+  genre: lettre du médecin traitant
+  titre: Letter
+  langue: en
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Example practice: Cabinet Exemple, Dr Exemple.
+
+    Letter for Mr James T.
+
+    He starts a stay after knee surgery.'
+- id: p08-d2
+  genre: carte d'assurance
+  titre: Card of Insurance Exemple
+  langue: en
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Insurance Exemple
+
+    Card of James T.
+
+    Invented number: EX-0000-0018'
+CarePlan:
+- avant_physio

@@ -1,0 +1,9 @@
+data/
+runs/
+yolov8s.pt
+__pycache__/
+.pytest_cache/
+datasets/
+.env
+weights/
+smoke.log

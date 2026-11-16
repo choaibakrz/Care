@@ -1,0 +1,32 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p05
+  nom_affiche: Madame Jeanne M.
+  nom_complet_affiche: Madame Jeanne M. (personnage inventé)
+  age: 66
+  langue: fr
+  comprend_un_peu: []
+Encounter:
+  chambre: 15
+  etage: null
+  arrivee:
+    jour: -1
+    heure: 09:00
+  duree_jours: 12
+  sortie_jour: 11
+  raison: réadaptation du dos
+habitudes:
+- boit de l'eau gazeuse
+- aime qu'on lui parle lentement
+- lit le soir
+Appointment:
+- jour: 1
+  heure: '11:30'
+  quoi: physiothérapie
+  lieu: Salle 1
+DocumentReference: []
+CarePlan:
+- installation
+- avant_physio

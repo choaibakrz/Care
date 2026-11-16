@@ -1,0 +1,19 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. La réserve du deuxième étage, quantités inventées.
+marque: inventé
+lieu: Réserve
+objets:
+- nom: grand coussin
+  article: le
+  quantite: 2
+- nom: coussin de nuque
+  article: le
+  quantite: 2
+- nom: couverture
+  article: la
+  quantite: 3
+- nom: bouteille d'eau
+  article: la
+  quantite: 6
+- nom: feuille d'exercices
+  article: la
+  quantite: 10

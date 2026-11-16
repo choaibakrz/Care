@@ -1,0 +1,48 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p03
+  nom_affiche: Madame Claire D.
+  nom_complet_affiche: Madame Claire D. (personnage inventé)
+  age: 74
+  langue: fr
+  comprend_un_peu: []
+Encounter:
+  chambre: 13
+  etage: 2
+  arrivee:
+    jour: -3
+    heure: 09:00
+  duree_jours: 14
+  sortie_jour: 11
+  raison: réadaptation après une chute
+habitudes:
+- porte des lunettes pour lire
+- aime la radio le matin
+- préfère manger en chambre
+Appointment:
+- jour: 1
+  heure: '10:30'
+  quoi: physiothérapie
+  lieu: Salle 1
+- jour: 2
+  heure: 09:00
+  quoi: physiothérapie
+  lieu: Salle 1
+DocumentReference:
+- id: p03-d1
+  genre: ordonnance de physiothérapie
+  titre: Ordonnance de physiothérapie
+  langue: fr
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Cabinet Exemple, Docteur Exemple.
+
+    Ordonnance de physiothérapie pour Madame Claire D.
+
+    Neuf séances.
+
+    Reprise de la marche.'
+CarePlan:
+- avant_physio

@@ -1,0 +1,3 @@
+# OPTION ÉTEINTE — voix Piper (fr, de, it, en) avec espeak-ng. Licence GPL-3.0 (piper1-gpl, espeak-ng).
+# À n'installer qu'avec l'accord de Hiba. Version relevée sur PyPI le 11.11.2026. NON TESTÉ.
+piper-tts==1.8.0

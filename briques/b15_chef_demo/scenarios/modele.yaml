@@ -1,0 +1,58 @@
+# MODÈLE COMMENTÉ d'un scénario (brique 15). Copier ce fichier, le renommer, l'adapter.
+# Toute clé inconnue est refusée à la lecture (pour attraper les fautes de frappe avant la démonstration).
+# Vérifier un scénario sans robot :  python3 -m briques.b15_chef_demo.verifier MON_SCENARIO.yaml
+# Format complet : briques/b15_chef_demo/GUIDE.md
+
+titre: Modèle de scénario                 # obligatoire
+description: À quoi sert ce scénario.     # facultatif
+robot: humanoide                          # facultatif : carte du faux robot visée (humanoide, chien, bras)
+duree_visee_s: 60                         # facultatif : durée souhaitée à vitesse normale
+langue: fr                                # langue des phrases du chef (plan B, « on passe à la suite »)
+duree_max_s: 20                           # limite par défaut de chaque étape « dire »
+plan_b: [tablette, mode_local, main_humaine, sauter]   # plan B par défaut de chaque étape « dire »
+
+etapes:
+  # Une étape = un nom unique + UNE chose à faire : dire, annonce, attendre_s, provoquer_panne, reparer, fiche.
+  - nom: accueil
+    annonce: {texte: "Bonjour !", langue: fr}     # affiché et dit par la voix ; pas un ordre au robot
+    pause_apres_s: 3                               # facultatif : pause après l'étape
+
+  - nom: saluer
+    dire: {texte: "Salue", langue: fr}             # passé à la chaîne comme une phrase entendue (cerveau → gardien → prise)
+    attendu: {action: rejouer_geste, parametres: {nom: saluer}}   # l'action doit finir « réussie »
+    duree_max_s: 10                                # facultatif : remplace la limite du scénario
+    plan_b: [tablette, main_humaine]               # facultatif : remplace le plan B du scénario ([] = aucun)
+
+  - nom: ordre_flou
+    dire: "Va"                                     # forme courte : en français
+    attendu: question                              # formes courtes : refus, question, confirmation, rien
+
+  - nom: repondre
+    dire: {texte: "Grüezi", langue: gsw}
+    attendu: {genre: reponse, contient: "Schweizerdeutsch"}   # un morceau de ce que le robot répond
+
+  - nom: partir
+    dire: {texte: "Va à la cuisine", langue: fr}
+    attendu: {action: se_deplacer, statut: demarree}   # démarrée suffit…
+    attendre_fin: false                                # …car on n'attend pas la fin du trajet
+
+  - nom: patienter
+    attendre_s: 2
+
+  - nom: arreter
+    dire: "Stop"
+    attendu: {action: arreter}
+
+  - nom: panne_pour_s_entrainer
+    provoquer_panne: robot                         # répétition seulement (ignoré pendant la vraie démonstration)
+    remarque: robot, voix, reseau, ou une panne du faux robot (lenteur, refus, perte_liaison, batterie_faible, arret_ignore)
+
+  - nom: essai_en_panne
+    dire: "Applaudis"
+    attendu: {action: rejouer_geste, parametres: {nom: applaudir}}
+
+  - nom: reparation
+    reparer: true                                  # répétition seulement
+
+  - nom: la_fiche
+    fiche: fr                                      # dit la fiche de vérité de la démonstration

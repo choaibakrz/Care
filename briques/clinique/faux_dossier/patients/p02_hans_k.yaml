@@ -1,0 +1,50 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p02
+  nom_affiche: Monsieur Hans K.
+  nom_complet_affiche: Monsieur Hans K. (personnage inventé)
+  age: 68
+  langue: de
+  comprend_un_peu: []
+Encounter:
+  chambre: 11
+  etage: 2
+  arrivee:
+    jour: -6
+    heure: 09:00
+  duree_jours: 21
+  sortie_jour: 15
+  raison: réadaptation après une opération du genou
+habitudes:
+- lit le journal le matin
+- préfère la fenêtre ouverte
+- se lève tôt
+Appointment:
+- jour: 1
+  heure: 09:30
+  quoi: physiothérapie
+  lieu: Salle 1
+- jour: 1
+  heure: '15:00'
+  quoi: marche accompagnée
+  lieu: Salon
+DocumentReference:
+- id: p02-d1
+  genre: rapport de radiologie
+  titre: Radiologiebericht
+  langue: de
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Radiologie Exemple, Klinik Exemple.
+
+    Bericht für Herrn Hans K.
+
+    Aufnahme des Knies gemacht.
+
+    Bilder liegen bei.
+
+    Keine weiteren Angaben.'
+CarePlan:
+- avant_physio

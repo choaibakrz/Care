@@ -1,0 +1,23 @@
+[package]
+name = "optimization"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+domain.workspace = true
+locations.workspace = true
+async-trait.workspace = true
+chrono.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+uuid.workspace = true
+
+[dev-dependencies]
+domain = { workspace = true, features = ["testing"] }
+tokio = { workspace = true, features = ["rt-multi-thread"] }

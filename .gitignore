@@ -1,0 +1,29 @@
+.venv/
+__pycache__/
+modeles/
+journal/
+mesures/
+outils/bin/
+*.partiel
+reglages.yaml
+.pytest_cache/
+*.tar.gz
+donnees_voix/equipe/
+ecoute_des_voix/
+# Les paroles de vrais soignants, écrites à la main par l'équipe : jamais vers GitHub (réponse de Hiba à Q7)
+PAROLES_DES_SOIGNANTS.md
+# Les avis anonymes des personnes (avenant 2, K06 ; oui de Hiba à Q9) : le fichier reste sur l'ordinateur, jamais vers GitHub
+journal/clinique/avis.jsonl
+
+# la clé Google du film : jamais dans git
+film/.cle_google
+**.env
+**/*.zip
+
+# Les clés du serveur de la clinique : fabriquées sur chaque machine, jamais dans git
+implementation/server/keys/*
+!implementation/server/keys/README.md
+# Le modèle de reconnaissance entraîné (40 Mo) : pas dans git tant que sa licence n'est pas décidée
+models/weights.pt
+# Le film de présentation : les images, les vidéos et les sons restent hors du dépôt
+film/

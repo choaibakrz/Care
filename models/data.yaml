@@ -1,0 +1,54 @@
+train: images/train
+val: images/val
+test: images/test
+names:
+  0: bandage
+  1: blade
+  2: capsule
+  3: cotton_swab
+  4: covid_buffer
+  5: covid_buffer_box
+  6: covid_test_case
+  7: curved_mayo_scissor
+  8: drug_packaging
+  9: electronic_thermometer
+  10: gauze
+  11: glass_bottle
+  12: glove_pair_latex
+  13: glove_pair_nitrile
+  14: glove_pair_surgery
+  15: glove_single_latex
+  16: glove_single_nitrile
+  17: glove_single_surgery
+  18: harris_uni_core
+  19: harris_uni_core_cap
+  20: iodine_swab
+  21: mask_item
+  22: medical_cap
+  23: medical_glasses
+  24: medical_gloves
+  25: medical_infusion_bag
+  26: mercury_thermometer
+  27: n95_mask
+  28: needle
+  29: oxygen_cylinder
+  30: paperbox
+  31: pill
+  32: plastic_medical_bag
+  33: plastic_medical_bottle
+  34: reagent_tube
+  35: reagent_tube_cap
+  36: scalpel
+  37: shoe_cover_pair
+  38: shoe_cover_single
+  39: single_channel_pipette
+  40: straight_dissection_clamp
+  41: straight_mayo_scissor
+  42: syringe
+  43: test_tube
+  44: transferpettor_glass
+  45: transferpettor_plastic
+  46: tweezer_metal
+  47: tweezer_plastic
+  48: unguent
+  49: urine_bag

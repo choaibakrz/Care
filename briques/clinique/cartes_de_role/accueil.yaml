@@ -1,0 +1,11 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Une carte de rôle : le métier d'un robot (cahier 5.10).
+# Changer de métier = changer de carte dans flotte.yaml. Cette carte se change ici, sans toucher au code.
+# lieux_permis : des lieux du plan (faux_dossier/lieux.yaml). vitesse_max_m_s : jamais plus que reglages.yaml (securite).
+# volume_voix : de 0 à 1 (1 = la voix normale). actions_permises : des actions de la prise ; « arreter » et « etat » toujours.
+marque: inventé
+nom: Accueil
+phrase: "La carte Accueil : le robot reste dans le hall et à l'accueil. Il parle, il montre le chemin. Il ne prend rien."
+lieux_permis: [Hall, Accueil]
+vitesse_max_m_s: 0.2
+volume_voix: 0.8
+actions_permises: [se_deplacer, regarder, ecouter, parler, montrer, arreter, etat]

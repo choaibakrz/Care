@@ -1,0 +1,1318 @@
+[
+ {
+  "nom": "liste_des_ecrans",
+  "boutons": [],
+  "adresse": "/clinique",
+  "ouverte": true,
+  "titre": "La clinique en boîte",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [
+   "Failed to load resource: the server responded with a status of 404 (Not Found) (http://127.0.0.1:61280/favicon.ico)"
+  ],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "patient_fr",
+  "boutons": [],
+  "adresse": "/clinique/patient?langue=fr",
+  "ouverte": true,
+  "titre": "Clinique — Patient",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "patient_de",
+  "boutons": [],
+  "adresse": "/clinique/patient?langue=de",
+  "ouverte": true,
+  "titre": "Clinique — Patient",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "patient_it",
+  "boutons": [],
+  "adresse": "/clinique/patient?langue=it",
+  "ouverte": true,
+  "titre": "Clinique — Patient",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "patient_en",
+  "boutons": [],
+  "adresse": "/clinique/patient?langue=en",
+  "ouverte": true,
+  "titre": "Clinique — Patient",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "soignant",
+  "boutons": [],
+  "adresse": "/clinique/soignant?badge=soignant-etage-2",
+  "ouverte": true,
+  "titre": "Clinique — Soignant",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "medecin",
+  "boutons": [
+   {
+    "texte": "Ouvrir",
+    "dit": null,
+    "adresse": "/clinique/medecin/recherche?badge=medecin-exemple&q=",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/medecin?badge=medecin-exemple",
+  "ouverte": true,
+  "titre": "Clinique — Médecin",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 1
+ },
+ {
+  "nom": "medecin_source",
+  "boutons": [],
+  "adresse": "/clinique/medecin/source?badge=medecin-exemple&patient=p01&ref=sejour",
+  "ouverte": true,
+  "titre": "Clinique — Source",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "accueil",
+  "boutons": [],
+  "adresse": "/clinique/accueil",
+  "ouverte": true,
+  "titre": "Clinique — Accueil",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "accueil_papiers",
+  "boutons": [
+   {
+    "texte": "Valider ce rangement",
+    "dit": "Rangé : lettre du médecin traitant → Courrier médical (validée par Accueil, à Jour 1 — 9 h 00)",
+    "adresse": "/clinique/accueil/papiers?badge=accueil",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Valider ce rangement",
+    "dit": "Rangé : carte d'assurance → Assurance et administratif (validée par Accueil, à Jour 1 — 9 h 00)",
+    "adresse": "/clinique/accueil/papiers?badge=accueil",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Valider ce rangement",
+    "note": "le bouton n'est plus là"
+   }
+  ],
+  "adresse": "/clinique/accueil/papiers?badge=accueil",
+  "ouverte": true,
+  "titre": "Clinique — Papiers",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 3
+ },
+ {
+  "nom": "therapeute",
+  "boutons": [],
+  "adresse": "/clinique/therapeute",
+  "ouverte": true,
+  "titre": "Clinique — Thérapeute",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "direction",
+  "boutons": [],
+  "adresse": "/clinique/direction",
+  "ouverte": true,
+  "titre": "Clinique — Direction",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "hall",
+  "boutons": [
+   {
+    "texte": "Dire",
+    "dit": "",
+    "adresse": "/clinique/hall",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/hall",
+  "ouverte": true,
+  "titre": "Clinique — Hall",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 1
+ },
+ {
+  "nom": "flotte",
+  "boutons": [],
+  "adresse": "/clinique/flotte",
+  "ouverte": true,
+  "titre": "Clinique — Flotte",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "journal",
+  "boutons": [],
+  "adresse": "/clinique/journal",
+  "ouverte": true,
+  "titre": "Clinique — Journal des accès",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "liste_de_soin",
+  "boutons": [
+   {
+    "texte": "Je sors",
+    "dit": "Aucune liste commencée.",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Dire",
+    "dit": "",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Fait",
+    "dit": "",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Fait",
+    "dit": "",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Fait",
+    "dit": "",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Fait",
+    "dit": "Lequel : le grand coussin, ou le coussin de nuque ? grand coussin coussin de nuque",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Fait",
+    "dit": "Demande notée : le grand coussin, pour la chambre 12.",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Fait",
+    "dit": "Demande notée : le coussin de nuque, pour la chambre 12.",
+    "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/soignant/liste?badge=soignant-etage-2&patient=p01&liste=installation",
+  "ouverte": true,
+  "titre": "Clinique — Liste de soin",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 15
+ },
+ {
+  "nom": "fin_de_poste",
+  "boutons": [
+   {
+    "texte": "Le faire",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Le reporter",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": [
+     "prompt : Pourquoi reporter ce point ?"
+    ]
+   },
+   {
+    "texte": "Le passer à la relève",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Le faire",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Le reporter",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": [
+     "prompt : Pourquoi reporter ce point ?"
+    ]
+   },
+   {
+    "texte": "Le passer à la relève",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Le faire",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Le reporter",
+    "dit": "",
+    "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": [
+     "prompt : Pourquoi reporter ce point ?"
+    ]
+   }
+  ],
+  "adresse": "/clinique/soignant/fin-de-poste?badge=soignant-etage-2",
+  "ouverte": true,
+  "titre": "Clinique — Fin de poste",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 69
+ },
+ {
+  "nom": "pauses",
+  "boutons": [
+   {
+    "texte": "Mettre en pause",
+    "dit": "",
+    "adresse": "/clinique/soignant/pauses?badge=soignant-etage-2",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/soignant/pauses?badge=soignant-etage-2",
+  "ouverte": true,
+  "titre": "Clinique — Pauses",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 1
+ },
+ {
+  "nom": "soir_du_patient",
+  "boutons": [],
+  "adresse": "/clinique/patient/soir?badge=patient-p01",
+  "ouverte": true,
+  "titre": "Clinique — Le soir",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "qui_decide",
+  "boutons": [],
+  "adresse": "/clinique/qui-decide",
+  "ouverte": true,
+  "titre": "Clinique — Qui décide",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "sources",
+  "boutons": [],
+  "adresse": "/clinique/sources",
+  "ouverte": true,
+  "titre": "Clinique — D'où vient cette donnée ?",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "pre_admission",
+  "boutons": [
+   {
+    "texte": "Faire arriver deux papiers",
+    "dit": "",
+    "adresse": "/clinique/pre-admission?badge=accueil",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Préparer une pré-admission",
+    "dit": "",
+    "adresse": "/clinique/pre-admission?badge=accueil",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/pre-admission?badge=accueil",
+  "ouverte": true,
+  "titre": "Clinique — Pré-admission",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 2
+ },
+ {
+  "nom": "faux_logiciel",
+  "boutons": [
+   {
+    "texte": "Remettre le faux logiciel à zéro",
+    "dit": "",
+    "adresse": "/faux-logiciel",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Pré-admettre",
+    "dit": "",
+    "adresse": "/faux-logiciel",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Admettre",
+    "dit": "",
+    "adresse": "/faux-logiciel",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Changer de chambre",
+    "dit": "",
+    "adresse": "/faux-logiciel",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Faire sortir",
+    "dit": "",
+    "adresse": "/faux-logiciel",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Corriger",
+    "dit": "Refusé : valeur refusée pour « nom »",
+    "adresse": "/faux-logiciel",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/faux-logiciel/evenement)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "Annuler l'admission",
+    "dit": "Refusé : Monsieur Paolo V. n'est pas admise (elle est « sorti »)",
+    "adresse": "/faux-logiciel",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/faux-logiciel/evenement)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "Annuler la sortie",
+    "dit": "",
+    "adresse": "/faux-logiciel",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/faux-logiciel",
+  "ouverte": true,
+  "titre": "Faux logiciel administratif",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 1079,
+   "page": 1079,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 28
+ },
+ {
+  "nom": "faux_logiciel_fiche",
+  "boutons": [],
+  "adresse": "@lien:/faux-logiciel/fiche",
+  "ouverte": false,
+  "note": "aucun lien vers cette page depuis la page d'avant"
+ },
+ {
+  "nom": "tirage",
+  "boutons": [
+   {
+    "texte": "Demande au hasard",
+    "dit": "",
+    "adresse": "/clinique/tirage",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/tirage",
+  "ouverte": true,
+  "titre": "Clinique — Demande au hasard",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 1
+ },
+ {
+  "nom": "aide_humaine",
+  "boutons": [
+   {
+    "texte": "J'ai aidé",
+    "dit": "Noté : une aide humaine.",
+    "adresse": "/clinique/aide-humaine",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/aide-humaine",
+  "ouverte": true,
+  "titre": "Clinique — Aide humaine",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 1
+ },
+ {
+  "nom": "essais_reels",
+  "boutons": [
+   {
+    "texte": "Réussi",
+    "dit": "Refusé : il faut le nom du robot et le nom du geste",
+    "adresse": "/clinique/essais-reels",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/essais_reels)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "Réussi avec aide",
+    "dit": "Refusé : il faut le nom du robot et le nom du geste",
+    "adresse": "/clinique/essais-reels",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/essais_reels)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "Raté",
+    "dit": "Refusé : il faut le nom du robot et le nom du geste",
+    "adresse": "/clinique/essais-reels",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/essais_reels)"
+    ],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/essais-reels",
+  "ouverte": true,
+  "titre": "Clinique — Essais réels",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 3
+ },
+ {
+  "nom": "protocole_essais_reels",
+  "boutons": [],
+  "adresse": "/clinique/protocole-essais-reels",
+  "ouverte": true,
+  "titre": "Clinique — Protocole des essais réels",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "etageres",
+  "boutons": [
+   {
+    "texte": "Départ",
+    "dit": "Refusé : il faut la carte du robot (son nom)",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/depart)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "posé — haut",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "posé — milieu",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "posé — bas",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "arrivé (mode porteur)",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "tombé",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "J'ai aidé",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   },
+   {
+    "texte": "Arrêt de sécurité",
+    "dit": "Refusé : aucun essai en cours : appuyer d'abord sur « Départ »",
+    "adresse": "/clinique/etageres",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/etageres/appui)"
+    ],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/etageres",
+  "ouverte": true,
+  "titre": "Clinique — Étagères",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 9
+ },
+ {
+  "nom": "epreuve_etageres",
+  "boutons": [],
+  "adresse": "/clinique/epreuve-etageres",
+  "ouverte": true,
+  "titre": "Clinique — L'épreuve des étagères",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "pannes",
+  "boutons": [
+   {
+    "texte": "Provoquer",
+    "dit": "Panne provoquée.",
+    "adresse": "/clinique/pannes",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Provoquer",
+    "dit": "Panne provoquée.",
+    "adresse": "/clinique/pannes",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Provoquer",
+    "dit": "Panne provoquée.",
+    "adresse": "/clinique/pannes",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Provoquer",
+    "dit": "Panne provoquée.",
+    "adresse": "/clinique/pannes",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Relancer les demandes en attente",
+    "dit": "Refusé : le lien avec le robot est encore coupé, ou une autre panne est en cours : rien ne peut repartir",
+    "adresse": "/clinique/pannes",
+    "erreurs": [
+     "Failed to load resource: the server responded with a status of 400 (Bad Request) (http://127.0.0.1:61280/api/clinique/pannes/relancer)"
+    ],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/pannes",
+  "ouverte": true,
+  "titre": "Clinique — Pannes",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 5
+ },
+ {
+  "nom": "moments",
+  "boutons": [],
+  "adresse": "/clinique/moments",
+  "ouverte": true,
+  "titre": "Clinique — Moments",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "ce_qu_on_nous_a_dit",
+  "boutons": [],
+  "adresse": "/clinique/ce-qu-on-nous-a-dit",
+  "ouverte": true,
+  "titre": "Clinique — Ce qu'on nous a dit",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "regie",
+  "boutons": [
+   {
+    "texte": "Qui décide qu'un robot bouge ?",
+    "dit": "Réponse préparée : Qui décide qu'un robot bouge ?",
+    "adresse": "/clinique/regie",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Les données sont-elles vraies ?",
+    "dit": "Réponse préparée : Les données sont-elles vraies ?",
+    "adresse": "/clinique/regie",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Le prototype répond-il aux questions de ",
+    "dit": "Réponse préparée : Le prototype répond-il aux questions de santé ?",
+    "adresse": "/clinique/regie",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/regie",
+  "ouverte": true,
+  "titre": "Clinique — Régie, interprète",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 3
+ },
+ {
+  "nom": "pourquoi",
+  "boutons": [],
+  "adresse": "@lien:/clinique/pourquoi",
+  "ouverte": false,
+  "note": "aucun lien vers cette page depuis la page d'avant"
+ },
+ {
+  "nom": "ossature",
+  "boutons": [],
+  "adresse": "/",
+  "ouverte": true,
+  "titre": "Carnaval — écran",
+  "bandeau": false,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  }
+ },
+ {
+  "nom": "tableau_de_flotte",
+  "boutons": [
+   {
+    "texte": "Panne : batterie basse",
+    "dit": "",
+    "adresse": "/clinique/tableau-de-flotte",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Panne : robot bloqué",
+    "dit": "",
+    "adresse": "/clinique/tableau-de-flotte",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Panne : batterie basse",
+    "dit": "",
+    "adresse": "/clinique/tableau-de-flotte",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Panne : robot bloqué",
+    "note": "le bouton n'est plus là"
+   },
+   {
+    "texte": "Panne : batterie basse",
+    "note": "le bouton n'est plus là"
+   },
+   {
+    "texte": "Panne : robot bloqué",
+    "note": "le bouton n'est plus là"
+   },
+   {
+    "texte": "Avancer d'un pas",
+    "note": "le bouton n'est plus là"
+   }
+  ],
+  "adresse": "/clinique/tableau-de-flotte",
+  "ouverte": true,
+  "titre": "Clinique — Tableau de flotte",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 7
+ },
+ {
+  "nom": "fiche_de_verite",
+  "boutons": [],
+  "adresse": "/clinique/fiche-de-verite",
+  "ouverte": true,
+  "titre": "Clinique — Fiche de vérité",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "invite",
+  "boutons": [
+   {
+    "texte": "Tirer une demande au hasard",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Deutsch",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Français",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "English",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "Italiano",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "un fauteuil roulant",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "une guitare",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   },
+   {
+    "texte": "un parapluie",
+    "dit": "",
+    "adresse": "/clinique/invite",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/invite",
+  "ouverte": true,
+  "titre": "Clinique — Invité",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 10
+ },
+ {
+  "nom": "telephones",
+  "boutons": [],
+  "adresse": "/clinique/telephones",
+  "ouverte": true,
+  "titre": "Clinique — Téléphones",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "preuves",
+  "boutons": [],
+  "adresse": "/clinique/preuves",
+  "ouverte": true,
+  "titre": "Clinique — Preuves",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "preuves_essais",
+  "boutons": [],
+  "adresse": "/clinique/preuves/essais",
+  "ouverte": true,
+  "titre": "Clinique — Sur vingt essais",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "preuves_brancher",
+  "boutons": [],
+  "adresse": "/clinique/preuves/brancher",
+  "ouverte": true,
+  "titre": "Clinique — Brancher un robot",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "ou_tourne_quoi",
+  "boutons": [],
+  "adresse": "/clinique/ou-tourne-quoi",
+  "ouverte": true,
+  "titre": "Clinique — Où tourne quoi",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "capacites",
+  "boutons": [],
+  "adresse": "/clinique/capacites",
+  "ouverte": true,
+  "titre": "Clinique — Ce que le système sait faire",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "concours",
+  "boutons": [],
+  "adresse": "/clinique/concours",
+  "ouverte": true,
+  "titre": "Clinique — Concours",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "avis",
+  "boutons": [],
+  "adresse": "/clinique/avis",
+  "ouverte": true,
+  "titre": "Clinique — Avis",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 0
+ },
+ {
+  "nom": "avis_donner",
+  "boutons": [
+   {
+    "texte": "Envoyer",
+    "dit": "",
+    "adresse": "/clinique/avis/donner",
+    "erreurs": [],
+    "fenetres": []
+   }
+  ],
+  "adresse": "/clinique/avis/donner",
+  "ouverte": true,
+  "titre": "Clinique — Votre avis",
+  "bandeau": true,
+  "refus": false,
+  "erreurs": [],
+  "telephone": {
+   "largeur": 375,
+   "page": 375,
+   "depassent": 0,
+   "exemple": []
+  },
+  "boutons_en_tout": 1
+ }
+]

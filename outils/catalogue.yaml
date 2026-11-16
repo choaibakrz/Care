@@ -1,0 +1,160 @@
+# Le catalogue des téléchargements pour l'ordinateur-cerveau.
+# Tailles et empreintes (sha256) relevées sur Hugging Face le 11.11.2026, révision figée.
+# Rien n'est téléchargé sans un « oui » tapé par une personne.
+# groupe : leger = le kit léger ; mesure = utile pour comparer les outils ; secours = modèle plus petit.
+
+modeles:
+  # ---------------- Cerveau ----------------
+  - id: apertus-8b-gguf
+    role: cerveau (llama.cpp)
+    groupe: leger
+    depot: unsloth/Apertus-8B-Instruct-2509-GGUF
+    revision: 61c32783830424ac7a6d0fd80d4166e29dbaee06
+    fichiers:
+      - {nom: Apertus-8B-Instruct-2509-Q4_K_M.gguf, octets: 5057885440, sha256: 87e7f0eb5a1d33e1a8ea4e7fdd2363764e0465061dd92962e0073aec31a7944d}
+    licence: Apache-2.0 (modèle Swiss AI ; conversion par Unsloth)
+    remarque: Apertus 1.0, 8B, compressé 4 bits. Ne demande pas d'accepter de conditions (vérifié le 11.11.2026).
+
+  - id: apertus-8b-mlx
+    role: cerveau (MLX, outil d'Apple)
+    groupe: mesure
+    depot: mlx-community/Apertus-8B-Instruct-2509-4bit
+    revision: c5e6ae2e52c4149f36cb8e47b7ab1489ef885fed
+    octets_total: 4547826614
+    licence: Apache-2.0 (conversion par la communauté MLX)
+    remarque: Le même modèle, pour MLX. On garde celui des deux qui est le plus rapide.
+
+  - id: apertus-4b-mlx
+    role: cerveau de secours (MLX)
+    groupe: secours
+    depot: swiss-ai/Apertus-v1.1-4B-Instruct-MLX-INT4
+    revision: 78b2d43952534a1b1b2f1098b4e4a70fc611c4f1
+    octets_total: 2609919623
+    licence: Apache-2.0 (officiel Swiss AI)
+    remarque: Apertus 1.1, 4B, version officielle pour Mac. Contexte limité à 4096 jetons.
+
+  - id: apertus-4b-gguf
+    role: cerveau de secours (llama.cpp)
+    groupe: leger
+    depot: jondale/Apertus-v1.1-4B-Instruct-GGUF
+    revision: f2e7f396161bea8ca314dce8fad843e3c351571d
+    fichiers:
+      - {nom: apertus-v1.1-4b-instruct-q4_k_m.gguf, octets: 2429438816, sha256: 3e016f161bf69e911870ca5634765987baf519db9a79ca2134d9797eee0fb057}
+    licence: Apache-2.0 (conversion par un particulier, à vérifier avant usage public)
+
+  - id: apertus-0.5b-gguf
+    role: cerveau minuscule, pour les tests seulement (pas pour la démonstration)
+    groupe: test
+    depot: mradermacher/Apertus-v1.1-0.5B-Instruct-GGUF
+    revision: 31edc86ab60e89f4f9ce18a0549ab6f2fc0cf7dc
+    fichiers:
+      - {nom: Apertus-v1.1-0.5B-Instruct.Q4_K_M.gguf, octets: 381599296, sha256: d4b9a894a585f1095e7de83e80e8f28b96c5abc514b91cf5ef9205f619d68cf2}
+    licence: Apache-2.0 (modèle Swiss AI ; conversion par mradermacher)
+
+  # ---------------- Écoute ----------------
+  - id: whisper-small-cpp
+    role: écoute (whisper.cpp)
+    groupe: leger
+    depot: ggerganov/whisper.cpp
+    revision: 5359861c739e955e79d9a303bcbc70fb988958b1
+    fichiers:
+      - {nom: ggml-small.bin, octets: 487601967, sha256: 1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b}
+    licence: MIT
+
+  - id: whisper-turbo-cpp
+    role: écoute, plus précise (whisper.cpp)
+    groupe: mesure
+    depot: ggerganov/whisper.cpp
+    revision: 5359861c739e955e79d9a303bcbc70fb988958b1
+    fichiers:
+      - {nom: ggml-large-v3-turbo-q5_0.bin, octets: 574041195, sha256: 394221709cd5ad1f40c46e6031ca61bce88931e6e088c188294c6d5a55ffa7e2}
+    licence: MIT
+
+  - id: whisper-small-mlx
+    role: écoute (mlx-whisper)
+    groupe: mesure
+    depot: mlx-community/whisper-small-mlx
+    revision: 45f3915923c7a79a5a5b5a7d909d39aeb0e5630e
+    octets_total: 481309720
+    licence: MIT (modèle OpenAI Whisper ; conversion MLX, licence de la conversion à vérifier)
+
+  - id: whisper-turbo-mlx
+    role: écoute, plus précise (mlx-whisper)
+    groupe: mesure
+    depot: mlx-community/whisper-large-v3-turbo
+    revision: a4aaeec0636e6fef84abdcbe3544cb2bf7e9f6fb
+    octets_total: 1613979758
+    licence: MIT (modèle OpenAI Whisper ; conversion MLX, licence de la conversion à vérifier)
+
+  - id: whisper-small-fw
+    role: écoute (faster-whisper, processeur)
+    groupe: mesure
+    depot: Systran/faster-whisper-small
+    revision: 536b0662742c02347bc0e980a01041f333bce120
+    octets_total: 486215847
+    licence: MIT
+
+  - id: whisper-base-fw
+    role: écoute rapide pour les tests (faster-whisper)
+    groupe: mesure
+    depot: Systran/faster-whisper-base
+    revision: ebe41f70d5b6dfa9166e2c581c45c9c0cfc57b66
+    octets_total: 147886409
+    licence: MIT
+
+  - id: voix-zh-sherpa
+    role: voix chinoise prête pour sherpa-onnx (sans espeak-ng)
+    groupe: leger
+    depot: csukuangfj2/vits-piper-zh_CN-chaowen-medium
+    revision: 430ecaf3f99385508293860c1ae883a4120c71af
+    octets_total: 65504779
+    licence: CC0 (voix chaowen) ; dépôt de conversion sans licence affichée (à vérifier)
+
+  # ---------------- Voix (Piper) ----------------
+  # ATTENTION : sauf le chinois, ces voix ont besoin d'espeak-ng (licence GPL-3.0) pour lire le texte. Décision de Hiba.
+  # Licence de CHAQUE voix lue dans sa fiche (MODEL_CARD), le 11.11.2026.
+  - id: voix-fr
+    role: voix française (siwis)
+    groupe: leger
+    depot: rhasspy/piper-voices
+    revision: cf910fb59f1d79ab3b625a63993a108751c6c25d
+    fichiers:
+      - {nom: fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx, octets: 63221984, md5: bb8456dcd54ce8143ee62c19bf2d4b41}
+      - {nom: fr/fr_FR/siwis/medium/fr_FR-siwis-medium.onnx.json, octets: 5458, md5: 1ab0f73eb813ff70b6228d03ff9aed94}
+    licence: CC-BY-4.0 (données SIWIS) — citer la source
+  - id: voix-de
+    role: voix allemande (thorsten)
+    groupe: leger
+    depot: rhasspy/piper-voices
+    revision: cf910fb59f1d79ab3b625a63993a108751c6c25d
+    fichiers:
+      - {nom: de/de_DE/thorsten/medium/de_DE-thorsten-medium.onnx, octets: 63221984, md5: e2fe077168bfe802e951e717dfa85873}
+      - {nom: de/de_DE/thorsten/medium/de_DE-thorsten-medium.onnx.json, octets: 5460, md5: 996579e89520190067e25f1699867738}
+    licence: CC0 (données Thorsten)
+  - id: voix-it
+    role: voix italienne (serena)
+    groupe: leger
+    depot: rhasspy/piper-voices
+    revision: cf910fb59f1d79ab3b625a63993a108751c6c25d
+    fichiers:
+      - {nom: it/it_IT/serena/medium/it_IT-serena-medium.onnx, octets: 63516051, md5: f8c82f1139dfa382686bd7564a633400}
+      - {nom: it/it_IT/serena/medium/it_IT-serena-medium.onnx.json, octets: 5254, md5: a0b3d407bc039d501219857e5aa0e34e}
+    licence: CC-BY-4.0 (données synthétiques « serena-synthetic-it-27h », voix apprise de zéro) — citer la source
+  - id: voix-en
+    role: voix anglaise (cori)
+    groupe: leger
+    depot: rhasspy/piper-voices
+    revision: cf910fb59f1d79ab3b625a63993a108751c6c25d
+    fichiers:
+      - {nom: en/en_GB/cori/medium/en_GB-cori-medium.onnx, octets: 63221984, md5: 82937b3877db782440eecfe0b8cb204c}
+      - {nom: en/en_GB/cori/medium/en_GB-cori-medium.onnx.json, octets: 5471, md5: 3501c84afe039f69e99d861aa9d824a3}
+    licence: CC-BY-4.0 (Hi-Fi TTS, NVIDIA) — citer la source
+  - id: voix-zh
+    role: voix chinoise (chaowen)
+    groupe: leger
+    depot: rhasspy/piper-voices
+    revision: cf910fb59f1d79ab3b625a63993a108751c6c25d
+    fichiers:
+      - {nom: zh/zh_CN/chaowen/medium/zh_CN-chaowen-medium.onnx, octets: 63221984, md5: 6a5fa2ac1cdacad3deb10eb60844a35d}
+      - {nom: zh/zh_CN/chaowen/medium/zh_CN-chaowen-medium.onnx.json, octets: 3157, md5: bc31773752c7811b2b4e2e33e83e86a9}
+    licence: CC0

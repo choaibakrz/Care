@@ -1,0 +1,46 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p09
+  nom_affiche: Madame Sophie L.
+  nom_complet_affiche: Madame Sophie L. (personnage inventé)
+  age: 63
+  langue: fr
+  comprend_un_peu: []
+Encounter:
+  chambre: 19
+  etage: null
+  arrivee:
+    jour: -12
+    heure: 09:00
+  duree_jours: 14
+  sortie_jour: 2
+  raison: réadaptation de l'épaule
+habitudes:
+- attend sa fille pour la sortie
+- préfère le café du matin
+- range elle-même ses affaires
+Appointment:
+- jour: 1
+  heure: '10:00'
+  quoi: physiothérapie
+  lieu: Salle 1
+- jour: 2
+  heure: '10:00'
+  quoi: sortie
+  lieu: Accueil
+DocumentReference:
+- id: p09-d1
+  genre: lettre du médecin traitant
+  titre: Lettre du médecin traitant
+  langue: fr
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Cabinet Exemple, Docteur Exemple.
+
+    Lettre pour Madame Sophie L.
+
+    Fin du séjour prévue demain.'
+CarePlan:
+- sortie

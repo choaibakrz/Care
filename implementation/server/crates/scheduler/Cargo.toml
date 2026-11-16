@@ -1,0 +1,22 @@
+[package]
+name = "scheduler"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+domain.workspace = true
+async-trait.workspace = true
+chrono.workspace = true
+chrono-tz.workspace = true
+thiserror.workspace = true
+tokio.workspace = true
+tracing.workspace = true
+
+[dev-dependencies]
+domain = { workspace = true, features = ["testing"] }
+tokio = { workspace = true, features = ["rt-multi-thread"] }

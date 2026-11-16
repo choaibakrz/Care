@@ -1,0 +1,31 @@
+# Les marqueurs ArUco du défi (brique 5). Un marqueur ArUco = un carré noir et blanc imprimé, avec un numéro,
+# que la caméra retrouve sûrement (même de loin, même avec peu de lumière).
+# Samedi : imprimer avec « .venv/bin/python -m briques.b05_yeux.marqueurs --imprimer marqueurs_a_imprimer/ »,
+# MESURER le côté du carré noir imprimé, et l'écrire dans taille_m. Changer les lieux et objets selon le défi.
+#
+# dictionnaire : la famille de marqueurs (4×4 cases, numéros 0 à 49). Ne pas changer sans réimprimer.
+
+dictionnaire: DICT_4X4_50
+
+# Les marqueurs de calibration : posés AU SOL devant le robot, à des places mesurées (GUIDE.md). Caméra simulée :
+# environ 1 cm d'erreur jusqu'à 3 m, avec 1 ou 3 marqueurs (image parfaite). En vrai (bruit, objectif déformant) :
+# 3 marqueurs, plus sûr, et l'erreur est mesurée (à vérifier samedi).
+# Imprimés en A3 (côté du carré noir ≈ 28 cm : À MESURER après impression).
+calibration: {numeros: [0, 1, 2], taille_m: 0.28}
+
+# Un marqueur posé AU SOL à chaque lieu. Position : celle du lieu dans commun/monde.yaml, sauf si « position » est
+# donnée (ex. devant la table, pas dessous). La caméra simulée les dessine au même endroit.
+lieux:
+  - {numero: 10, lieu: cuisine, taille_m: 0.30}
+  - {numero: 11, lieu: entree, taille_m: 0.30}
+  - {numero: 12, lieu: table, taille_m: 0.30, position: {x: 5.0, y: 2.2}}
+  - {numero: 13, lieu: scene, taille_m: 0.30}
+  - {numero: 14, lieu: escalier, taille_m: 0.30}
+
+# Un marqueur collé sur un objet (petit : vu seulement de près). Pas dessiné par la caméra simulée.
+objets:
+  - {numero: 30, objet: bouteille, taille_m: 0.05}
+  - {numero: 31, objet: tasse, taille_m: 0.05}
+  - {numero: 32, objet: valise, taille_m: 0.15}
+  - {numero: 33, objet: caisse, taille_m: 0.15}
+  - {numero: 34, objet: objet_test, taille_m: 0.05}

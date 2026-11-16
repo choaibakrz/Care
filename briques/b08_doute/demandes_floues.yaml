@@ -1,0 +1,27 @@
+# Les 20 demandes floues d'essai (brique 8), dans les langues du projet. Robot : faux humanoïde.
+# Pour chacune, le robot doit poser une QUESTION courte dans la langue de la personne, et ne jamais agir.
+# Floue = il manque le lieu ou l'objet (« va là-bas », « prends ça »), ou deux choix sont possibles
+# (« la cuisine ou la table », « prends et pose »).
+# Ajouter une demande : une ligne ici. Le test la prend toute seule.
+
+demandes:
+  - {texte: "Va", langue: fr}
+  - {texte: "Va là-bas", langue: fr}
+  - {texte: "Prends ça", langue: fr}
+  - {texte: "Va à la cuisine ou à la table", langue: fr}
+  - {texte: "Prends la tasse ou la bouteille", langue: fr}
+  - {texte: "Prends et pose", langue: fr}
+  - {texte: "Geh dorthin", langue: de}
+  - {texte: "Nimm das", langue: de}
+  - {texte: "Geh in die Küche oder zum Tisch", langue: de}
+  - {texte: "Schau zum Tisch und zur Tür", langue: de}
+  - {texte: "Gang det äne", langue: gsw}
+  - {texte: "Nimm d'Fläsche oder d'Tasse", langue: gsw}
+  - {texte: "Vai laggiù", langue: it}
+  - {texte: "Prendi quello", langue: it}
+  - {texte: "Vai in cucina o al tavolo", langue: it}
+  - {texte: "Go over there", langue: en}
+  - {texte: "Take that", langue: en}
+  - {texte: "Look at the table and the door", langue: en}
+  - {texte: "去那边", langue: zh}
+  - {texte: "拿杯子还是瓶子", langue: zh}

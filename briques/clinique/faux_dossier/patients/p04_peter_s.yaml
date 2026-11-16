@@ -1,0 +1,45 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p04
+  nom_affiche: Monsieur Peter S.
+  nom_complet_affiche: Monsieur Peter S. (personnage inventé)
+  age: 80
+  langue: de
+  comprend_un_peu: []
+Encounter:
+  chambre: 14
+  etage: 2
+  arrivee:
+    jour: 0
+    heure: 09:00
+  duree_jours: 16
+  sortie_jour: 16
+  raison: reprise de la marche
+habitudes:
+- porte un appareil auditif
+- fait la sieste après le repas
+Appointment:
+- jour: 1
+  heure: '13:30'
+  quoi: physiothérapie
+  lieu: Salle 2
+DocumentReference:
+- id: p04-d1
+  genre: formulaire d'admission
+  titre: Formulaire d'admission
+  langue: de
+  ecriture: à la main, difficile
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Aufnahmeformular, Klinik Exemple.
+
+    Name: Peter S.
+
+    Zimmer: 14
+
+    Ankunft: gestern
+
+    Von Hand ausgefüllt, schwer lesbar.'
+CarePlan:
+- avant_physio

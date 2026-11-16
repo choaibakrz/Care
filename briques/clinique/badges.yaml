@@ -1,0 +1,13 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Les badges de la clinique en boîte (cahier 5.2).
+# Un badge se choisit en haut de l'écran. Ce n'est PAS un vrai contrôle d'identité : pas de mot de passe.
+# « patients » : les patients d'un thérapeute ou d'un médecin (inventé pour la démonstration).
+marque: inventé
+badges:
+  - {id: patient-p01, role: patient, libelle: "Patiente, chambre 12", patient: p01}
+  - {id: soignant-etage-2, role: soignant, libelle: "Soignant, étage 2", etage: 2}
+  - {id: therapeute-exemple, role: thérapeute, libelle: "Thérapeute Exemple", patients: [p01, p02, p03, p04]}
+  - {id: medecin-exemple, role: médecin, libelle: "Médecin Exemple", patients: [p01, p03, p05, p07, p09, p12]}
+  - {id: accueil, role: accueil, libelle: "Accueil"}
+  - {id: direction, role: direction, libelle: "Direction"}
+  - {id: assistant, role: assistant, libelle: "Assistant (le cerveau)"}
+  - {id: robot-r1, role: robot, libelle: "Robot R1"}

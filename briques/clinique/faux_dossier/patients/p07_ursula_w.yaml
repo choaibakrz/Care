@@ -1,0 +1,64 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p07
+  nom_affiche: Madame Ursula W.
+  nom_complet_affiche: Madame Ursula W. (personnage inventé)
+  age: 77
+  langue: de
+  comprend_un_peu: []
+Encounter:
+  chambre: 17
+  etage: null
+  arrivee:
+    jour: -10
+    heure: 09:00
+  duree_jours: 24
+  sortie_jour: 14
+  raison: réadaptation après une opération de la hanche
+habitudes:
+- marche avec une canne
+- aime les mots croisés
+- boit une tisane le soir
+- dort la lumière allumée
+Appointment:
+- jour: 1
+  heure: 09:00
+  quoi: physiothérapie
+  lieu: Salle 2
+- jour: 2
+  heure: '14:00'
+  quoi: bain accompagné
+  lieu: Bassin
+DocumentReference:
+- id: p07-d1
+  genre: lettre du médecin traitant
+  titre: Brief der Hausärztin
+  langue: de
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Praxis Exemple, Dr. Exemple.
+
+    Brief für Frau Ursula W.
+
+    Die Kontrolle ist am 20. November.'
+  faits:
+  - evenement: rendez-vous de contrôle
+    date: 20 novembre
+- id: p07-d2
+  genre: liste des rendez-vous
+  titre: Terminliste
+  langue: de
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Terminliste, Klinik Exemple.
+
+    Frau Ursula W.
+
+    Kontrolle: 22. November.'
+  faits:
+  - evenement: rendez-vous de contrôle
+    date: 22 novembre
+CarePlan:
+- avant_physio

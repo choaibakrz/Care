@@ -1,0 +1,51 @@
+/* Incidents: the severity colour is a border and a badge, always with its word (never colour alone). */
+.incident-list { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.incident {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--incident);
+  border-radius: 10px;
+  background: var(--bg-raised);
+}
+.incident.is-selected { border-color: var(--incident); box-shadow: 0 0 0 2px color-mix(in srgb, var(--incident) 30%, transparent); }
+.incident.is-closed { opacity: 0.6; }
+.incident-main { display: grid; gap: 2px; justify-items: start; min-width: 0; padding: 0; border: 0; background: transparent; color: inherit; text-align: left; }
+.incident-main strong { font-size: 13.5px; font-weight: 600; }
+.incident-main small { overflow: hidden; max-width: 100%; color: var(--text-2); font-size: 12px; text-overflow: ellipsis; white-space: nowrap; }
+.incident-main .incident-time { color: var(--text-3); font-size: 11.5px; }
+.incident-main .incident-advice { color: var(--text-2); white-space: normal; }
+.incident-badge { display: inline-flex; gap: 5px; align-items: center; margin-bottom: 2px; color: var(--incident); font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; }
+.incident-actions { display: flex; gap: 6px; }
+.incident-note { color: var(--text-3); font-size: 11.5px; text-align: right; }
+.incident.is-compact { padding: 8px 10px; }
+.incident.is-compact .incident-main strong { font-size: 13px; }
+
+/* The tag over a room on the 3D map. */
+.incident-tag {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+  height: 24px;
+  padding: 0 8px;
+  border: 1px solid var(--incident);
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  white-space: nowrap;
+  transform: translateY(-50%);
+  user-select: none;
+}
+.incident-tag svg { color: var(--incident); }
+.incident-tag em { color: var(--text-2); font-style: normal; }
+.incident-tag.is-critical { background: var(--incident); color: #fff; animation: incident-pulse 1.6s ease-in-out infinite; }
+.incident-tag.is-critical svg { color: #fff; }
+.incident-tag.is-selected { box-shadow: 0 0 0 3px color-mix(in srgb, var(--incident) 40%, transparent); }
+@keyframes incident-pulse { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--incident) 25%, transparent); } }
+.incidents-more, .incidents-note { color: var(--text-3); font-size: 12px; }
+.incidents-error { color: var(--coral); font-size: 12.5px; }

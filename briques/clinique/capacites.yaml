@@ -1,0 +1,27 @@
+# Les capacités du tableau « Ce que le système sait faire, et comment on le sait » (avenant 2, K05 ; avenant 3, M02).
+# Ce fichier dit seulement OÙ REGARDER pour chaque capacité. Il ne contient AUCUN résultat : les résultats sont lus dans
+# les essais comptés (journal/essais_dernier.json), le compteur d'essais réels, les branchements, les mesures, les rejeux,
+# et la présence des fichiers de vérification. Changer une capacité : changer ce fichier, pas le programme.
+#   etapes  : les étapes de la grande répétition qui la jouent (essais comptés, J01)
+#   mots    : les mots qui rattachent un essai RÉEL (le nom du geste tapé par l'équipe) à cette capacité
+#   source  : une autre source de résultats sur le faux robot (tirage, branchements, rejeux)
+#   tests   : les fichiers de vérification (briques/clinique/tests/)
+#   taches  : les tâches du suivi ; si l'une est BLOQUÉ, la capacité est PAS FAIT
+marque: inventé
+capacites:
+  - {titre: "accueillir dans une langue", etapes: [1], mots: [accueil, arrivée, langue], tests: [test_accueil.py], taches: [T10]}
+  - {titre: "ranger un papier", etapes: [4, 5], mots: [papier, ranger], tests: [test_papiers.py], taches: [T09, T14]}
+  - {titre: "suivre une liste de soin", etapes: [6], mots: [liste, cocher], tests: [test_listes_de_soin.py], taches: [T06a, T06b]}
+  - {titre: "rappeler le point oublié", etapes: [7], mots: [point oublié, je sors], tests: [test_listes_de_soin.py], taches: [T06a]}
+  - {titre: "apporter un objet", etapes: [8], mots: [apporter, livrer, coussin, objet], tests: [test_course_du_robot.py], taches: [T07a, T07b]}
+  - {titre: "refuser un geste interdit", etapes: [2], source: tirage, mots: [refus, interdit], tests: [test_tirage.py, test_carte_pas_contournable.py], taches: [K01a]}
+  - {titre: "passer le relais", etapes: [], mots: [relais], tests: [test_repartiteur.py], taches: [T23],
+     note: "le relais est proposé par le répartiteur ; il n'est pas encore joué"}
+  - {titre: "reprendre après une panne", etapes: [12], mots: [panne, reprise], tests: [test_panne_et_reprise.py], taches: [T24]}
+  - {titre: "brancher un robot inconnu", etapes: [], source: branchements, mots: [brancher, branchement], tests: [test_brancher_carte.py], taches: [J04b]}
+  - {titre: "se rejouer seul", etapes: [], source: rejeux, mots: [rejeu], tests: [test_rejeu_autonome.py], taches: [T29]}
+  - {titre: "déplacer des objets d'une étagère à une table", etapes: [], source: etageres, mots: [], tests: [test_etageres.py], taches: [M02]}
+  - {titre: "répondre aux questions du soir", etapes: [9], mots: [question du soir], tests: [test_questions_du_soir.py], taches: [T19]}
+  - {titre: "résumer le dossier pour le médecin, avec ses sources", etapes: [10], mots: [résumé], tests: [test_resume_medecin.py], taches: [T08]}
+  - {titre: "faire une tâche d'une dictée", etapes: [11], mots: [dictée], tests: [test_dictee_du_medecin.py], taches: [T18]}
+  - {titre: "traduire en direct pour le jury", etapes: [], mots: [interprète, traduire], tests: [test_interprete.py], taches: [H10a]}

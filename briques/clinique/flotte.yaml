@@ -1,0 +1,13 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Les quatre robots de la clinique en boîte (cahier 6.6).
+# « simule: true » : le robot n'existe que dans l'ordinateur. Il porte l'étiquette « FAUX ROBOT — SIMULÉ ».
+# R1 est le robot branché sur la prise : le faux robot aujourd'hui, le vrai robot samedi (l'étiquette vient de sa carte).
+# « carte » : le métier du robot, une des cartes de cartes_de_role/ (Accueil, Étage, Thérapie, Visite, Nuit).
+# Changer de métier = changer ce mot. La carte est appliquée dans le monde simulé et à la voix (T22a) ;
+# pour R1, le robot branché, c'est le gardien qui l'applique (T22b ; essayé sur le faux robot).
+# « depart » : le lieu du plan (faux_dossier/lieux.yaml) où le robot est au début, dans le monde des robots (R5). Inventé.
+marque: inventé
+robots:
+  - {id: robot-r1, nom: R1, carte: "Étage", simule: false, depart: "Hall"}
+  - {id: robot-r2, nom: R2, carte: "Étage", simule: true, depart: "Réserve"}
+  - {id: robot-r3, nom: R3, carte: "Thérapie", simule: true, depart: "Salon"}
+  - {id: robot-r4, nom: R4, carte: "Nuit", simule: true, depart: "Poste de soins"}

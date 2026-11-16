@@ -1,0 +1,54 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Personnage inventé, aucun lien avec une vraie personne.
+# Mots inspirés de FHIR R4 (non validé). Ce fichier ne change jamais pendant une démonstration.
+marque: inventé
+Patient:
+  id: p11
+  nom_affiche: Madame Ana P.
+  nom_complet_affiche: Madame Ana P. (personnage inventé)
+  age: 69
+  langue: pt
+  comprend_un_peu:
+  - fr
+Encounter:
+  chambre: 21
+  etage: null
+  arrivee:
+    jour: -5
+    heure: 09:00
+  duree_jours: 17
+  sortie_jour: 12
+  raison: reprise de la marche
+habitudes:
+- comprend mieux quand on montre les objets
+- aime la fenêtre fermée la nuit
+- boit du café le matin
+Appointment:
+- jour: 1
+  heure: '15:30'
+  quoi: physiothérapie
+  lieu: Salle 1
+DocumentReference:
+- id: p11-d1
+  genre: lettre du médecin traitant
+  titre: Carta
+  langue: pt
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Consultório Exemple, Doutor Exemple.
+
+    Carta para a senhora Ana P.
+
+    A senhora começa uma estadia de reabilitação.'
+- id: p11-d2
+  genre: carte d'assurance
+  titre: Cartão
+  langue: pt
+  ecriture: tapée
+  marque: INVENTÉ
+  texte: 'INVENTÉ — Seguro Exemple
+
+    Cartão de Ana P.
+
+    Número inventado: EX-0000-0021'
+CarePlan:
+- avant_physio

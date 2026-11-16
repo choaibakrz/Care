@@ -1,0 +1,56 @@
+sans_mouvement:
+  date: '2026-11-15T20:48:59'
+  reussi: true
+  mention: testé sur vrai robot
+  empreintes:
+    carte.yaml: 74652c1129f71be2dfd3423adc1586717bb1d31b19c8b6eb3fe91d4a42ad2dc4
+    liaison.py: f7649e4fb0e82e096b9382448203871df36f730fe43b3706b6a5015b82ac0be2
+    adaptateur.py: 0b608448c7b3f5d437e18163f9bcf525456c9667241ffd547b77917fec79e743
+  controles:
+  - ok carte d'identité valide 3 capacités
+  - ok état lisible batterie None
+  - ok refuse « se_deplacer » (absente de la carte)
+  - ok refuse une action sans ticket
+  - ok arrêt d'urgence immédiat
+  - ok mention honnête (vrai ou faux robot) testé sur vrai robot
+  - ok la carte ne promet que ce qui est branché 3 capacités branchées
+  - 'ok connexion sans mouvement liaison ok, en mouvement : False'
+  - ok refuse ce qui dépasse les limites (gardien) 3/3 demandes refusées
+  - ok refuse le ticket d'un autre robot
+  - 'ok arrêt d''urgence : tout est bloqué'
+  - 'ok arrêt d''urgence : robot immobile et joignable'
+  - 'ok réarmé par un humain : l''état se lit de nouveau reussie'
+  - 'ok aucun ordre de mouvement envoyé reçu par l''adaptateur : [''etat'']'
+  - ok aucune tentative d'arrêt sautée
+complet:
+  date: '2026-11-15T20:49:27'
+  reussi: true
+  mention: testé sur vrai robot
+  empreintes:
+    carte.yaml: 74652c1129f71be2dfd3423adc1586717bb1d31b19c8b6eb3fe91d4a42ad2dc4
+    liaison.py: f7649e4fb0e82e096b9382448203871df36f730fe43b3706b6a5015b82ac0be2
+    adaptateur.py: 0b608448c7b3f5d437e18163f9bcf525456c9667241ffd547b77917fec79e743
+  controles:
+  - ok carte d'identité valide 3 capacités
+  - ok état lisible batterie None
+  - ok refuse « se_deplacer » (absente de la carte)
+  - ok refuse une action sans ticket
+  - ok arrêt d'urgence immédiat
+  - ok mention honnête (vrai ou faux robot) testé sur vrai robot
+  - ok la carte ne promet que ce qui est branché 3 capacités branchées
+  - 'ok connexion sans mouvement liaison ok, en mouvement : False'
+  - ok refuse ce qui dépasse les limites (gardien) 3/3 demandes refusées
+  - ok refuse le ticket d'un autre robot
+  - 'ok arrêt d''urgence : tout est bloqué'
+  - 'ok arrêt d''urgence : robot immobile et joignable'
+  - 'ok réarmé par un humain : l''état se lit de nouveau reussie'
+  - 'ok aucun ordre de mouvement envoyé reçu par l''adaptateur : [''etat'']'
+  - ok aucune tentative d'arrêt sautée
+  - ok [complet] carte d'identité valide 3 capacités
+  - ok [complet] état lisible batterie None
+  - ok [complet] refuse « se_deplacer » (absente de la carte)
+  - ok [complet] refuse une action sans ticket
+  - ok [complet] action « etat » reussie état lu
+  - ok [complet] action « rejouer_geste » reussie fait
+  - ok [complet] arrêt d'urgence immédiat
+  - ok [complet] sens vérifié à l'œil par un humain confirmé

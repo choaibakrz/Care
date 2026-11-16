@@ -1,0 +1,8 @@
+ultralytics>=8.4      # YOLO26 support; AGPL-3.0
+pyyaml
+pillow
+numpy
+pytest
+huggingface_hub       # only for hf: sources
+kaggle          # downloads; token in .env as KAGGLE_API_TOKEN
+pyarrow         # reading the Hugging Face parquet

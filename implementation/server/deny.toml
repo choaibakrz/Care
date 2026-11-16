@@ -1,0 +1,33 @@
+# cargo-deny configuration. Licences: permissive only (rule from LICENCES.md).
+[graph]
+all-features = false
+
+[advisories]
+ignore = [
+    # Waiver approved by the lead and the user (2026-11-14, Task A1 fix round 1).
+    # sqlx 0.9.0 (latest) pins libsqlite3-sys < 0.38, whose bundled SQLite < 3.54 is affected.
+    { id = "RUSTSEC-2026-0459", reason = "The server opens only its own SQLite database and WAL file inside its own data directory, never files from less trusted parties. Remove when sqlx ships libsqlite3-sys >= 0.39 (SQLite >= 3.54)." },
+]
+
+[licenses]
+# Anything not listed here (GPL, AGPL, ...) is rejected.
+allow = [
+    "MIT",
+    "Apache-2.0",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Unicode-3.0",
+    "Zlib",
+]
+confidence-threshold = 0.8
+
+[bans]
+multiple-versions = "warn"
+wildcards = "allow"
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-registry = ["https://github.com/rust-lang/crates.io-index"]
+allow-git = []

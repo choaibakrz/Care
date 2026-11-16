@@ -1,0 +1,15 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Les heures du scénario (cahier 6.8) : les repères où l'horloge peut sauter.
+marque: inventé
+depart: {jour: 1, heure: "09:00"}
+reperes:
+  - {nom: "arrivée", jour: 1, heure: "09:00"}
+  - {nom: "papiers", jour: 1, heure: "09:10"}
+  - {nom: "installation en chambre", jour: 1, heure: "10:00"}
+  - {nom: "questions du soir", jour: 1, heure: "19:00"}
+  - {nom: "résumé prêt", jour: 2, heure: "07:30"}
+  - {nom: "visite", jour: 2, heure: "08:00"}
+  - {nom: "tâche pour le thérapeute", jour: 2, heure: "08:05"}
+  - {nom: "panne d'un robot", jour: 2, heure: "08:10"}
+# Deux façons de parler du chef de démonstration : l'heure du jour où l'on arrive.
+le_soir: "19:00"
+le_lendemain_matin: "07:30"

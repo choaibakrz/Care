@@ -1,0 +1,35 @@
+.patient-console { display: grid; gap: 16px; }
+.patient-summary { margin-bottom: 0; }
+.patient-control-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, .82fr); gap: 16px; align-items: stretch; }
+.patient-form { align-content: start; }
+.helper-copy { display: flex; align-items: flex-start; gap: 8px; color: var(--text-2); font-size: 12px; line-height: 1.5; }
+.helper-copy svg { flex: none; margin-top: 1px; color: var(--mint); }
+.pairing-panel { min-height: 100%; box-sizing: border-box; }
+.pairing-empty { display: grid; justify-items: start; align-content: center; gap: 9px; min-height: 180px; color: var(--text-2); }
+.pairing-empty svg { color: var(--amber); }
+.pairing-empty strong { color: var(--text); font-size: 14px; }
+.pairing-empty p { color: var(--text-3); font-size: 12px; line-height: 1.5; }
+.pairing-code-box { display: grid; gap: 16px; min-height: 180px; align-content: center; padding: 16px; border: 1px solid color-mix(in srgb, var(--mint) 45%, var(--line)); border-radius: 13px; background: var(--mint-soft); }
+.pairing-code-box > div { display: grid; gap: 7px; }
+.pairing-code-box strong { color: var(--mint); font-size: clamp(24px, 4vw, 34px); letter-spacing: .12em; }
+.pairing-code-box small { color: var(--text-2); font-size: 12px; line-height: 1.5; }
+.room-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; padding: 0 18px 18px; }
+.room-card { display: grid; gap: 16px; padding: 16px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg-raised); }
+.room-card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.room-card-head h3 { display: flex; align-items: center; gap: 8px; margin-top: 7px; font-size: 18px; font-weight: 700; }
+.room-card-head h3 svg { color: var(--mint); }
+.room-patient { display: grid; gap: 14px; }
+.room-person { display: flex; align-items: center; gap: 10px; }
+.room-avatar { display: grid; flex: none; place-items: center; width: 36px; height: 36px; border-radius: 11px; background: var(--mint-soft); color: var(--mint); font-weight: 700; }
+.room-person strong, .room-person small { display: block; }
+.room-person small { margin-top: 3px; color: var(--text-3); font-size: 11px; }
+.room-facts { display: grid; gap: 8px; margin: 0; padding-top: 12px; border-top: 1px dashed var(--line); }
+.room-facts > div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 8px; align-items: center; font-size: 12px; }
+.room-facts dt { color: var(--text-3); }
+.room-facts dd { margin: 0; overflow-wrap: anywhere; }
+.room-empty { display: flex; align-items: center; gap: 9px; min-height: 92px; color: var(--text-3); font-size: 13px; }
+.room-empty svg { color: var(--text-2); }
+.room-card-actions { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 2px; border-top: 1px solid var(--line); }
+.is-spinning { animation: patients-spin .8s ease-in-out infinite; }
+@keyframes patients-spin { to { transform: rotate(360deg); } }
+@media (max-width: 900px) { .patient-control-grid { grid-template-columns: 1fr; } }

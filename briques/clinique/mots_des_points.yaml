@@ -1,0 +1,32 @@
+# DONNÉES INVENTÉES — DÉMONSTRATION. Les mots qui font reconnaître un point de liste À LA VOIX, en allemand, italien et
+# anglais (cahier 5.5, tâche T16). Les mots français sont dans le faux dossier (listes_de_soin.yaml, « mots »).
+# Écrits par l'agent, PAS RELUS par quelqu'un qui parle la langue. Un mot = un mot entier dans la phrase entendue.
+marque: inventé
+# Le mot qui dit « c'est fait », dans chaque langue. Sans lui, rien n'est coché.
+fait:
+  fr: [fait, faite, faits, "c'est fait"]
+  de: [gemacht, erledigt, fertig]
+  it: [fatto, fatta]
+  en: [done]
+listes:
+  installation:
+    1: {de: [vorstellung, vorgestellt], it: [presentazione, presentata, presentato], en: [introduction, introduced]}
+    2: {de: [armband], it: [braccialetto], en: [wristband, bracelet]}
+    3: {de: [klingel, rufknopf], it: [campanello], en: [bell, call button]}
+    4: {de: [bett], it: [letto], en: [bed]}
+    5: {de: [badezimmer, nachtlicht], it: [bagno, luce notturna], en: [bathroom, night light]}
+    6: {de: [rollator, gehhilfe], it: [deambulatore], en: [walker, walking frame]}
+  avant_physio:
+    1: {de: [schuhe], it: [scarpe], en: [shoes]}
+    2: {de: [flasche, wasser], it: [bottiglia, acqua], en: [bottle, water]}
+    3: {de: [blatt, übungen], it: [foglio, esercizi], en: [sheet, exercises]}
+    4: {de: [brille, hörgerät], it: [occhiali, apparecchio acustico], en: [glasses, hearing aid]}
+    5: {de: [rückkehr], it: [ritorno], en: [return time]}
+  sortie:
+    1: {de: [austrittsbrief, brief], it: [lettera di dimissione, lettera], en: [discharge letter, letter]}
+    2: {de: [termine], it: [appuntamenti], en: [appointments]}
+    3: {de: [transport, taxi], it: [trasporto, taxi], en: [transport, taxi]}
+    4: {de: [hilfsmittel], it: [ausili], en: [aids]}
+    5: {de: [angehörige, familie], it: [familiari, famiglia], en: [relatives, family]}
+    6: {de: [sachen, koffer], it: [bagagli, valigia], en: [belongings, suitcase]}
+    7: {de: [unterlagen], it: [documenti da inviare], en: [documents to send]}

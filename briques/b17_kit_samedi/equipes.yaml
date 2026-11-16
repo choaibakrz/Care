@@ -1,0 +1,93 @@
+# La répartition des 35 personnes. Les rôles viennent d'AGENTS.md.
+# « verifie » = qui relit le travail de l'équipe : celui qui écrit n'est pas celui qui vérifie.
+# Les personnes sont numérotées P01 à P35 : Hiba écrit les prénoms à la main samedi matin.
+# Le kit donne les « renforts » (ce qui reste après les rôles fixes et les équipes de base) aux briques
+# qui manquent pour CE défi, la plus importante d'abord, au plus « max_renforts_par_brique » par brique.
+
+total: 35
+max_renforts_par_brique: 4
+
+# Toujours là, quel que soit le défi.
+roles_fixes:
+  - id: responsable
+    nom: Responsable
+    nombre: 1
+    prenoms: [Hiba]
+    mission: "Décide ; dit « oui » ou « non » à chaque feu orange ; parle au jury."
+    briques: []
+    verifie: "—"
+  - id: securite
+    nom: Sécurité
+    nombre: 2
+    mission: "Responsable sécurité et son adjoint : la main sur le bouton d'arrêt PHYSIQUE à chaque mouvement du vrai robot ; peuvent tout arrêter, sans discussion."
+    briques: [7]
+    verifie: Responsable
+  - id: relecture
+    nom: Relecteurs sécurité
+    nombre: 2
+    mission: "Relisent chaque changement du gardien, de la prise et des adaptateurs, avant la fusion."
+    briques: [1, 3, 7]
+    verifie: "—"
+  - id: architecte
+    nom: Architecte
+    nombre: 1
+    mission: "Garde la prise universelle stable ; rassemble le code ; tient les gels du code."
+    briques: [1]
+    verifie: Relecteurs sécurité
+  - id: tests
+    nom: Tests
+    nombre: 2
+    mission: "Les six preuves, Internet coupé ; lance les tests avant chaque fusion."
+    briques: [12]
+    verifie: Architecte
+  - id: guides
+    nom: Rédacteur des guides
+    nombre: 1
+    mission: "Guides d'une page, TACHES.md à jour, textes du pitch en mots simples."
+    briques: []
+    verifie: Responsable
+  - id: demonstration
+    nom: Démonstration
+    nombre: 2
+    mission: "Le scénario, les répétitions, le chronomètre, les plans B, le pitch (brique 15)."
+    briques: [15]
+    verifie: Responsable
+
+# Les équipes de base (rôles d'AGENTS.md), avant les renforts.
+equipes_de_base:
+  - id: adaptateurs
+    nom: Adaptateurs
+    nombre: 4
+    mission: "Brancher le vrai robot : adaptateur, carte d'identité, test de conformité."
+    briques: [3]
+    verifie: "Tests + relecteurs sécurité"
+  - id: gardien
+    nom: Gardien
+    nombre: 2
+    mission: "Les règles du défi dans le gardien ; refus expliqués."
+    briques: [7]
+    verifie: "Relecteurs sécurité (obligatoire)"
+  - id: cerveau
+    nom: Cerveau
+    nombre: 2
+    mission: "Apertus sur les Mac ; les mots du défi dans le cerveau à règles."
+    briques: [6]
+    verifie: "Tests + relecteurs sécurité"
+  - id: voix
+    nom: Voix
+    nombre: 2
+    mission: "Écoute et voix dans les langues du défi ; micro de la salle."
+    briques: [4]
+    verifie: Tests
+  - id: yeux
+    nom: Yeux
+    nombre: 2
+    mission: "Trouver les objets et les personnes du défi."
+    briques: [5]
+    verifie: Tests
+  - id: ecran
+    nom: Écran
+    nombre: 2
+    mission: "Écran du jury, sous-titres, fiche de vérité en grand."
+    briques: [13]
+    verifie: Tests

@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#faf6f0" />
+    <meta name="description" content="Care, your gentle companion during your stay: ask for comfort, language help or a visit from the care team." />
+    <title>Care · Your stay, made gentler</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <script src="./auth-guard.js"></script>
+    <script>
+      (function () {
+        const hour = new Date().getHours()
+        const daypart = hour >= 5 && hour < 12 ? 'morning' : hour >= 12 && hour < 18 ? 'afternoon' : hour >= 18 && hour < 22 ? 'evening' : 'night'
+        document.documentElement.dataset.daypart = daypart
+        let mode = 'auto'
+        try {
+          const saved = localStorage.getItem('spectrum-theme-mode')
+          if (['auto', 'light', 'dark'].includes(saved)) mode = saved
+        } catch { /* storage unavailable: stay on auto */ }
+        document.documentElement.dataset.themeMode = mode
+        document.documentElement.dataset.theme = mode === 'auto' ? (hour >= 7 && hour < 19 ? 'light' : 'dark') : mode
+      })()
+    </script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-emergency-number="112">
+    <svg width="0" height="0" class="sprite" aria-hidden="true">
+      <defs>
+        <symbol id="i-water" viewBox="0 0 24 24"><path d="M6 3h12l-1.6 16.3a2 2 0 0 1-2 1.7H9.6a2 2 0 0 1-2-1.7L6 3z"/><path d="M6.7 9.6c1.8-.9 3.5.9 5.3 0s3.5-.9 5.3 0"/></symbol>
+        <symbol id="i-blanket" viewBox="0 0 24 24"><path d="M3 8a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v6H3z"/><path d="M3 14v2a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-2"/><path d="M7 10.5c1.7-1 3.3 1 5 0s3.3-1 5 0"/></symbol>
+        <symbol id="i-wheelchair" viewBox="0 0 24 24"><circle cx="15.5" cy="4" r="1.6"/><path d="m18 19 1-7-6 1"/><path d="m5 8 3-3 5.5 3-2.4 3.5"/><path d="M4.2 14.5a5 5 0 0 0 6.9 6"/><path d="M13.8 17.5a5 5 0 0 0-6.9-6"/></symbol>
+        <symbol id="i-pain" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/><path d="M3.2 12h6.3l.5-1 2 4.5 2-7 1.5 3.5h5.3"/></symbol>
+        <symbol id="i-language" viewBox="0 0 24 24"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></symbol>
+        <symbol id="i-nurse" viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/><path d="M12 15.5v4M10 17.5h4"/></symbol>
+        <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></symbol>
+        <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v2a7 7 0 0 0 14 0v-2"/><path d="M12 19v3"/></symbol>
+        <symbol id="i-speaker" viewBox="0 0 24 24"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"/></symbol>
+        <symbol id="i-mic-off" viewBox="0 0 24 24"><path d="m2 2 20 20"/><path d="M18.9 13.2A7 7 0 0 0 19 12v-2"/><path d="M5 10v2a7 7 0 0 0 12 5"/><path d="M15 9.3V5a3 3 0 0 0-5.7-1.3"/><path d="M9 9v3a3 3 0 0 0 5.1 2.1"/><path d="M12 19v3"/></symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.6 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.6 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+        <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V20a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9.5"/></symbol>
+        <symbol id="i-list" viewBox="0 0 24 24"><rect x="8" y="2" width="8" height="4" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6M9 16h4"/></symbol>
+        <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></symbol>
+        <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+        <symbol id="i-close" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+        <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
+        <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/></symbol>
+        <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></symbol>
+        <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+        <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M17 3a2.8 2.8 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/></symbol>
+        <symbol id="i-simple" viewBox="0 0 24 24"><path d="M4 6h16M4 12h11M4 18h6"/></symbol>
+        <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M5.6 5.6l2.8 2.8M15.6 15.6l2.8 2.8M5.6 18.4l2.8-2.8M15.6 8.4l2.8-2.8"/></symbol>
+        <symbol id="i-heart-solid" viewBox="0 0 24 24"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7z"/></symbol>
+        <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+        <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"/></symbol>
+        <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6C9.5 14.5 12 13 13 12"/></symbol>
+        <symbol id="i-meal" viewBox="0 0 24 24"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7"/></symbol>
+        <symbol id="i-stethoscope" viewBox="0 0 24 24"><path d="M11 2v2M5 2v2M5 3H4a2 2 0 0 0-2 2v4a6 6 0 0 0 12 0V5a2 2 0 0 0-2-2h-1"/><path d="M8 15a6 6 0 0 0 12 0v-3"/><circle cx="20" cy="10" r="2"/></symbol>
+        <symbol id="i-physio" viewBox="0 0 24 24"><circle cx="13" cy="4" r="2"/><path d="m4 22 4-6 3 2 2-5 4 3 3-1"/><path d="M8 16 9 9l4-1 3 4"/></symbol>
+        <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+        <symbol id="i-sos" viewBox="0 0 24 24"><path d="M7 11a5 5 0 0 1 10 0v4H7z"/><path d="M5 15h14v4H5z"/><path d="M12 3v2M5.6 5.6 7 7M18.4 5.6 17 7"/><path d="M9 19v2M15 19v2"/></symbol>
+        <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.6 3.5 9 3l2 5-2.6 1.7a15.8 15.8 0 0 0 5.9 5.9L16 13l5 2-.5 2.4a3 3 0 0 1-3.2 2.4C10.2 19 5 13.8 4.2 6.7a3 3 0 0 1 2.4-3.2z"/></symbol>
+        <symbol id="i-wind" viewBox="0 0 24 24"><path d="M12.8 19.6A2 2 0 1 0 14 16H2M17.5 8a2.5 2.5 0 1 1 2 4H2M9.8 4.4A2 2 0 1 1 11 8H2"/></symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+        <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></symbol>
+        <symbol id="i-message" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9.1 8.5a2.5 2.5 0 0 1 4.8.8c0 1.7-2.4 2.2-2.4 2.2M11.5 14h.01"/></symbol>
+        <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></symbol>
+        <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+      </defs>
+    </svg>
+
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#home" aria-label="Care">
+          <img class="brand-mark" src="./favicon.svg" alt="" width="44" height="44" />
+          <span><strong>Care</strong><small data-i18n="tagline">Your stay, made gentler</small></span>
+        </a>
+        <div class="topbar-actions">
+          <label class="pill-select">
+            <span class="sr-only">Language</span>
+            <select id="language-select" aria-label="Language">
+              <option value="fr">Français</option>
+              <option value="en">English</option>
+              <option value="de">Deutsch</option>
+              <option value="it">Italiano</option>
+              <option value="es">Español</option>
+              <option value="ar">العربية</option>
+            </select>
+          </label>
+          <label class="pill-select">
+            <span class="sr-only" data-i18n="themeLabel">Theme</span>
+            <select id="theme-mode-select" aria-label="Theme">
+              <option value="auto" data-i18n="themeAuto">Day / night</option>
+              <option value="light" data-i18n="themeLight">Light</option>
+              <option value="dark" data-i18n="themeDark">Dark</option>
+            </select>
+          </label>
+          <button class="button button-sos" id="sos-button" type="button" aria-label="Emergency SOS"><svg class="ic"><use href="#i-sos" /></svg><span id="sos-button-label" data-i18n="sosLabel">SOS · hold 5s</span></button>
+          <button class="button button-quiet" id="header-profile" type="button" aria-label="Profile"><svg class="ic"><use href="#i-users" /></svg><span data-i18n="profileLabel">Profile</span></button>
+          <button class="button button-quiet" id="header-help" type="button"><svg class="ic"><use href="#i-help" /></svg><span data-i18n="help">Help</span></button>
+        </div>
+      </header>
+
+      <section class="sos-alert" id="sos-alert" role="alert" hidden>
+        <div class="sos-alert-copy">
+          <span class="sos-alert-icon"><svg class="ic"><use href="#i-sos" /></svg></span>
+          <div><strong data-i18n="sosAlertTitle">Emergency alert active</strong><p data-i18n="sosAlertBody">Emergency services are being contacted. Stay on the line if the call opens.</p></div>
+        </div>
+        <div class="sos-alert-actions">
+          <a class="button button-sos-call" id="sos-call" href="tel:112"><svg class="ic"><use href="#i-phone" /></svg><span data-i18n="sosCall">Call emergency services</span> <b id="sos-number">112</b></a>
+          <button class="button button-sos-stop" id="sos-stop" type="button" data-i18n="sosStop">Silence alarm</button>
+        </div>
+        <p class="sos-alert-status" id="sos-alert-status" role="status" aria-live="polite" hidden></p>
+      </section>
+
+      <main>
+        <div class="view view-home" id="view-home">
+          <section class="hero" aria-labelledby="greeting">
+            <div class="hero-copy">
+              <p class="hero-place"><svg class="ic"><use href="#i-pin" /></svg><span id="patient-room-label">Room —</span><span class="dot-sep" aria-hidden="true"></span><span id="patient-room-wing">Waiting for room data</span></p>
+              <h1 id="greeting"><span id="greeting-text">Good afternoon, Alex</span><em id="greeting-line">Take your time. We are right here.</em></h1>
+              <p class="hero-lead" data-i18n="heroLead">Whatever brings you here, a small comfort or a big worry, just ask. A person from the care team always sees your request first.</p>
+              <div class="hero-actions">
+                <button class="button button-primary button-large" type="button" data-action="request" data-request="care-team"><svg class="ic"><use href="#i-bell" /></svg><span data-i18n="callTeam">Ask a nurse to come</span></button>
+                <button class="button button-link" id="profile-open" type="button"><svg class="ic" id="profile-open-icon"><use href="#i-pin" /></svg><span id="profile-open-label">Room details</span></button>
+              </div>
+            </div>
+            <div class="hero-art" aria-hidden="true">
+              <svg viewBox="0 0 320 260" class="window-art">
+                <defs>
+                  <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sky-top" /><stop offset="1" class="sky-bottom" /></linearGradient>
+                  <clipPath id="pane"><rect x="62" y="28" width="196" height="150" rx="18" /></clipPath>
+                </defs>
+                <rect x="50" y="16" width="220" height="174" rx="26" class="frame" />
+                <g clip-path="url(#pane)">
+                  <rect x="62" y="28" width="196" height="150" fill="url(#sky)" />
+                  <g class="stars"><circle cx="100" cy="52" r="1.6" /><circle cx="138" cy="74" r="1.2" /><circle cx="214" cy="48" r="1.4" /><circle cx="240" cy="96" r="1.1" /><circle cx="86" cy="98" r="1" /></g>
+                  <circle cx="200" cy="80" r="22" class="sun" />
+                  <path d="M206 58a22 22 0 1 0 16 30 17 17 0 0 1-16-30z" class="moon" />
+                  <g class="cloud"><ellipse cx="112" cy="70" rx="24" ry="9" /><ellipse cx="126" cy="63" rx="14" ry="10" /></g>
+                  <path d="M62 150c34-22 64-26 98-12s62 10 98-10v50H62z" class="hill-back" />
+                  <path d="M62 162c40-16 78-10 112 0s56 6 84-6v22H62z" class="hill-front" />
+                </g>
+                <path d="M160 28v150M62 103h196" class="mullion" />
+                <rect x="38" y="184" width="244" height="14" rx="7" class="sill" />
+                <g class="plant">
+                  <path d="M84 184l-6-28h36l-6 28z" class="pot" />
+                  <path d="M96 156c-2-14 4-26 16-32-2 12-6 22-16 32z" class="leaf" />
+                  <path d="M95 156c-8-10-20-12-28-8 8 6 16 9 28 8z" class="leaf leaf-2" />
+                  <path d="M96 156c4-10 2-22-6-28-2 10 0 20 6 28z" class="leaf leaf-3" />
+                </g>
+                <g class="mug">
+                  <path d="M208 160h34v18a6 6 0 0 1-6 6h-22a6 6 0 0 1-6-6z" class="mug-body" />
+                  <path d="M242 165h4a6 6 0 0 1 0 12h-4" class="mug-handle" />
+                  <path d="M218 150c-4-6 4-8 0-14M230 150c-4-6 4-8 0-14" class="steam" />
+                </g>
+                <path d="M160 226s-12-7.4-12-15.5a6.7 6.7 0 0 1 12-4 6.7 6.7 0 0 1 12 4c0 8.1-12 15.5-12 15.5z" class="heart" />
+              </svg>
+            </div>
+          </section>
+
+          <section class="mood card" aria-labelledby="mood-title">
+            <div class="mood-head">
+              <h2 id="mood-title" data-i18n="moodTitle">How are you feeling right now?</h2>
+              <p data-i18n="moodBody">Your answer goes only to your care team. It helps them know when to stop by.</p>
+            </div>
+            <div class="mood-scale" role="radiogroup" aria-labelledby="mood-title">
+              <button class="mood-option" type="button" role="radio" aria-checked="false" data-mood="1"><svg viewBox="0 0 40 40" class="face"><circle cx="20" cy="20" r="18" /><circle cx="14" cy="17" r="1.8" class="feat" /><circle cx="26" cy="17" r="1.8" class="feat" /><path d="M13 29c4-5 10-5 14 0" class="feat-line" /><path d="M11 12l5 2M29 12l-5 2" class="feat-line" /></svg><span data-i18n="mood1">Very bad</span></button>
+              <button class="mood-option" type="button" role="radio" aria-checked="false" data-mood="2"><svg viewBox="0 0 40 40" class="face"><circle cx="20" cy="20" r="18" /><circle cx="14" cy="17" r="1.8" class="feat" /><circle cx="26" cy="17" r="1.8" class="feat" /><path d="M14 27c3.5-3 8.5-3 12 0" class="feat-line" /></svg><span data-i18n="mood2">Not great</span></button>
+              <button class="mood-option" type="button" role="radio" aria-checked="false" data-mood="3"><svg viewBox="0 0 40 40" class="face"><circle cx="20" cy="20" r="18" /><circle cx="14" cy="17" r="1.8" class="feat" /><circle cx="26" cy="17" r="1.8" class="feat" /><path d="M14 26h12" class="feat-line" /></svg><span data-i18n="mood3">Okay</span></button>
+              <button class="mood-option" type="button" role="radio" aria-checked="false" data-mood="4"><svg viewBox="0 0 40 40" class="face"><circle cx="20" cy="20" r="18" /><circle cx="14" cy="17" r="1.8" class="feat" /><circle cx="26" cy="17" r="1.8" class="feat" /><path d="M14 25c3.5 3 8.5 3 12 0" class="feat-line" /></svg><span data-i18n="mood4">Good</span></button>
+              <button class="mood-option" type="button" role="radio" aria-checked="false" data-mood="5"><svg viewBox="0 0 40 40" class="face"><circle cx="20" cy="20" r="18" /><path d="M12 17c1.5-2 4.5-2 6 0M22 17c1.5-2 4.5-2 6 0" class="feat-line" /><path d="M13 24c4 6 10 6 14 0" class="feat-line" /></svg><span data-i18n="mood5">Very good</span></button>
+            </div>
+            <div class="mood-reply" id="mood-reply" role="status" aria-live="polite" hidden>
+              <p id="mood-reply-text"></p>
+              <button class="button button-secondary" id="mood-call" type="button" hidden><svg class="ic"><use href="#i-bell" /></svg><span data-i18n="moodCall">Yes, let the team know</span></button>
+            </div>
+          </section>
+
+          <section class="section-block" aria-labelledby="quick-title">
+            <div class="section-heading">
+              <h2 id="quick-title" data-i18n="quickTitle">What can we bring you?</h2>
+              <p data-i18n="quickBody">One tap is enough. You can follow it below.</p>
+            </div>
+            <div class="request-grid">
+              <button class="request-card tone-sky" type="button" data-action="request" data-request="water"><span class="request-icon"><svg class="ic"><use href="#i-water" /></svg></span><span class="request-text"><strong data-i18n="water">Water</strong><small data-i18n="waterHint">A fresh glass or bottle</small></span></button>
+              <button class="request-card tone-sun" type="button" data-action="request" data-request="blanket"><span class="request-icon"><svg class="ic"><use href="#i-blanket" /></svg></span><span class="request-text"><strong data-i18n="blanket">Blanket</strong><small data-i18n="blanketHint">To feel warmer</small></span></button>
+              <button class="request-card tone-sage" type="button" data-action="request" data-request="wheelchair"><span class="request-icon"><svg class="ic"><use href="#i-wheelchair" /></svg></span><span class="request-text"><strong data-i18n="wheelchair">Wheelchair</strong><small data-i18n="wheelchairHint">To move around safely</small></span></button>
+              <button class="request-card tone-lilac" type="button" data-action="interpreter"><span class="request-icon"><svg class="ic"><use href="#i-language" /></svg></span><span class="request-text"><strong data-i18n="interpreter">Interpreter</strong><small data-i18n="interpreterHint">Talk in your language</small></span></button>
+              <button class="request-card tone-lilac" id="translate-open" type="button" data-view="translate" data-tr-mode="translate"><span class="request-icon"><svg class="ic"><use href="#i-mic" /></svg></span><span class="request-text"><strong data-i18n="trHomeTitle">Translate for me</strong><small data-i18n="trHomeHint">Someone speaks another language</small></span></button>
+              <button class="request-card tone-sun" id="simplify-open" type="button" data-view="translate" data-tr-mode="simplify"><span class="request-icon"><svg class="ic"><use href="#i-simple" /></svg></span><span class="request-text"><strong data-i18n="simpHomeTitle">Make it simple</strong><small data-i18n="simpHomeHint">Hard words in plain words</small></span></button>
+              <button class="request-card tone-rose" type="button" data-action="request" data-request="pain"><span class="request-icon"><svg class="ic"><use href="#i-pain" /></svg></span><span class="request-text"><strong data-i18n="pain">I am in pain</strong><small data-i18n="painHint">A nurse comes to see you</small></span></button>
+              <button class="request-card tone-teal" type="button" data-action="request" data-request="care-team"><span class="request-icon"><svg class="ic"><use href="#i-nurse" /></svg></span><span class="request-text"><strong data-i18n="careTeamRequest">A visit</strong><small data-i18n="careTeamHint">Someone stops by your room</small></span></button>
+            </div>
+          </section>
+
+          <section class="card status-card" id="active-request" aria-labelledby="status-title">
+            <div class="section-heading">
+              <h2 id="status-title" data-i18n="yourRequest">Your request</h2>
+              <span class="live-pill" id="live-pill" hidden><span class="status-dot is-live" aria-hidden="true"></span><span data-i18n="live">Updating</span></span>
+            </div>
+            <div class="empty-state" id="active-empty">
+              <span class="empty-icon"><svg class="ic"><use href="#i-sparkle" /></svg></span>
+              <strong data-i18n="noActiveTitle">Nothing in progress</strong>
+              <p data-i18n="noActiveBody">When you ask for something, you will see here who is taking care of it.</p>
+            </div>
+            <div class="active-request-content" id="active-content" hidden>
+              <div class="request-summary">
+                <span class="summary-icon" id="active-icon"><svg class="ic"><use href="#i-nurse" /></svg></span>
+                <span><strong id="active-title">A visit</strong><small id="active-meta">Sent at 14:32</small></span>
+              </div>
+              <ol class="timeline" aria-label="Progress">
+                <li class="timeline-step" data-step="0"><span class="step-dot"><svg class="ic"><use href="#i-send" /></svg></span><strong data-i18n="received">Sent</strong></li>
+                <li class="timeline-step" data-step="1"><span class="step-dot"><svg class="ic"><use href="#i-eye" /></svg></span><strong data-i18n="assigned">Seen by the team</strong></li>
+                <li class="timeline-step" data-step="2"><span class="step-dot"><svg class="ic"><use href="#i-arrow" /></svg></span><strong data-i18n="onWay">On the way</strong></li>
+                <li class="timeline-step" data-step="3"><span class="step-dot"><svg class="ic"><use href="#i-check" /></svg></span><strong data-i18n="done">Arrived</strong></li>
+              </ol>
+              <p class="status-note" id="status-note">The care team has your request.</p>
+            </div>
+          </section>
+
+          <button class="card next-up" id="next-up" type="button" data-view="day" hidden>
+            <span class="info-icon" id="next-up-icon"><svg class="ic"><use href="#i-calendar" /></svg></span>
+            <span class="next-up-text"><small id="next-up-label">Next</small><strong id="next-up-title"></strong></span>
+            <svg class="ic next-up-arrow"><use href="#i-arrow" /></svg>
+          </button>
+
+          <section class="split-grid">
+            <article class="card info-card team-card">
+              <div class="team-person">
+                <span class="team-avatar" aria-hidden="true">L</span>
+                <span><strong data-i18n="nurseName">Léa</strong><small data-i18n="nurseRole">Your day nurse</small></span>
+                <span class="availability"><span class="status-dot is-live" aria-hidden="true"></span><span data-i18n="available">On the floor</span></span>
+              </div>
+              <h2 data-i18n="teamTitle">A person always comes first</h2>
+              <p data-i18n="teamBody">Your requests reach the care team. They decide how to help you: they come themselves, or send our delivery assistant for small things like water.</p>
+            </article>
+            <article class="card info-card privacy-card">
+              <span class="info-icon"><svg class="ic"><use href="#i-mic-off" /></svg></span>
+              <h2 data-i18n="privacyTitle">The microphone is off</h2>
+              <p data-i18n="privacyBody">This app never listens to you. An interpreter session only starts when you ask for one, and nothing is recorded.</p>
+              <button class="button button-secondary" id="privacy-toggle" type="button"><svg class="ic"><use href="#i-shield" /></svg><span data-i18n="privacyDetails">How we protect you</span></button>
+            </article>
+          </section>
+        </div>
+
+        <div class="view view-day" id="view-day" hidden>
+          <section class="page-heading"><h1 data-i18n="dayTitle">My day</h1><p data-i18n="dayBody">Your programme, your questions for the doctor and what you asked for.</p></section>
+
+          <section class="card program-card" aria-labelledby="program-title">
+            <div class="section-heading">
+              <h2 id="program-title" class="with-icon"><svg class="ic"><use href="#i-calendar" /></svg><span data-i18n="programTitle">Today</span></h2>
+              <span class="demo-tag" id="program-demo" hidden data-i18n="programExample">Example</span>
+            </div>
+            <ol class="program-list" id="program-list"></ol>
+          </section>
+
+          <section class="card questions-card" aria-labelledby="questions-title">
+            <div class="section-heading">
+              <h2 id="questions-title" class="with-icon"><svg class="ic"><use href="#i-message" /></svg><span data-i18n="questionsTitle">Questions for the doctor</span></h2>
+              <span class="section-count" id="questions-count">0</span>
+            </div>
+            <p class="card-lead" data-i18n="questionsBody">Write down what you want to ask, whenever it comes to mind. The doctor sees your questions before the next visit.</p>
+            <form class="question-form" id="question-form">
+              <label class="sr-only" for="question-input" data-i18n="questionsTitle">Questions for the doctor</label>
+              <textarea id="question-input" rows="2" maxlength="300" data-i18n-placeholder="questionsPlaceholder" placeholder="For example: when can I go home?"></textarea>
+              <button class="button button-primary" type="submit"><svg class="ic"><use href="#i-send" /></svg><span data-i18n="questionsAdd">Add</span></button>
+            </form>
+            <ul class="question-list" id="question-list"></ul>
+            <p class="question-empty" id="question-empty" data-i18n="questionsEmpty">No questions yet.</p>
+          </section>
+
+          <section class="card history-card">
+            <div class="section-heading"><h2 data-i18n="requestsTitle">My requests</h2><span class="section-count" id="request-count">0</span></div>
+            <div class="request-history" id="request-history">
+              <div class="empty-state"><span class="empty-icon"><svg class="ic"><use href="#i-list" /></svg></span><strong data-i18n="historyEmptyTitle">No requests yet</strong><p data-i18n="historyEmptyBody">Your next request will appear here.</p></div>
+            </div>
+          </section>
+        </div>
+
+        <div class="view view-pause" id="view-pause" hidden>
+          <section class="page-heading"><h1 data-i18n="pauseTitle">A moment for you</h1><p data-i18n="pauseBody">Breathe, play or listen. No timer, no score to beat.</p></section>
+          <section class="pause-grid">
+            <article class="card pause-card">
+              <div class="pause-head"><span class="info-icon tone-sky"><svg class="ic"><use href="#i-wind" /></svg></span><div><h2 data-i18n="breatheTitle">Breathe slowly</h2><p data-i18n="breatheBody">Follow the circle.</p></div></div>
+              <div class="breathe-stage"><div class="breathe-circle" id="breathe-circle"><span id="breathe-label">Ready</span></div></div>
+              <button class="button button-primary" id="breathe-button" type="button">Start</button>
+            </article>
+            <article class="card pause-card">
+              <div class="pause-head"><span class="info-icon tone-lilac"><svg class="ic"><use href="#i-grid" /></svg></span><div><h2 data-i18n="memoryTitle">Find the pairs</h2><p data-i18n="memoryBody">Turn two cards at a time.</p></div></div>
+              <div class="memory-board" id="memory-board"></div>
+              <div class="memory-foot"><span id="memory-status"></span><button class="button button-secondary" id="memory-restart" type="button" data-i18n="memoryRestart">New game</button></div>
+            </article>
+            <article class="card pause-card">
+              <div class="pause-head"><span class="info-icon tone-sage"><svg class="ic"><use href="#i-music" /></svg></span><div><h2 data-i18n="soundsTitle">Soothing sounds</h2><p data-i18n="soundsBody">Soft background sounds.</p></div></div>
+              <div class="sound-buttons">
+                <button class="sound-button" type="button" data-sound="rain" aria-pressed="false"><svg class="ic"><use href="#i-wind" /></svg><span data-i18n="soundRain">Rain</span></button>
+                <button class="sound-button" type="button" data-sound="waves" aria-pressed="false"><svg class="ic"><use href="#i-leaf" /></svg><span data-i18n="soundWaves">Waves</span></button>
+                <button class="sound-button" type="button" data-sound="calm" aria-pressed="false"><svg class="ic"><use href="#i-moon" /></svg><span data-i18n="soundCalm">Gentle hum</span></button>
+              </div>
+              <button class="button button-secondary" id="sound-stop" type="button" hidden data-i18n="soundStop">Stop the sound</button>
+            </article>
+          </section>
+        </div>
+
+        <div class="view view-translate" id="view-translate" hidden>
+          <section class="page-heading"><h1 id="tr-title" data-i18n="trTitle">Translate for me</h1><p id="tr-body" data-i18n="trBody">Tap the button and let the person speak. You will hear it in your language.</p></section>
+          <div class="tr-modes" role="tablist" aria-label="Mode">
+            <button class="tr-mode" id="tr-mode-translate" type="button" role="tab" data-tr-mode="translate" aria-selected="true"><svg class="ic"><use href="#i-mic" /></svg><span data-i18n="trModeTranslate">Translate</span></button>
+            <button class="tr-mode" id="tr-mode-simplify" type="button" role="tab" data-tr-mode="simplify" aria-selected="false"><svg class="ic"><use href="#i-simple" /></svg><span data-i18n="trModeSimplify">Make it simple</span></button>
+          </div>
+          <label class="tr-into"><span data-i18n="trInto">Into:</span>
+            <span class="pill-select"><select id="tr-target" aria-label="Translate into"></select></span>
+          </label>
+          <section class="card tr-stage" aria-labelledby="tr-listen-label">
+            <div class="tr-mic-wrap" id="tr-mic-wrap">
+              <span class="tr-ring" aria-hidden="true"></span>
+              <button class="tr-mic" id="tr-listen" type="button" aria-pressed="false" aria-describedby="tr-status">
+                <svg class="ic"><use href="#i-mic" /></svg><span id="tr-listen-label" data-i18n="trTalk">Talk</span>
+              </button>
+            </div>
+            <span class="tr-meter" id="tr-meter" aria-hidden="true" hidden><span></span></span>
+            <p class="tr-status" id="tr-status" role="status" aria-live="polite"><span class="tr-spinner" id="tr-spinner" aria-hidden="true" hidden></span><span id="tr-status-text" data-i18n="trHintIdle">Tap the button, then let the person speak.</span></p>
+            <p class="tr-privacy" data-i18n="trPrivacy">The microphone listens only while the button is red. Nothing is kept.</p>
+          </section>
+
+          <section class="card tr-result" id="tr-results" aria-labelledby="tr-result-label" hidden>
+            <article id="tr-yours-card">
+              <small class="tr-result-label" id="tr-result-label" data-i18n="trResultLabel">In your language</small>
+              <p class="tr-big" id="tr-yours-text" dir="auto" aria-live="polite"></p>
+              <span class="tr-draft" data-i18n="trDraft">Translated automatically - may contain mistakes</span>
+            </article>
+            <div class="tr-actions">
+              <button class="button button-primary tr-play" id="tr-play" type="button"><svg class="ic"><use href="#i-speaker" /></svg><span data-i18n="trPlay">Play again</span></button>
+              <button class="button button-secondary tr-make-simple" id="tr-make-simple" type="button"><svg class="ic"><use href="#i-simple" /></svg><span id="tr-make-simple-label" data-i18n="trSimplify">Make it simple</span></button>
+            </div>
+            <details class="tr-said">
+              <summary data-i18n="trSaid">What was said</summary>
+              <small id="tr-heard-label">They spoke</small>
+              <p id="tr-heard-text" dir="auto"></p>
+            </details>
+          </section>
+
+          <section class="card tr-result tr-simple" id="tr-simplify-result" aria-labelledby="tr-simplify-label" hidden>
+            <small class="tr-result-label" id="tr-simplify-label" data-i18n="trSimpleLabel">In simple words</small>
+            <p class="tr-big" id="tr-simplify-text" dir="auto" aria-live="polite"></p>
+            <span class="tr-draft" id="tr-simplify-note">Simplified automatically - ask your care team if unsure</span>
+            <div class="tr-actions">
+              <button class="button button-primary tr-play" id="tr-simple-play" type="button"><svg class="ic"><use href="#i-speaker" /></svg><span data-i18n="trPlay">Play again</span></button>
+            </div>
+          </section>
+
+          <section class="tr-type" id="tr-type" hidden>
+            <button class="button button-link tr-type-open" id="tr-type-open" type="button" aria-expanded="false" aria-controls="tr-type-box"><svg class="ic"><use href="#i-pencil" /></svg><span data-i18n="trTypeOpen">Paste or type text</span></button>
+            <div class="card tr-type-box" id="tr-type-box" hidden>
+              <label class="tr-type-label" for="tr-simplify-input" data-i18n="trTypeLabel">Text with difficult words</label>
+              <textarea class="translate-input" id="tr-simplify-input" rows="4" maxlength="2000" dir="auto" data-i18n-placeholder="trSimplifyPlaceholder" placeholder="For example: mild pleural effusion, follow-up in 3 weeks"></textarea>
+              <button class="button button-secondary button-large" id="tr-simplify" type="button"><svg class="ic"><use href="#i-simple" /></svg><span id="tr-simplify-btn-label" data-i18n="trSimplify">Make it simple</span></button>
+            </div>
+          </section>
+        </div>
+
+        <div class="view view-support" id="view-support" hidden>
+          <section class="page-heading"><h1 data-i18n="supportTitle">Help &amp; privacy</h1><p data-i18n="supportBody">Clear answers, and always a direct way to reach a person.</p></section>
+          <section class="support-grid">
+            <article class="card support-card support-emergency">
+              <span class="support-symbol"><svg class="ic"><use href="#i-bell" /></svg></span>
+              <div><h2 data-i18n="urgentTitle">Need help right now?</h2><p data-i18n="urgentBody">Press the call button by your bed or speak to any member of staff. This app is not for emergencies.</p><button class="button button-danger" id="support-help" type="button" data-i18n="showHelp">What to do in an emergency</button></div>
+            </article>
+            <article class="card support-card">
+              <span class="support-symbol is-lilac"><svg class="ic"><use href="#i-language" /></svg></span>
+              <div><h2 data-i18n="interpreterTitle">Talk in your language</h2><p data-i18n="interpreterBody">A staff member joins you with live translation. Nothing is recorded.</p><button class="button button-primary" type="button" data-action="interpreter" data-i18n="startInterpreter">Ask for an interpreter</button></div>
+            </article>
+            <article class="card support-card">
+              <span class="support-symbol is-teal"><svg class="ic"><use href="#i-shield" /></svg></span>
+              <div><h2 data-i18n="privacySupportTitle">You stay in control</h2><p data-i18n="privacySupportBody">The microphone is off by default, and nothing you do here moves a robot directly. Only the care team assigns tasks.</p><button class="button button-secondary" id="support-privacy" type="button" data-i18n="privacyDetails">How we protect you</button></div>
+            </article>
+          </section>
+        </div>
+      </main>
+
+      <nav class="bottom-nav" aria-label="Navigation">
+        <button class="nav-item is-active" type="button" data-view="home" aria-current="page"><svg class="ic"><use href="#i-home" /></svg><span data-i18n="home">Home</span></button>
+        <button class="nav-item" type="button" data-view="day"><svg class="ic"><use href="#i-calendar" /></svg><span data-i18n="navDay">My day</span><span class="nav-count" id="nav-count" hidden>0</span></button>
+        <button class="nav-item" type="button" data-view="pause"><svg class="ic"><use href="#i-leaf" /></svg><span data-i18n="navPause">Pause</span></button>
+        <button class="nav-item" type="button" data-view="support"><svg class="ic"><use href="#i-help" /></svg><span data-i18n="support">Help</span></button>
+      </nav>
+    </div>
+
+    <dialog class="dialog" id="request-dialog" aria-labelledby="request-dialog-title">
+      <form method="dialog" class="dialog-card">
+        <button class="dialog-close" value="cancel" aria-label="Close"><svg class="ic"><use href="#i-close" /></svg></button>
+        <h2 id="request-dialog-title" data-i18n="requestDialogTitle">What would help you?</h2>
+        <p data-i18n="requestDialogBody">Your request goes to the care team of room 204.</p>
+        <div class="dialog-options">
+          <button class="dialog-option tone-sky" type="button" data-choice="water"><span class="request-icon"><svg class="ic"><use href="#i-water" /></svg></span><strong data-i18n="water">Water</strong></button>
+          <button class="dialog-option tone-sun" type="button" data-choice="blanket"><span class="request-icon"><svg class="ic"><use href="#i-blanket" /></svg></span><strong data-i18n="blanket">Blanket</strong></button>
+          <button class="dialog-option tone-sage" type="button" data-choice="wheelchair"><span class="request-icon"><svg class="ic"><use href="#i-wheelchair" /></svg></span><strong data-i18n="wheelchair">Wheelchair</strong></button>
+          <button class="dialog-option tone-teal" type="button" data-choice="care-team"><span class="request-icon"><svg class="ic"><use href="#i-nurse" /></svg></span><strong data-i18n="careTeamRequest">A visit</strong></button>
+        </div>
+        <p class="dialog-footnote" data-i18n="requestFootnote">A person reviews every request before anything happens.</p>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="help-dialog" aria-labelledby="help-dialog-title">
+      <form method="dialog" class="dialog-card dialog-card-small">
+        <button class="dialog-close" value="cancel" aria-label="Close"><svg class="ic"><use href="#i-close" /></svg></button>
+        <span class="dialog-badge"><svg class="ic"><use href="#i-bell" /></svg></span>
+        <h2 id="help-dialog-title" data-i18n="helpTitle">If it is urgent</h2>
+        <p data-i18n="helpBody">Do not wait for this app. These steps reach someone straight away.</p>
+        <ol class="help-steps">
+          <li data-i18n="helpStepOne">Press the call button by your bed</li>
+          <li data-i18n="helpStepTwo">Or call out to any member of staff</li>
+          <li data-i18n="helpStepThree">If you are in danger, follow the clinic emergency signs</li>
+        </ol>
+        <button class="button button-danger button-full" value="close" data-i18n="understood">I understand</button>
+      </form>
+    </dialog>
+
+    <dialog class="dialog" id="profile-dialog" aria-labelledby="profile-dialog-title">
+      <form method="dialog" class="dialog-card dialog-card-small" id="profile-form" novalidate>
+        <button class="dialog-close" value="cancel" aria-label="Close" formnovalidate><svg class="ic"><use href="#i-close" /></svg></button>
+        <h2 id="profile-dialog-title">Room connection</h2>
+        <p id="profile-dialog-body">This tablet is securely paired to one room. The care team controls the patient assignment from the admin console.</p>
+        <div class="profile-section" id="profile-account-section" hidden>
+          <p class="profile-account"><span data-i18n="profileAccount">Signed in as</span><strong id="profile-email">—</strong></p>
+          <label class="profile-field"><span data-i18n="firstNameLabel">First name</span><input id="profile-first-name" type="text" maxlength="40" autocomplete="given-name" /></label>
+          <button class="button button-primary button-full" id="profile-save" type="submit" value="save" data-i18n="saveName">Save</button>
+        </div>
+        <div class="profile-section" id="profile-room-section">
+          <p class="profile-account"><span>Patient</span><strong id="profile-patient">—</strong></p>
+          <p class="profile-account"><span>Room</span><strong id="profile-room">—</strong></p>
+          <p class="profile-account"><span>Tablet</span><strong id="profile-device">—</strong></p>
+        </div>
+        <button class="button button-secondary button-full" id="logout-button" type="button">Disconnect this tablet</button>
+        <p class="profile-message" id="profile-message" role="status" aria-live="polite" hidden></p>
+      </form>
+    </dialog>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

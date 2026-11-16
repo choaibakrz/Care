@@ -1,0 +1,16 @@
+.git
+.github
+.agents
+.codex
+**/node_modules
+implementation/admin
+implementation/**/dist
+implementation/**/.next
+models
+briques
+donnees_voix
+pages_vues
+tests_bout_en_bout
+*.pyc
+__pycache__
+*.log

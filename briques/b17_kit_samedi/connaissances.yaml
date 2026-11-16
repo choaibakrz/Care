@@ -1,0 +1,381 @@
+# Ce que le kit sait sur chaque capacité : quelles briques, quels risques, que montrer au jury, quelle preuve.
+# Les mots qui servent à REPÉRER une capacité sont dans mots_cles.yaml (mêmes clés).
+# Rien ici n'est mesuré sur un vrai robot : tout est « testé sur faux robot » au mieux (NON_TESTE.md).
+# taches : {brique: [morceaux de phrase]} → le kit montre les tâches du TACHES.md de cette brique qui contiennent
+#          ces morceaux. Sans « taches », il montre les deux premières tâches non cochées (ou « premieres_taches »
+#          de briques/etat_des_briques.yaml si la brique n'a pas encore de dossier).
+
+capacites:
+  parler:
+    nom: parler et comprendre
+    briques: [4, 6]
+    taches: {4: ["moteur d'écoute", "say -v", "Mesurer l'interruption"], 6: ["preparer_mac", "delai_s"]}
+    risque: "Bruit de la salle : l'écoute se trompe ou n'entend pas."
+    parade: "Micro-cravate ou casque ; bouton « je parle » ; la tablette (taper la phrase à l'écran)."
+    montrer: "Une personne parle au robot ; il répond dans la même langue."
+    preuve: "Boîte noire (phrases entendues et réponses, avec l'heure) ; fiche de vérité (« non compris » par langue)."
+  plusieurs_langues:
+    nom: plusieurs langues
+    briques: [4, 6]
+    taches: {4: ["commun/langues.yaml", "Une voix", "suisse allemand"], 6: ["suisses allemandes"]}
+    risque: "Langue demandée sans voix sur ce Mac : la réponse ne s'affiche qu'en sous-titres."
+    parade: "Vérifier les voix du Mac samedi matin (say -v '?') ; sinon sous-titres à l'écran, et le dire au jury."
+    montrer: "La même demande dans deux langues donne la même action."
+    preuve: "Boîte noire (langue reconnue pour chaque phrase) ; fiche de vérité (« non compris » par langue)."
+  voir:
+    nom: voir et reconnaître
+    briques: [5]
+    risque: "Aucune brique « yeux » n'existe encore : le robot ne trouve pas un objet tout seul."
+    parade: "Objets à des places connues (commun/monde.yaml) ; un humain nomme l'objet au robot."
+    montrer: "Le robot regarde vers l'objet ou le lieu demandé."
+    preuve: "Boîte noire (action « regarder » et son résultat)."
+  se_deplacer:
+    nom: se déplacer
+    briques: [1, 7]
+    taches: {7: ["zones interdites", "distance aux personnes"]}
+    risque: "Collision avec une personne : le gardien garde 1 m, mais seulement au départ de l'action, et sans vrais yeux il demande un humain."
+    parade: "Vitesse limitée à 0,3 m/s par défaut ; zone de démonstration vide ; bouton d'arrêt physique en main."
+    montrer: "Le robot va au lieu demandé, lentement, et le dit avant de partir."
+    preuve: "Fiche de vérité (réussites, ratés, temps d'action) ; boîte noire (chaque décision du gardien)."
+  saisir:
+    nom: prendre et apporter un objet
+    briques: [1, 7, 5]
+    taches: {7: ["poids"]}
+    risque: "Objet trop lourd ou qui glisse : la règle « poids » du gardien lit la carte et le monde, pas le vrai poids."
+    parade: "Objets légers choisis d'avance ; force limitée à 15 N par défaut ; le robot demande « oui » avant de saisir."
+    montrer: "Le robot répète l'ordre, attend « oui », prend l'objet et l'apporte."
+    preuve: "Boîte noire (confirmation demandée, puis action) ; fiche de vérité (réussites et ratés)."
+  gestes:
+    nom: gestes
+    briques: [1, 2]
+    risque: "Les gestes du vrai robot ne sont pas encore enregistrés dans sa carte d'identité."
+    parade: "Enregistrer 2 ou 3 gestes samedi (adaptateur, brique 3) ; vitesse relative ≤ 1."
+    montrer: "Le robot fait un geste nommé (saluer, applaudir…)."
+    preuve: "Boîte noire (action « rejouer_geste »)."
+  soin_assistance:
+    nom: soin et assistance
+    briques: [8, 7]
+    taches: {7: ["demande à un humain"]}
+    risque: "Règle de l'équipe : jamais de diagnostic ; démonstration sur mannequin seulement (docs/projet/REGLES_DES_AGENTS.md)."
+    parade: "Le robot propose de l'aide et appelle un humain ; il ne donne jamais d'avis médical."
+    montrer: "Un geste d'assistance sur le mannequin, et le robot qui appelle un humain."
+    preuve: "Boîte noire (aide demandée) ; fiche de vérité (aides demandées)."
+  demander_aide:
+    nom: demander de l'aide quand il ne sait pas
+    briques: [8, 13]
+    taches: {13: ["Encadré"]}
+    risque: "La main levée (brique 8) n'est essayée que sur le faux robot ; les boutons de l'écran pour répondre manquent."
+    parade: "Montrer l'ordre flou → la question (preuve 3, déjà prête)."
+    montrer: "Un ordre flou : le robot pose une question au lieu de deviner."
+    preuve: "Fiche de vérité (questions posées) ; boîte noire (question_posee)."
+  memoire_personnes:
+    nom: se souvenir des personnes
+    briques: [9, 5]
+    risque: "Rien n'existe encore (brique 9) ; données personnelles : demander l'accord avant de garder un prénom."
+    parade: "Garder le prénom seulement pendant la conversation, rien après."
+    montrer: "Le robot remercie la personne par son prénom."
+    preuve: "Boîte noire (conversation)."
+  plusieurs_robots:
+    nom: plusieurs robots ensemble
+    briques: [16]
+    risque: "Rien n'existe encore (brique 16) ; deux robots = deux arrêts d'urgence à vérifier."
+    parade: "Commencer par deux faux robots dans le même monde (tâche de la brique 2)."
+    montrer: "Deux robots se partagent une tâche, chacun passe par le gardien."
+    preuve: "Boîte noire (un robot par événement)."
+  pilotage_humain:
+    nom: pilotage par un humain
+    briques: [11]
+    risque: "Socle de la brique 11 (écran de l'équipe, testé sur faux robot seulement) ; un humain qui pilote passe aussi par le gardien."
+    parade: "Le champ texte de l'écran sert déjà de « tablette » pour donner les ordres."
+    montrer: "Un humain reprend la main, puis la rend ; l'écran du jury l'affiche (bandeau « un humain pilote »)."
+    preuve: "Fiche de vérité : part de l'humain et ordres de l'humain (événement pilotage_humain, brique 11)."
+  afficher:
+    nom: écran et affichage
+    briques: [13]
+    taches: {13: ["Page « jury »", "Encadré", "Internet coupé"]}
+    risque: "L'écran du jury (/jury) n'a jamais été essayé sur le grand écran du Carnival, ni sur Safari ou iPad."
+    parade: "L'écran actuel montre la vue de dessus, la fiche et les événements en direct."
+    montrer: "L'écran montre ce que le robot a compris et ce qu'il va faire."
+    preuve: "Écran en direct (http://<mac>:8000)."
+  garder_trace:
+    nom: garder une trace
+    briques: [12]
+    risque: "Journal perdu si le Mac tombe."
+    parade: "Copier le dossier journal/ sur le second Mac après chaque répétition."
+    montrer: "La fiche de vérité à la fin, et le rejeu d'un moment de la démonstration."
+    preuve: "Boîte noire (journal/*.jsonl) ; python3 lancer.py rejouer."
+
+# Pour les critères du jury qui ne parlent d'aucune capacité : des thèmes généraux.
+themes_jury:
+  securite:
+    mots: [sécurité, sûr, sûre, prudent*, danger*, risque*, sicher*, gefahr*, risiko*, vorsicht*, safety, safe, safely, danger*, risk*, careful*]
+    montrer: "Un ordre dangereux refusé et expliqué ; le bouton ARRÊT."
+    preuve: "Fiche de vérité (refus du gardien, arrêts d'urgence) ; boîte noire (chaque décision du gardien)."
+  fiabilite:
+    mots: [fiabilité, fiable*, robustesse, robuste*, zuverlässig*, robust*, stabil*, reliab*, robustness]
+    montrer: "Une panne d'entraînement pendant la démonstration, et le plan B."
+    preuve: "Fiche de vérité (réussites, ratés, pannes) ; boîte noire (rejeu)."
+  interaction:
+    mots: [interaction*, expérience, naturel*, convivial*, accueil*, explication*, clair, claire, compréhensible*, interaktion*, natürlich*, benutzerfreundlich*, nutzererlebnis*, erklärung*, verständlich*, "user experience", natural*, engaging, friendly, explanation*, clear, understandable]
+    montrer: "Une vraie personne du public parle au robot, sans aide."
+    preuve: "Fiche de vérité (temps de première réponse, « non compris » par langue)."
+  innovation:
+    mots: [innovation*, originalité, original*, créativité, créati*, innovativ*, originalität, kreativ*, creativ*, novel*]
+    montrer: "Une idée en plus parmi les interrupteurs (docs/projet/IDEES.md), choisie par l'équipe."
+    preuve: "Aucune preuve automatique : à préparer pour le pitch."
+  technique:
+    mots: [technique*, technologie*, architecture, technisch*, technologie*, technical, engineering, architecture]
+    montrer: "L'ossature : n'importe quel robot par l'adaptateur ; tout ordre passe par le gardien."
+    preuve: "Les tests (python3 lancer.py tests) ; le test de conformité de l'adaptateur."
+  autonomie:
+    mots: [autonomie, autonome*, autonom*, selbstständig*, selbständig*, autonomy, autonomous*]
+    montrer: "Le robot agit seul ; quand un humain aide, on le dit."
+    preuve: "Fiche de vérité (part de l'humain, ordres de l'humain) — notée si l'humain prend la main par l'écran (brique 11)."
+  rapidite:
+    mots: [rapidité, rapide*, "temps de réponse", schnell*, reaktionszeit*, geschwindigkeit*, speed, fast, "response time", latency]
+    montrer: "Le temps entre la fin de la phrase et la réponse du robot."
+    preuve: "Fiche de vérité (temps de première réponse, temps du cerveau, temps d'action)."
+  presentation:
+    mots: [présentation*, pitch*, clarté, storytelling, präsentation*, vortrag*, presentation*, clarity]
+    montrer: "Le scénario, chronométré, avec ses plans B."
+    preuve: "Les répétitions chronométrées (programme du dimanche)."
+  utilite:
+    mots: [utilité, utile*, impact*, besoin*, nutzen, nützlich*, mehrwert*, usefulness, useful, impact*, value]
+    montrer: "À qui ça sert : l'histoire d'un visiteur, du début à la fin."
+    preuve: "Aucune preuve automatique : à préparer pour le pitch."
+
+# Les plans B (un par panne). court : dans chaque étape ; long : une fois, pour toute la démonstration.
+plans_b:
+  tablette:
+    court: "voix en panne → la tablette"
+    long: "Voix en panne → la tablette : taper la phrase dans le champ texte de l'écran ; la réponse s'affiche en sous-titres."
+  main_humaine:
+    court: "robot en panne → la main humaine"
+    long: "Robot en panne → la main humaine : bouton ARRÊT d'abord, puis un membre de l'équipe fait le geste et le dit au jury."
+  mode_local:
+    court: "réseau en panne → le mode local"
+    long: "Réseau en panne → le mode local : tout tourne sur l'ordinateur-cerveau, sans Internet ; écran sur http://localhost:8000 ; cerveau à règles si Apertus tombe."
+  humain_nomme:
+    court: "yeux en panne → un humain nomme l'objet"
+    long: "Yeux en panne → un humain nomme l'objet ou le lieu au robot (à la voix ou à la tablette)."
+  bouton_physique:
+    court: "arrêt logiciel sans effet → le bouton d'arrêt PHYSIQUE"
+    long: "Arrêt logiciel sans effet → le bouton d'arrêt PHYSIQUE du robot (le responsable sécurité a la main dessus)."
+
+# Le brouillon de scénario, dans l'ordre. Une étape entre dans le scénario si toutes les capacités de « si » ont été
+# repérées dans le défi, ou si « toujours » est vrai. Les phrases ont été essayées sur le faux robot du genre (humanoïde, chien, bras)
+# (cerveau à règles), en fr, de, en, it : un test du kit le vérifie. Lieux et objets : ceux de commun/monde.yaml,
+# à remplacer samedi par ceux du défi. duree_max_s = proposition du kit, à régler pendant les répétitions.
+#   type parole : une personne dit la phrase au robot ; elle passe par cerveau → gardien → prise.
+#   type ecran : un geste de l'équipe sur l'écran (pas d'ordre au robot sans gardien).
+#   type a_construire : l'étape demande une brique qui n'existe pas encore.
+#   attendu : action (le robot agit), confirmation (il demande « oui » d'abord), question, refus,
+#             aide (le gardien demande l'accord d'un humain ; le robot lève la main).
+#   attendu_action : le nom de l'action qui doit réussir (pour le chef de démonstration, brique 15).
+#   liens : capacités ou thèmes du jury que l'étape montre (par défaut : ceux de « si »).
+#   si : toutes ces capacités repérées ; si_un_de : au moins une ; pas_pour / seulement_pour : genres de robot.
+etapes:
+  - id: accueil
+    nom: "Accueil : le robot salue et répond dans la langue du visiteur"
+    si: [parler]
+    liens: [parler, plusieurs_langues, interaction]
+    type: parole
+    dire: {fr: "Salue", de: "Winke", en: "Wave", it: "Saluta"}
+    attendu: action
+    attendu_action: rejouer_geste
+    duree_max_s: 30
+    plan_b: [tablette, main_humaine]
+  - id: regarder
+    nom: "Trouver : le robot regarde la table"
+    si: [voir]
+    type: parole
+    dire: {fr: "Regarde la table", de: "Schau zum Tisch", en: "Look at the table", it: "Guarda il tavolo"}
+    attendu: action
+    attendu_action: regarder
+    duree_max_s: 30
+    plan_b: [humain_nomme, tablette]
+  - id: aller_objet
+    nom: "Aller : le robot va à la table"
+    si_un_de: [se_deplacer, saisir]
+    pas_pour: [bras]
+    liens: [se_deplacer]
+    type: parole
+    dire: {fr: "Va à la table", de: "Geh zum Tisch", en: "Go to the table", it: "Vai al tavolo"}
+    attendu: action
+    attendu_action: se_deplacer
+    duree_max_s: 60
+    plan_b: [tablette, main_humaine]
+  - id: prendre
+    nom: "Prendre : le robot répète l'ordre, attend « oui », prend la bouteille"
+    si: [saisir]
+    pas_pour: [chien]
+    type: parole
+    dire: {fr: "Prends la bouteille", de: "Nimm die Flasche", en: "Take the bottle", it: "Prendi la bottiglia"}
+    puis_dire: {fr: "oui", de: "ja", en: "yes", it: "sì"}
+    attendu: confirmation
+    attendu_action: saisir
+    duree_max_s: 45
+    plan_b: [tablette, main_humaine]
+  - id: apporter
+    nom: "Apporter : le robot va à l'entrée avec l'objet"
+    si: [saisir, se_deplacer]
+    pas_pour: [bras, chien]
+    type: parole
+    dire: {fr: "Va à l'entrée", de: "Geh zum Eingang", en: "Go to the entrance", it: "Vai all'ingresso"}
+    attendu: action
+    attendu_action: se_deplacer
+    duree_max_s: 60
+    plan_b: [tablette, main_humaine]
+  - id: poser
+    nom: "Poser : le robot pose l'objet, après un « oui »"
+    si: [saisir]
+    pas_pour: [chien]
+    type: parole
+    dire: {fr: "Pose la bouteille", de: "Stell die Flasche hin", en: "Put the bottle down", it: "Posa la bottiglia"}
+    puis_dire: {fr: "oui", de: "ja", en: "yes", it: "sì"}
+    attendu: confirmation
+    attendu_action: poser
+    duree_max_s: 45
+    plan_b: [tablette, main_humaine]
+  # Les gestes enregistrés dépendent du robot (carte d'identité) : un geste du faux robot par genre.
+  - id: geste
+    nom: "Geste : le robot applaudit"
+    si: [gestes]
+    pas_pour: [chien, bras]
+    type: parole
+    dire: {fr: "Applaudis", de: "Klatsch", en: "Clap", it: "Applaudi"}
+    attendu: action
+    attendu_action: rejouer_geste
+    duree_max_s: 30
+    plan_b: [tablette, main_humaine]
+  - id: geste_chien
+    nom: "Geste : le robot s'assoit"
+    si: [gestes]
+    seulement_pour: [chien]
+    liens: [gestes]
+    type: parole
+    dire: {fr: "Assis", de: "Sitz", en: "Sit", it: "Siediti"}
+    attendu: action
+    attendu_action: rejouer_geste
+    duree_max_s: 30
+    plan_b: [tablette, main_humaine]
+  - id: geste_bras
+    nom: "Verser : le bras demande d'abord l'accord d'un humain (règle du gardien)"
+    si: [gestes]
+    seulement_pour: [bras]
+    liens: [gestes, demander_aide, securite]
+    type: parole
+    dire: {fr: "Verse", de: "Gieß", en: "Pour", it: "Versa"}
+    attendu: aide
+    duree_max_s: 30
+    plan_b: [tablette, main_humaine]
+  - id: soin
+    nom: "Assistance sur le mannequin (jamais de diagnostic), puis le robot appelle un humain"
+    si: [soin_assistance]
+    type: a_construire
+    action: "le geste d'assistance demandé par le défi, sur le mannequin seulement (à écrire avec l'équipe)."
+    duree_max_s: 60
+    plan_b: [main_humaine]
+  - id: prenom
+    nom: "Le merci par le prénom"
+    si: [memoire_personnes]
+    type: a_construire
+    action: "brique 9 — la personne dit son prénom, le robot la remercie par son prénom."
+    duree_max_s: 30
+    plan_b: [tablette]
+  - id: deux_robots
+    nom: "Deux robots se partagent la tâche"
+    si: [plusieurs_robots]
+    type: a_construire
+    action: "brique 16 — un robot demande, l'autre agit ; chacun passe par le gardien."
+    duree_max_s: 60
+    plan_b: [main_humaine]
+  - id: pilotage
+    nom: "Un humain reprend la main, puis la rend"
+    si: [pilotage_humain]
+    type: a_construire
+    action: "brique 11 — bouton « je reprends / je rends la main » ; ordres par la tablette."
+    duree_max_s: 45
+    plan_b: [tablette]
+  - id: ordre_flou
+    nom: "Ordre flou : le robot pose une question au lieu de deviner"
+    toujours: true
+    pas_pour: [bras]
+    liens: [demander_aide, securite, interaction]
+    type: parole
+    dire: {fr: "Va", de: "Geh", en: "Go", it: "Vai"}
+    attendu: question
+    duree_max_s: 20
+    plan_b: [tablette]
+  - id: ordre_flou_bras
+    nom: "Ordre flou : le robot demande quel objet au lieu de deviner"
+    toujours: true
+    seulement_pour: [bras]
+    liens: [demander_aide, securite, interaction]
+    type: parole
+    dire: {fr: "Prends", de: "Nimm", en: "Take", it: "Prendi"}
+    attendu: question
+    duree_max_s: 20
+    plan_b: [tablette]
+  - id: ordre_dangereux
+    nom: "Ordre dangereux : le robot refuse et explique pourquoi"
+    toujours: true
+    pas_pour: [bras]
+    liens: [securite]
+    type: parole
+    dire: {fr: "Va à la cuisine à 5 mètres par seconde", de: "Geh zur Küche, 5 Meter pro Sekunde",
+           en: "Go to the kitchen at 5 meters per second", it: "Vai in cucina a 5 metri al secondo"}
+    attendu: refus
+    duree_max_s: 30
+    plan_b: [tablette]
+  - id: ordre_dangereux_force
+    nom: "Ordre dangereux : serrer trop fort — le robot refuse et explique pourquoi"
+    toujours: true
+    seulement_pour: [bras]
+    liens: [securite]
+    type: parole
+    dire: {fr: "Prends la tasse avec une force de 100 newtons", de: "Nimm die Tasse mit 100 Newton",
+           en: "Take the cup with 100 newtons", it: "Prendi la tazza con 100 newton"}
+    attendu: refus
+    duree_max_s: 30
+    plan_b: [tablette]
+  - id: arret_urgence
+    nom: "Arrêt d'urgence : bouton ARRÊT, le robot s'arrête et reste bloqué jusqu'au réarmement"
+    toujours: true
+    liens: [securite]
+    type: ecran
+    action: "appuyer sur ARRÊT pendant un mouvement lent ; montrer qu'il reste bloqué ; un humain réarme."
+    duree_max_s: 30
+    plan_b: [bouton_physique]
+  - id: fiche
+    nom: "La vérité en chiffres : la fiche de vérité à l'écran"
+    toujours: true
+    liens: [garder_trace, afficher, fiabilite, autonomie, technique]
+    type: ecran
+    action: "montrer la fiche de vérité (réussites, refus, questions, part de l'humain, mention faux ou vrai robot)."
+    duree_max_s: 45
+    plan_b: [mode_local]
+
+# Les risques de tout défi, en plus de ceux du défi lui-même et de NON_TESTE.md.
+risques_generaux:
+  - risque: "Robot inconnu jusqu'à samedi : aucun adaptateur n'existe encore (brique 3)."
+    parade: "Équipe adaptateurs dès 10 h ; test de conformité sans mouvement d'abord."
+  - risque: "Rien n'a jamais été essayé sur un vrai robot."
+    parade: "Premier mouvement lent, responsable sécurité présent, main sur le bouton d'arrêt physique."
+  - risque: "Les Mac n'ont jamais lancé le projet (preparer_mac.sh non essayé sur Mac)."
+    parade: "Samedi 9 h : python3 lancer.py tests sur les deux Mac ; chaque Mac peut tout faire seul."
+  - risque: "Wi-Fi de la salle saturé ou coupé."
+    parade: "Mode local : tout tourne sur l'ordinateur-cerveau, sans Internet."
+  - risque: "Fatigue : les erreurs arrivent la nuit."
+    parade: "Sommeil par rotation ; gels du code le dimanche ; celui qui écrit n'est pas celui qui vérifie."
+  - risque: "Batteries du robot vides ou qui chauffent."
+    parade: "Charger seulement sous surveillance (règle du lieu : à vérifier) ; demander « batterie ? » au robot."
+
+# Quelles parties de NON_TESTE.md montrer dans les risques. Le premier mot trouvé dans le titre de la partie décide.
+# toujours = toujours montrer ; sinon la partie est montrée si une de ces capacités est demandée.
+non_teste:
+  - {titre: "vrai robot", montrer: toujours}
+  - {titre: "voix", montrer: [parler, plusieurs_langues]}
+  - {titre: "cerveau", montrer: toujours}
+  - {titre: "mac", montrer: toujours}
+  - {titre: "construit", montrer: toujours}

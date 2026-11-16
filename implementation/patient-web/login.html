@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#faf6f0" />
+    <meta name="description" content="Secure patient sign-in and room tablet connection for Care." />
+    <title>Sign in · Care</title>
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./auth.css" />
+    <script>
+      try {
+        const savedMode = localStorage.getItem('spectrum-theme-mode')
+        const themeMode = ['auto', 'light', 'dark'].includes(savedMode) ? savedMode : 'auto'
+        const hour = new Date().getHours()
+        const automaticTheme = hour >= 7 && hour < 19 ? 'light' : 'dark'
+        document.documentElement.dataset.themeMode = themeMode
+        document.documentElement.dataset.theme = themeMode === 'auto' ? automaticTheme : themeMode
+      } catch {
+        document.documentElement.dataset.theme = 'light'
+      }
+    </script>
+  </head>
+  <body class="auth-page">
+    <main class="auth-shell">
+      <section class="auth-brand" aria-label="Care">
+        <a class="brand" href="./login.html">
+          <img class="brand-mark" src="./favicon.svg" alt="" width="44" height="44" />
+          <span><strong>Care</strong><small>Your stay, made gentler</small></span>
+        </a>
+        <span class="auth-signal"><span class="status-dot is-live" aria-hidden="true"></span>Secure patient access</span>
+      </section>
+
+      <section class="auth-grid">
+        <div class="auth-intro">
+          <span class="eyebrow">PATIENT PORTAL</span>
+          <h1>Care that<br /><em>knows you.</em></h1>
+          <p>Use your own phone or laptop with your patient account, or connect the room tablet with the one-time code from the care team.</p>
+          <div class="auth-promise"><span aria-hidden="true">✓</span><span>Your health information stays protected and is only shared with the care team.</span></div>
+        </div>
+
+        <section class="auth-card" aria-labelledby="auth-title">
+          <div class="auth-modes" role="tablist" aria-label="How do you connect?">
+            <button class="auth-mode is-active" type="button" role="tab" aria-selected="true" data-connect="account" id="connect-account">My phone or laptop</button>
+            <button class="auth-mode" type="button" role="tab" aria-selected="false" data-connect="tablet" id="connect-tablet">Room tablet</button>
+          </div>
+
+          <div id="account-panel">
+            <div class="auth-card-heading"><span class="eyebrow" id="auth-eyebrow">WELCOME BACK</span><h2 id="auth-title">Sign in</h2><p id="auth-subtitle">Use the contact method connected to your patient account.</p></div>
+
+            <div class="auth-tabs" role="tablist" aria-label="Sign-in method">
+              <button class="auth-tab is-active" type="button" role="tab" aria-selected="true" data-auth-method="email">Email</button>
+              <button class="auth-tab" type="button" role="tab" aria-selected="false" data-auth-method="phone">Phone</button>
+            </div>
+
+            <label class="auth-field auth-first-name"><span>First name</span><input id="first-name" name="first_name" type="text" autocomplete="given-name" placeholder="How should we welcome you?" maxlength="40" required /></label>
+
+            <form id="password-form" class="auth-form">
+              <label class="auth-field"><span id="identifier-label">Email address</span><input id="identifier" name="identifier" type="email" autocomplete="username" inputmode="email" placeholder="you@example.com" required /></label>
+              <label class="auth-field"><span>Password</span><input id="password" name="password" type="password" autocomplete="current-password" placeholder="At least 8 characters" minlength="8" required /></label>
+              <label class="auth-field" id="confirm-password-field" hidden><span>Confirm password</span><input id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" placeholder="Repeat your password" minlength="8" /></label>
+              <button class="button button-primary button-full" id="password-submit" type="submit">Sign in <span aria-hidden="true">↗</span></button>
+            </form>
+
+            <div class="auth-divider"><span>or</span></div>
+            <button class="button button-secondary button-full" id="show-sms" type="button" hidden>Sign in with an SMS code</button>
+
+            <form id="sms-form" class="auth-form" hidden>
+              <label class="auth-field"><span>Phone number</span><input id="sms-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+41 79 123 45 67" required /></label>
+              <button class="button button-secondary button-full" id="send-code" type="submit">Send me a code</button>
+              <div class="code-step" id="code-step" hidden>
+                <label class="auth-field"><span>Six-digit code</span><input id="sms-code" name="code" type="text" autocomplete="one-time-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" placeholder="000000" /></label>
+                <button class="button button-primary button-full" id="verify-code" type="button">Verify code <span aria-hidden="true">↗</span></button>
+              </div>
+              <button class="auth-help auth-link" id="back-to-password" type="button">Use a password instead</button>
+            </form>
+
+            <p class="auth-note"><span aria-hidden="true">●</span> Your session is protected by an HttpOnly cookie. We never keep your password in this browser.</p>
+            <button class="auth-help auth-link" id="toggle-auth-mode" type="button">Need an account? Create one</button>
+          </div>
+
+          <div id="tablet-panel" hidden>
+            <div class="auth-card-heading"><span class="eyebrow">TABLET SETUP</span><h2 id="pair-title">Connect this tablet</h2><p>Enter the one-time code created for this room by the care team.</p></div>
+
+            <form id="pair-form" class="auth-form auth-form-spaced">
+              <label class="auth-field"><span>Room pairing code</span><input id="pairing-code" name="code" type="text" autocomplete="one-time-code" inputmode="text" autocapitalize="characters" spellcheck="false" maxlength="32" placeholder="AB12CD34EF56" required /></label>
+              <button class="button button-primary button-full" id="pair-submit" type="submit">Connect tablet <span aria-hidden="true">↗</span></button>
+            </form>
+
+            <p class="auth-note"><span aria-hidden="true">●</span> After pairing, this tablet reconnects automatically to the same room. No patient password is stored here.</p>
+            <p class="auth-help">The code is single-use and expires after 15 minutes. Ask the care team to generate another one if needed.</p>
+          </div>
+
+          <p class="auth-error" id="auth-message" role="alert" hidden></p>
+        </section>
+      </section>
+    </main>
+    <script type="module" src="./auth.js"></script>
+    <script type="module" src="./room-pair.js"></script>
+  </body>
+</html>

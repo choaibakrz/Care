@@ -1,0 +1,100 @@
+# Les règles du gardien. Une règle = une PHRASE en français simple + des VALEURS.
+#
+# - La phrase est pour les humains. Elle doit dire la même chose que les valeurs : le chiffre et les noms
+#   (lieu, objets, gestes) sont écrits dans la phrase. Sinon le gardien refuse de démarrer et dit quoi corriger.
+# - Le gardien lit ce fichier au démarrage. Après une modification : bouton « relire les règles » (écran),
+#   ou redémarrer.
+# - active: false  = règle écrite mais éteinte (on l'allume en direct, par exemple au début du service).
+# - en_direct: true = cette règle peut se changer en direct (écran, vote du public). Sans cette ligne : JAMAIS en direct.
+#   La distance aux personnes ne peut que grandir en direct ; elle et la zone permise ne s'éteignent jamais en direct.
+# - Obligatoires (sinon le gardien ne démarre pas) : une règle distance_personnes et une zone_permise, allumées.
+# - Une clé mal écrite (ex. « en_dirct ») empêche de démarrer, avec un message qui dit laquelle.
+# - Les limites de reglages.yaml (securite : 0,3 m/s, 15 N, 5 m) restent appliquées EN PLUS : la plus stricte gagne.
+# - Lieux et objets : ceux de commun/monde.yaml. Positions en mètres, vue de dessus.
+# - Les sortes de règles possibles sont expliquées dans briques/b07_gardien/GUIDE.md.
+
+regles:
+  # ---------------------------------------------------------------- vitesse et force
+  - id: vitesse_max
+    phrase: "Le robot ne va jamais plus vite que 0,3 mètre par seconde."
+    sorte: vitesse_max
+    valeurs: {m_s: 0.3}
+    en_direct: true   # vote du public « plus lentement » ; jamais au-dessus de reglages.yaml (securite)
+
+  - id: force_max
+    phrase: "Le robot ne serre jamais plus fort que 15 newtons."
+    sorte: force_max
+    valeurs: {n: 15}
+    en_direct: true   # jamais au-dessus de reglages.yaml (securite)
+
+  # ---------------------------------------------------------------- les personnes
+  # Le chemin du robot est vu comme une ligne droite, du départ à l'arrivée.
+  # si_personnes_inconnues: humain = si le gardien ne sait pas où sont les gens (vrai robot sans les yeux),
+  # il demande à un humain avant de bouger.
+  - id: distance_personnes
+    phrase: "Le robot reste toujours à 1 mètre des personnes, quand il se déplace, prend, pose ou fait un geste."
+    sorte: distance_personnes
+    valeurs: {m: 1, actions: [se_deplacer, saisir, poser, rejouer_geste], si_personnes_inconnues: humain}
+    en_direct: false
+
+  # ---------------------------------------------------------------- les zones
+  - id: escalier
+    phrase: "Le robot ne va jamais dans l'escalier, et ne passe jamais par l'escalier."
+    sorte: zone_interdite
+    valeurs: {lieu: escalier, rectangle: {x_min: 8.6, y_min: 0.0, x_max: 10.0, y_max: 1.6}}
+    en_direct: false
+
+  - id: cuisine_pendant_le_service
+    phrase: "Le robot ne va jamais dans la cuisine pendant le service."
+    sorte: zone_interdite
+    valeurs: {lieu: cuisine, rayon_m: 1.0}   # un cercle de 1 m autour de la cuisine
+    active: false   # éteinte : on l'allume au début du service (écran, ou vote du public)
+    en_direct: true
+
+  - id: rester_dans_la_halle
+    phrase: "Le robot reste toujours dans la halle."
+    sorte: zone_permise
+    valeurs: {rectangle: halle}   # halle = tout le monde de commun/monde.yaml (largeur × hauteur)
+    noms: {fr: la halle, de: die Halle, it: la sala, en: the hall, zh: 大厅}
+    en_direct: false
+
+  # ---------------------------------------------------------------- les objets
+  - id: valise
+    phrase: "Le robot ne touche jamais la valise."
+    sorte: objets_interdits
+    valeurs: {objets: [valise]}
+    en_direct: false
+
+  - id: poids_max
+    phrase: "Le robot ne prend jamais un objet plus lourd que ce que permet sa carte d'identité."
+    sorte: poids_max
+    valeurs: {kg: carte}
+    en_direct: false
+
+  # ---------------------------------------------------------------- demander à un humain
+  - id: objets_fragiles
+    phrase: "Pour prendre un objet fragile (la tasse), le robot demande d'abord à un humain."
+    sorte: objets_fragiles
+    valeurs: {objets: [tasse]}
+
+  - id: verser
+    phrase: "Pour verser à boire, le robot demande d'abord à un humain."
+    sorte: demander_humain
+    valeurs: {gestes: [verser]}
+
+# Idée 9 — le vote du public change une règle. Les choix sont écrits à l'avance par l'équipe.
+# Le choix qui a le plus de voix gagne ; égalité = rien ne change. Jamais au-dessus de reglages.yaml (securite).
+votes:
+  - id: vitesse
+    question: "Le robot doit-il aller plus lentement ?"
+    regle: vitesse_max
+    choix:
+      plus_lent: {texte: "Oui : 0,2 mètre par seconde", valeurs: {m_s: 0.2}}
+      comme_avant: {texte: "Non : 0,3 mètre par seconde", valeurs: {m_s: 0.3}}
+
+  - id: service
+    question: "Le service commence : la cuisine devient-elle interdite au robot ?"
+    regle: cuisine_pendant_le_service
+    choix:
+      oui: {texte: "Oui, la cuisine est interdite", active: true}
+      non: {texte: "Non, la cuisine reste permise", active: false}

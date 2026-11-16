@@ -1,0 +1,29 @@
+# PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot. Carte d'identité préparée d'avance (clinique en boîte, avenant 3, M01) : « Unitree Go2 », quatre pattes, pas de bras.
+# Personne de l'équipe n'a vu ce robot. Seule une personne de l'équipe enlève la marque, en écrivant la date où le
+# vrai robot a été vu. Les chiffres viennent de l'avenant de Hiba, ou sont des choix pour le FAUX ROBOT : tous à vérifier.
+# Le format est celui des autres cartes ; ce qui n'a pas de place dans le format est dans « remarques ».
+id: faux-unitree-go2
+nom: Unitree Go2 (carte préparée sans le robot)
+genre: chien
+fabricant: Unitree (carte préparée sans le robot)
+modele: Go2
+vrai_robot: false
+capacites: [se_deplacer, arreter, etat]
+limites:
+  vitesse_max_m_s: 0.3   # marche lente, ni course ni saut : un choix de prudence ; à vérifier samedi
+  portee_max_m: 0.0   # pas de bras ; à vérifier samedi
+  charge_max_kg: 1.0   # limite de prudence pour le dos, s'il y a un panier ; la vraie charge : à remplir samedi
+  force_max_n: 0   # pas de main ; à vérifier samedi
+gestes: []
+remarques: >-
+  PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot.
+  Unitree Go2 : quatre pattes, pas de bras.
+  Il ne saisit rien.
+  Il porte seulement si un panier est fixé sur son dos : à vérifier samedi.
+  Taille, poids, charge, batterie : à remplir samedi.
+  Limites pour la démonstration : marche lente, ni course ni saut ; au moins 1 m entre lui et toute personne ;
+  1 kg au plus sur le dos ; pas d'escalier ; jamais sans une personne à l'arrêt.
+  Pour le faux robot seulement : on fait comme si le panier était là.
+  Un humain pose l'objet dans le panier et le reprend à l'arrivée.
+  Voix, écoute, gestes : à remplir samedi.
+  Version : il faut peut-être la version faite pour les développeurs : à vérifier samedi.

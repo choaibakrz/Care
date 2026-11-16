@@ -1,0 +1,2515 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Spectrum patient API",
+    "version": "1.0.0",
+    "description": "Same-origin API for the Spectrum patient companion. Authentication is handled server-side by Vercel and Supabase Auth; browser sessions use HttpOnly cookies."
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Current Spectrum deployment"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Create and manage patient sessions."
+    },
+    {
+      "name": "Patient day",
+      "description": "Patient-scoped daily data and care requests."
+    },
+    {
+      "name": "Room tablet",
+      "description": "Pair a room tablet with a pairing code; no patient account is needed."
+    },
+    {
+      "name": "Room administration",
+      "description": "Care team: rooms of the active clinic map, admissions, tablet pairing codes and discharges."
+    }
+  ],
+  "paths": {
+    "/api/auth/signup": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "createPatientAccount",
+        "summary": "Create a patient account",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordAuthRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Account created. Email confirmation may still be required.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/SignupFailed"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "503": {
+            "$ref": "#/components/responses/AuthUnavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "signInPatient",
+        "summary": "Sign in with an email address or phone number",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordAuthRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed in. Session cookies are set by the server.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/InvalidCredentials"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidInput"
+          },
+          "503": {
+            "$ref": "#/components/responses/AuthUnavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/request-otp": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "requestPhoneOtp",
+        "summary": "Request a phone sign-in code",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhoneRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Generic response that does not reveal whether the phone is registered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MessageResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidPhone"
+          },
+          "503": {
+            "$ref": "#/components/responses/AuthUnavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/verify-otp": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "verifyPhoneOtp",
+        "summary": "Verify a phone sign-in code",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OtpVerificationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Signed in. Session cookies are set by the server.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/InvalidCode"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidCode"
+          },
+          "503": {
+            "$ref": "#/components/responses/AuthUnavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/session": {
+      "get": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "getPatientSession",
+        "summary": "Read the current patient session",
+        "security": [
+          {
+            "accessCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Authenticated patient.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "503": {
+            "$ref": "#/components/responses/AuthUnavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/profile": {
+      "put": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "updatePatientProfile",
+        "summary": "Update the patient first name",
+        "security": [
+          {
+            "accessCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProfileRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Profile updated.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidFirstName"
+          },
+          "503": {
+            "$ref": "#/components/responses/AuthUnavailable"
+          }
+        }
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "operationId": "signOutPatient",
+        "summary": "End the current patient session",
+        "security": [
+          {
+            "accessCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session ended.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OkResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          }
+        }
+      }
+    },
+    "/api/patient/program": {
+      "get": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "getPatientDay",
+        "summary": "Read the signed-in patient daily plan",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            },
+            "description": "Local patient date in YYYY-MM-DD format."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The plan belongs only to the signed-in patient.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DayProgramResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      }
+    },
+    "/api/patient/questions": {
+      "get": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "listPatientQuestions",
+        "summary": "List the signed-in patient questions",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Questions owned by the signed-in patient.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuestionListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "addPatientQuestion",
+        "summary": "Add a question for the care team",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QuestionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Question saved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Question"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidQuestion"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      }
+    },
+    "/api/patient/questions/{id}": {
+      "delete": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "deletePatientQuestion",
+        "summary": "Delete one question owned by the patient",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Question deleted."
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidQuestion"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      }
+    },
+    "/api/patient/requests": {
+      "get": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "listPatientRequests",
+        "summary": "List this patient requests for a day",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Requests owned by the signed-in patient.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RequestListResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "createPatientRequest",
+        "summary": "Create a care request for the signed-in patient",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RequestCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Request created with status sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientRequest"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidRequest"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      }
+    },
+    "/api/patient/mood": {
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "savePatientMood",
+        "summary": "Save a private mood check-in for the care team",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MoodRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Mood saved."
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "$ref": "#/components/responses/InvalidMood"
+          },
+          "503": {
+            "$ref": "#/components/responses/PatientDataUnavailable"
+          },
+          "409": {
+            "$ref": "#/components/responses/NoPatientInRoom"
+          }
+        }
+      }
+    },
+    "/api/room/pair": {
+      "post": {
+        "tags": [
+          "Room tablet"
+        ],
+        "operationId": "pairRoomDevice",
+        "summary": "Pair this tablet with a room",
+        "description": "Spends the pairing code and sets the `spectrum_room_device` cookie (30 days).",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PairRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Paired; the room-device cookie is set.",
+            "headers": {
+              "Set-Cookie": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomSession"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The pairing code is invalid or has expired (`invalid_pairing_code`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "description": "The code is malformed (`invalid_pairing_code`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/RoomAccessUnavailable"
+          }
+        }
+      }
+    },
+    "/api/room/session": {
+      "get": {
+        "tags": [
+          "Room tablet"
+        ],
+        "operationId": "getRoomSession",
+        "summary": "The paired room and its patient",
+        "security": [
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The tablet's room and its patient (null when none is admitted).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomSession"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/RoomDeviceNotPaired"
+          },
+          "503": {
+            "$ref": "#/components/responses/RoomAccessUnavailable"
+          }
+        }
+      }
+    },
+    "/api/room/unpair": {
+      "post": {
+        "tags": [
+          "Room tablet"
+        ],
+        "operationId": "unpairRoomDevice",
+        "summary": "Disconnect this tablet",
+        "description": "Always succeeds: clears the cookie and ends the tablet session, so the care team can show a new pairing code.",
+        "responses": {
+          "200": {
+            "description": "Disconnected.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OkResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          }
+        }
+      }
+    },
+    "/api/admin/rooms": {
+      "get": {
+        "tags": [
+          "Room administration"
+        ],
+        "operationId": "listRooms",
+        "summary": "Rooms with their patient and tablet",
+        "security": [
+          {
+            "staffBearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The patient rooms of the active clinic map, by floor then label.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoomListResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/AdminRequired"
+          },
+          "503": {
+            "$ref": "#/components/responses/RoomOperationUnavailable"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Room administration"
+        ],
+        "operationId": "admitPatient",
+        "summary": "Admit a patient to a free room",
+        "security": [
+          {
+            "staffBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AdmitRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Admitted.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdmitResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/AdminRequired"
+          },
+          "409": {
+            "description": "The room is occupied (`room_occupied`) or the record reference is already admitted (`patient_already_admitted`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid first name, record reference or room (`invalid_patient`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/RoomOperationUnavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/devices": {
+      "post": {
+        "tags": [
+          "Room administration"
+        ],
+        "operationId": "createRoomDevice",
+        "summary": "Register the room tablet and get a pairing code",
+        "description": "Reuses the room's active tablet when there is one; a paired tablet keeps working until the new code is used.",
+        "security": [
+          {
+            "staffBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tablet registered; show the pairing code.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeviceResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/AdminRequired"
+          },
+          "422": {
+            "description": "Unknown room or invalid label (`invalid_device`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/RoomOperationUnavailable"
+          }
+        }
+      }
+    },
+    "/api/admin/discharge": {
+      "post": {
+        "tags": [
+          "Room administration"
+        ],
+        "operationId": "dischargeRoom",
+        "summary": "Discharge the room's patient and reset its tablet",
+        "security": [
+          {
+            "staffBearer": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DischargeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Discharged; the room's tablet is revoked.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DischargeResponse"
+                }
+              }
+            }
+          },
+          "403": {
+            "$ref": "#/components/responses/AdminRequired"
+          },
+          "404": {
+            "description": "No admitted patient in this room (`room_empty`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Invalid room id (`invalid_room`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "$ref": "#/components/responses/RoomOperationUnavailable"
+          }
+        }
+      }
+    },
+    "/api/patient/translate": {
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "translatePatientText",
+        "summary": "Translate a text into the device language",
+        "description": "Served by the clinic's local brain process (Apertus). Nothing is stored, journaled or logged; the result is a draft.",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientTranslateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Translated draft.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientTranslateResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "description": "Invalid text or unsupported language (`invalid_text`, `unsupported_language`, `translation_rejected`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests (traffic monitor).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "`translation_unavailable`: the local brain or the language model is down. Message: \"Translation is not available right now.\"",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "`translation_timeout`: the model took too long.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/patient/simplify": {
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "simplifyPatientText",
+        "summary": "Rewrite medical jargon in plain words, same language",
+        "description": "Served by the clinic's local brain process (Apertus). Nothing is stored, journaled or logged; the result is a draft.",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientSimplifyRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Simplified draft.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientSimplifyResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "description": "Invalid text or unsupported language (`invalid_text`, `unsupported_language`, `translation_rejected`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests (traffic monitor).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "`translation_unavailable`: the local brain or the language model is down. Message: \"Translation is not available right now.\"",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "`translation_timeout`: the model took too long.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/patient/speak": {
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "speakPatientText",
+        "summary": "Read a text aloud in its language",
+        "description": "Play again, or read the simplified text. A Piper voice on the clinic's computer (offline). HACKATHON: the audio is generated in memory, never stored or logged.",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PatientSpeakRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The text read aloud (16-bit PCM WAV).",
+            "content": {
+              "audio/wav": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "description": "Invalid text or unsupported language (`invalid_text`, `unsupported_language`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests (traffic monitor).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "`voice_unavailable`: no voice for this language here; the app uses the browser's voice.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/patient/listen": {
+      "post": {
+        "tags": [
+          "Patient day"
+        ],
+        "operationId": "listenAndTranslate",
+        "summary": "Transcribe a recording (any language), then translate it",
+        "description": "Raw audio body, at most 4 MiB / 60 s. Transcribed offline by the clinic's local brain (faster-whisper, language detected), then translated into `to`. The audio is kept in memory only: never stored, journaled or logged.",
+        "security": [
+          {
+            "accessCookie": []
+          },
+          {
+            "roomDeviceCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "to",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/PatientLang"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "audio/webm": {
+              "schema": {
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+                "maxLength": 4194304
+              }
+            },
+            "audio/ogg": {
+              "schema": {
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+                "maxLength": 4194304
+              }
+            },
+            "audio/mp4": {
+              "schema": {
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+                "maxLength": 4194304
+              }
+            },
+            "audio/wav": {
+              "schema": {
+                "type": "string",
+                "contentMediaType": "application/octet-stream",
+                "maxLength": 4194304
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "What was heard, and its translation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PatientListenResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/NotAuthenticated"
+          },
+          "403": {
+            "$ref": "#/components/responses/OriginNotAllowed"
+          },
+          "422": {
+            "description": "Invalid text or unsupported language (`invalid_text`, `unsupported_language`, `translation_rejected`).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many requests (traffic monitor).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "`translation_unavailable`: the local brain or the language model is down. Message: \"Translation is not available right now.\"",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "504": {
+            "description": "`translation_timeout`: the model took too long.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "`recording_too_long`: over 4 MiB or 60 s.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "`unsupported_audio`: not webm, ogg, mp4 or wav.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "accessCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "clinic_access_token",
+        "description": "HttpOnly session cookie set by the Spectrum API. Clients should send credentials for same-origin requests; they should not read this cookie."
+      },
+      "roomDeviceCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "spectrum_room_device",
+        "description": "HttpOnly room-tablet cookie set by POST /api/room/pair (SameSite=Strict, Secure only behind https). While it is sent, /api/patient/* works on the patient admitted to the tablet's room."
+      },
+      "staffBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Staff token of the clinic server (POST /auth/login); the administrator role is required."
+      }
+    },
+    "schemas": {
+      "PasswordAuthRequest": {
+        "type": "object",
+        "required": [
+          "identifier",
+          "password",
+          "first_name"
+        ],
+        "properties": {
+          "identifier": {
+            "type": "string",
+            "description": "Email address or international phone number.",
+            "example": "patient@example.com"
+          },
+          "password": {
+            "type": "string",
+            "format": "password",
+            "minLength": 8
+          },
+          "first_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "example": "Alex"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PhoneRequest": {
+        "type": "object",
+        "required": [
+          "phone"
+        ],
+        "properties": {
+          "phone": {
+            "type": "string",
+            "description": "Phone number in international format.",
+            "example": "+41791234567"
+          }
+        },
+        "additionalProperties": false
+      },
+      "OtpVerificationRequest": {
+        "type": "object",
+        "required": [
+          "phone",
+          "token",
+          "first_name"
+        ],
+        "properties": {
+          "phone": {
+            "type": "string",
+            "example": "+41791234567"
+          },
+          "token": {
+            "type": "string",
+            "pattern": "^\\d{6}$",
+            "example": "123456"
+          },
+          "first_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "example": "Alex"
+          }
+        },
+        "additionalProperties": false
+      },
+      "ProfileRequest": {
+        "type": "object",
+        "required": [
+          "first_name"
+        ],
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40,
+            "example": "Alex"
+          }
+        },
+        "additionalProperties": false
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "id",
+          "email",
+          "phone",
+          "firstName"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "email": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "email"
+          },
+          "phone": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "firstName": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      },
+      "UserResponse": {
+        "type": "object",
+        "required": [
+          "user"
+        ],
+        "properties": {
+          "user": {
+            "$ref": "#/components/schemas/User"
+          }
+        }
+      },
+      "SignupResponse": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/UserResponse"
+          },
+          {
+            "type": "object",
+            "required": [
+              "needsConfirmation"
+            ],
+            "properties": {
+              "needsConfirmation": {
+                "type": "boolean"
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "MessageResponse": {
+        "type": "object",
+        "required": [
+          "ok",
+          "message"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "OkResponse": {
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "const": true
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "DayItem": {
+        "type": "object",
+        "required": [
+          "time",
+          "kind"
+        ],
+        "properties": {
+          "time": {
+            "type": "string",
+            "pattern": "^\\d{2}:\\d{2}$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "breakfast",
+              "round",
+              "physio",
+              "lunch",
+              "visits",
+              "dinner"
+            ]
+          },
+          "until": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^\\d{2}:\\d{2}$"
+          }
+        }
+      },
+      "DayProgramResponse": {
+        "type": "object",
+        "required": [
+          "date",
+          "items",
+          "demo"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DayItem"
+            }
+          },
+          "demo": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Question": {
+        "type": "object",
+        "required": [
+          "id",
+          "text",
+          "created_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "QuestionRequest": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          }
+        },
+        "additionalProperties": false
+      },
+      "QuestionListResponse": {
+        "type": "object",
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Question"
+            }
+          }
+        }
+      },
+      "RequestCreate": {
+        "type": "object",
+        "required": [
+          "kind"
+        ],
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "water",
+              "blanket",
+              "wheelchair",
+              "pain",
+              "interpreter",
+              "care-team"
+            ]
+          }
+        },
+        "additionalProperties": false
+      },
+      "PatientRequest": {
+        "type": "object",
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "status_index",
+          "created_at",
+          "updated_at"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "sent",
+              "seen",
+              "on_the_way",
+              "done"
+            ]
+          },
+          "status_index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3
+          },
+          "created_at": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "updated_at": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "RequestListResponse": {
+        "type": "object",
+        "required": [
+          "date",
+          "items"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PatientRequest"
+            }
+          }
+        }
+      },
+      "MoodRequest": {
+        "type": "object",
+        "required": [
+          "value"
+        ],
+        "properties": {
+          "value": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 5
+          }
+        },
+        "additionalProperties": false
+      },
+      "PairRequest": {
+        "type": "object",
+        "required": [
+          "code"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9-]{8,32}$",
+            "description": "Pairing code shown by the care team (case-insensitive)."
+          }
+        }
+      },
+      "RoomSession": {
+        "type": "object",
+        "required": [
+          "device",
+          "room",
+          "patient"
+        ],
+        "properties": {
+          "device": {
+            "type": "object",
+            "required": [
+              "id",
+              "label"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid"
+              },
+              "label": {
+                "type": "string"
+              }
+            }
+          },
+          "room": {
+            "type": "object",
+            "required": [
+              "id",
+              "label",
+              "wing",
+              "floor"
+            ],
+            "properties": {
+              "id": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
+              "wing": {
+                "type": "string"
+              },
+              "floor": {
+                "type": "integer"
+              }
+            }
+          },
+          "patient": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "object",
+                "required": [
+                  "id",
+                  "firstName",
+                  "status"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "format": "uuid"
+                  },
+                  "firstName": {
+                    "type": "string"
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "admitted",
+                      "discharged"
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "RoomPatient": {
+        "type": "object",
+        "required": [
+          "id",
+          "firstName",
+          "medicalRecordRef",
+          "status",
+          "admittedAt"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "medicalRecordRef": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "admitted",
+              "discharged"
+            ]
+          },
+          "admittedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RoomDevice": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "roomId",
+          "online",
+          "paired",
+          "pairingCode"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "label": {
+            "type": "string"
+          },
+          "roomId": {
+            "type": "string"
+          },
+          "online": {
+            "type": "boolean",
+            "description": "Seen within the last 2 minutes."
+          },
+          "paired": {
+            "type": "boolean"
+          },
+          "pairingCode": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Only in the answer of POST /api/admin/devices."
+          }
+        }
+      },
+      "ClinicRoom": {
+        "type": "object",
+        "required": [
+          "id",
+          "label",
+          "wing",
+          "floor",
+          "patient",
+          "device"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Room id of the active clinic map (rooms of kind `room`)."
+          },
+          "label": {
+            "type": "string"
+          },
+          "wing": {
+            "type": "string",
+            "description": "Floor name."
+          },
+          "floor": {
+            "type": "integer"
+          },
+          "patient": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RoomPatient"
+              }
+            ]
+          },
+          "device": {
+            "oneOf": [
+              {
+                "type": "null"
+              },
+              {
+                "$ref": "#/components/schemas/RoomDevice"
+              }
+            ]
+          }
+        }
+      },
+      "RoomListResponse": {
+        "type": "object",
+        "required": [
+          "rooms"
+        ],
+        "properties": {
+          "rooms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClinicRoom"
+            }
+          }
+        }
+      },
+      "AdmitRequest": {
+        "type": "object",
+        "required": [
+          "first_name",
+          "medical_record_ref",
+          "room_id"
+        ],
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "medical_record_ref": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "room_id": {
+            "type": "string"
+          }
+        }
+      },
+      "AdmitResponse": {
+        "type": "object",
+        "required": [
+          "patient",
+          "roomId"
+        ],
+        "properties": {
+          "patient": {
+            "$ref": "#/components/schemas/RoomPatient"
+          },
+          "roomId": {
+            "type": "string"
+          }
+        }
+      },
+      "DeviceRequest": {
+        "type": "object",
+        "required": [
+          "room_id"
+        ],
+        "properties": {
+          "room_id": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "Default `Tablet <room label>`."
+          }
+        }
+      },
+      "DeviceResponse": {
+        "type": "object",
+        "required": [
+          "device",
+          "pairingCode"
+        ],
+        "properties": {
+          "device": {
+            "$ref": "#/components/schemas/RoomDevice"
+          },
+          "pairingCode": {
+            "type": "string",
+            "description": "12 characters, valid 15 minutes, single use."
+          }
+        }
+      },
+      "DischargeRequest": {
+        "type": "object",
+        "required": [
+          "room_id"
+        ],
+        "properties": {
+          "room_id": {
+            "type": "string"
+          }
+        }
+      },
+      "DischargeResponse": {
+        "type": "object",
+        "required": [
+          "roomId",
+          "patientId",
+          "dischargedAt",
+          "dischargedBy"
+        ],
+        "properties": {
+          "roomId": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "dischargedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dischargedBy": {
+            "type": "string"
+          }
+        }
+      },
+      "PatientLang": {
+        "type": "string",
+        "description": "ISO 639-1 code. A region suffix (fr-CH) is accepted and dropped.",
+        "enum": [
+          "en",
+          "fr",
+          "de",
+          "it",
+          "es",
+          "pt",
+          "nl",
+          "ar",
+          "tr",
+          "zh",
+          "ru",
+          "uk",
+          "pl",
+          "sq",
+          "sr",
+          "hr",
+          "ro"
+        ]
+      },
+      "PatientText": {
+        "type": "object",
+        "required": [
+          "text",
+          "lang"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          }
+        }
+      },
+      "PatientTranslateRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "to"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "to": {
+            "$ref": "#/components/schemas/PatientLang"
+          },
+          "from": {
+            "$ref": "#/components/schemas/PatientLang",
+            "description": "Absent: detected by the model. Same as `to`: the text comes back unchanged."
+          }
+        }
+      },
+      "PatientTranslateResponse": {
+        "type": "object",
+        "required": [
+          "text",
+          "from",
+          "to",
+          "draft",
+          "audio"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "draft": {
+            "const": true,
+            "description": "Machine output: shown as translated automatically."
+          },
+          "audio": {
+            "$ref": "#/components/schemas/PatientSpokenAudio"
+          }
+        }
+      },
+      "PatientSimplifyRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "lang"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "lang": {
+            "$ref": "#/components/schemas/PatientLang"
+          }
+        }
+      },
+      "PatientSimplifyResponse": {
+        "type": "object",
+        "required": [
+          "text",
+          "lang",
+          "simplified",
+          "draft"
+        ],
+        "properties": {
+          "text": {
+            "type": "string"
+          },
+          "lang": {
+            "type": "string"
+          },
+          "simplified": {
+            "type": "boolean",
+            "description": "false: the text was already plain and comes back unchanged."
+          },
+          "draft": {
+            "const": true
+          }
+        }
+      },
+      "PatientListenResponse": {
+        "type": "object",
+        "required": [
+          "heard",
+          "translated",
+          "draft",
+          "audio"
+        ],
+        "properties": {
+          "heard": {
+            "$ref": "#/components/schemas/PatientText",
+            "description": "Transcript and detected language. Empty text: nothing was heard."
+          },
+          "translated": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/PatientText"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "null when nothing was heard or only the translation step is down. Same language as `to`: the heard text."
+          },
+          "draft": {
+            "const": true
+          },
+          "audio": {
+            "$ref": "#/components/schemas/PatientSpokenAudio"
+          }
+        }
+      },
+      "PatientSpokenAudio": {
+        "description": "The translation read aloud by a Piper voice on the clinic's computer, or null when no voice speaks the language or the voice failed (the translation never fails because of the voice; the app then uses the browser's voice). HACKATHON: generated in memory for this answer only, never stored or logged.",
+        "oneOf": [
+          {
+            "type": "object",
+            "required": [
+              "mime",
+              "data"
+            ],
+            "properties": {
+              "mime": {
+                "const": "audio/wav"
+              },
+              "data": {
+                "type": "string",
+                "contentEncoding": "base64",
+                "description": "16-bit PCM mono WAV, base64."
+              }
+            }
+          },
+          {
+            "type": "null"
+          }
+        ]
+      },
+      "PatientSpeakRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "text",
+          "lang"
+        ],
+        "properties": {
+          "text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "lang": {
+            "type": "string",
+            "description": "ISO 639-1 (region ignored)."
+          }
+        }
+      }
+    },
+    "responses": {
+      "OriginNotAllowed": {
+        "description": "The request origin is not allowed.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidInput": {
+        "description": "The request fields are invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidPhone": {
+        "description": "The phone number is invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidFirstName": {
+        "description": "The first name is invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidCredentials": {
+        "description": "The sign-in details are not valid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidCode": {
+        "description": "The one-time code is invalid or expired.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NotAuthenticated": {
+        "description": "No valid patient session was found.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "SignupFailed": {
+        "description": "The account could not be created.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidQuestion": {
+        "description": "The question is invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidRequest": {
+        "description": "The care request is invalid.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "InvalidMood": {
+        "description": "The mood value must be an integer from 1 to 5.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "PatientDataUnavailable": {
+        "description": "Patient data is temporarily unavailable.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "AuthUnavailable": {
+        "description": "The authentication provider is temporarily unavailable.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "RoomDeviceNotPaired": {
+        "description": "No valid room-device session (`room_device_not_paired` or `room_device_session_expired`; the cookie is cleared).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "NoPatientInRoom": {
+        "description": "The tablet's room has no admitted patient (`no_patient_in_room`).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "RoomAccessUnavailable": {
+        "description": "Room access is temporarily unavailable (`room_access_unavailable`).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "AdminRequired": {
+        "description": "A staff bearer token with the administrator role is required (`admin_required`).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      },
+      "RoomOperationUnavailable": {
+        "description": "The rooms or the store cannot be read (`room_operation_unavailable`, `auth_unavailable`).",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ErrorResponse"
+            }
+          }
+        }
+      }
+    }
+  }
+}

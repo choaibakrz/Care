@@ -1,0 +1,135 @@
+# EXEMPLE de réglages. Ce fichier est dans le dépôt : n'y mettez JAMAIS de code ni de secret.
+# Sur chaque Mac, il est copié en « reglages.yaml » (hors du dépôt) au premier lancement.
+# C'est dans reglages.yaml, et seulement là, qu'on écrit le code d'équipe, à la main.
+
+robot:
+  adaptateur: faux_robot      # faux_robot pour l'instant ; samedi : le nom de l'adaptateur réel
+  carte: humanoide            # humanoide, chien ou bras (faux robot)
+  vrai_robot: false           # true seulement avec un vrai robot branché ; s'affiche partout
+
+cerveau:
+  choix: cascade              # cascade : Apertus 8B → Apertus 4B → règles ; regles : sans modèle du tout
+  seuil_confiance: 0.5        # en dessous, le robot fait répéter au lieu de deviner
+  # Dans l'ordre. Trop lent (delai_s) ou éteint : on passe au suivant. Le cerveau à règles est toujours le dernier.
+  # Deux Mac : mettre l'adresse de l'iMac dans l'url d'apertus_8b (ex. http://192.168.1.20:8089).
+  cascade:
+    - {nom: apertus_8b, url: "http://127.0.0.1:8089", delai_s: 6, formulaire: force}
+    - {nom: apertus_4b, url: "http://127.0.0.1:8090", delai_s: 6, formulaire: force}
+    - {nom: regles}
+  # Les modèles lancés sur CET ordinateur par « python3 lancer.py ».
+  # toujours : dès le démarrage ; au_besoin : seulement si le cerveau d'avant tombe (économise la mémoire) ; jamais.
+  serveurs:
+    apertus_8b: {modele: modeles/apertus-8b-gguf/Apertus-8B-Instruct-2509-Q4_K_M.gguf, port: 8089, demarrage: toujours}
+    apertus_4b: {modele: modeles/apertus-4b-gguf/apertus-v1.1-4b-instruct-q4_k_m.gguf, port: 8090, demarrage: au_besoin}
+  # Bonus, ÉTEINT : Apertus par Internet, avant le 8B local. Exemple : l'API du CSCS, où l'équipe a vu répondre
+  # Apertus v1.5 70B avec un formulaire imposé (dépôt HackVS, 01.10.2026). Conditions et coût : à vérifier (feu orange).
+  # La clé ne s'écrit JAMAIS ici : variable d'environnement (cle_env), ou trousseau du Mac :
+  #   security add-generic-password -a "$USER" -s leukerbad-apertus -w
+  internet: {actif: false, url: "https://api.inference.cscs.ch/v1", modele: "swiss-ai/Apertus-v1.5-70B",
+             formulaire: json_schema, cle_env: APERTUS_CLE, trousseau: leukerbad-apertus, delai_s: 4}
+
+securite:                     # limites par défaut, appliquées même si la carte autorise plus
+  vitesse_m_s: 0.3
+  force_n: 15
+  distance_m: 5.0             # plus grand déplacement relatif accepté en une fois
+  delai_reponse_robot_s: 2.0
+  delai_chien_de_garde_s: 0.6
+
+# Avant ces actions, le robot répète l'ordre et attend un « oui » (dans la langue de la personne).
+confirmation:
+  actions: [saisir, poser]
+
+gardien:                      # brique 7 (vide = valeurs par défaut)
+  regles: briques/b07_gardien/regles.yaml   # les règles en phrases simples (la plus stricte gagne avec « securite »)
+  attente_humain_s: 120       # une action qui attend l'accord d'un humain reste ouverte 2 minutes
+
+doute:                        # brique 8 (vide = valeurs par défaut)
+  # Les mots appris d'un humain (« frigo » = cuisine). Dans journal/ : hors du dépôt suivi par git (.gitignore).
+  # L'ancien fichier du dépôt (briques/b08_doute/aides_apprises.yaml) est relu une fois, puis vidé.
+  aides_apprises: journal/aides_apprises.yaml
+  incompris_avant_main_levee: 2   # « pas compris » de suite, pour la même personne, avant de lever la main
+  echecs_avant_main_levee: 2      # actions ratées de suite avant de lever la main
+
+porte_agents:                 # brique 14 : un agent d'IA (ex. un assistant d'IA) parle au robot, toujours sous le contrôle du gardien
+  # ALLUMÉ par défaut : chaque action d'un agent attend l'accord d'un humain (écran → aides). Jamais pour « etat »
+  # ni pour l'arrêt. Pourquoi : un agent peut être trompé par un texte qu'il a lu. « false » pour une démonstration
+  # où l'agent agit seul : le gardien vérifie quand même chaque action, comme pour une personne.
+  accord_humain: true
+  ordres_par_minute: 10       # au-delà, l'ordre est refusé avant le cerveau (« stop » et l'arrêt : jamais comptés)
+  attente_fin_s: 30           # l'agent attend la fin de l'action au plus 30 s, puis reçoit « en_cours »
+  port_ecran: 8001            # écran de « python3 lancer.py porte-agents » (8001 : l'écran principal garde le 8000)
+
+yeux:                         # brique 5 : ÉTEINTS par défaut. Ils ne commandent rien : ils donnent ce qu'ils voient.
+  # Allumés avec le faux robot : caméra SIMULÉE, et les personnes du gardien viennent de cette caméra (plus de
+  # monde.yaml directement), avec la ZONE vue : hors du champ (derrière, à côté, au pied du robot), le gardien demande
+  # un humain. Paquets : pip install --no-deps -r requirements-yeux.txt (sinon : dit, et on continue).
+  actif: false
+  camera: auto                # auto : simulée (faux robot) / aucune (vrai robot) ; opencv:0 (USB) ; opencv:rtsp://…
+                              # simulee_fixe : caméra fixe simulée qui voit toute la halle ; fichier:photo.png = photo fixe
+  branchements: [simule, aruco, mediapipe, rapidocr]   # simule : vérité du dessin, caméra simulée seulement
+  calibration: briques/b05_yeux/calibration.yaml       # vraie caméra : écrite par « python -m briques.b05_yeux.calibrer »
+  modele_mediapipe: modeles/mediapipe-efficientdet-lite0/efficientdet_lite0.tflite   # python -m briques.b05_yeux.telecharger_modele
+  periode_s: 0.2              # une image toutes les 0,2 s (personnes, objets, marqueurs)
+  periode_textes_s: 5.0       # lire les textes toutes les 5 s (lent : ≈ 0,3 s et 160 Mo, mesuré sur Linux)
+  confiance_min: 0.4          # MediaPipe : en dessous, on ignore
+  objet_vu_depuis_s: 3.0      # « prends la bouteille » : vue depuis moins de 3 s, sinon une question
+  # Vrai robot : les personnes vues ne vont JAMAIS au gardien (il demande un humain). « true » est REFUSÉ au démarrage
+  # tant que la relecture sécurité ne l'a pas permis (décision du lot D).
+  gardien_vrai_robot: false
+
+voix:
+  ecoute:
+    moteur: auto               # auto : mlx_whisper sur Mac (puce Apple), sinon faster_whisper ; ou whisper_cpp
+    modele: small              # small (rapide) ou large-v3-turbo (plus précis, plus lourd)
+  parole:
+    moteurs: [sherpa_piper, mac_say]   # dans l'ordre ; sans voix pour une langue : sous-titres à l'écran
+    # sherpa_piper : chinois seulement (sans GPL). mac_say : voix du Mac (Mac seulement).
+    # Option ÉTEINTE : piper_gpl (voix Piper fr, de, it, en avec espeak-ng, licence GPL-3.0). Pour l'allumer :
+    #   pip install -r requirements-piper-gpl.txt, puis ajouter piper_gpl dans cette liste. Décision de Hiba.
+  declenchement: toujours      # toujours, mot_d_appel ou bouton (« je parle »). Le bouton marche toujours.
+  mots_d_appel: [robot, roboter, robotto, 机器人]
+  fenetre_apres_appel_s: 20    # après le mot d'appel, le robot écoute pendant 20 s
+  silence_fin_ms: 600          # silence qui marque la fin de la phrase
+  interruption: true           # la personne peut couper la parole au robot
+  interruption_ms: 300         # parole continue nécessaire pour couper le robot (plus haut si le micro entend le haut-parleur)
+  lent: false                  # mode « lent et clair » (enfants, personnes âgées)
+  langue_forcee: ""            # vide = langue reconnue automatiquement
+  duree_max_bouton_s: 15       # le bouton « je parle » se relâche tout seul après 15 s
+  garder_langue_s: 30          # même personne : on essaie d'abord sa langue (plus rapide). 0 en mode interprète.
+
+ecran:
+  hote: 0.0.0.0               # 0.0.0.0 = visible par les autres sur le Wi-Fi local
+  port: 8000
+  # Code d'équipe : demandé aux ordinateurs du Wi-Fi pour parler au robot, réarmer ou provoquer une panne.
+  # Vide = ces boutons ne marchent que sur l'ordinateur-cerveau lui-même. L'arrêt d'urgence marche toujours, partout.
+  code_equipe: ""
+  # true : sur l'ordinateur-cerveau lui-même, les boutons marchent sans code. Mettre false dès qu'un agent d'IA
+  # (porte des agents, brique 14) tourne sur cet ordinateur : sinon il pourrait appuyer sur les boutons des humains.
+  local_sans_code: true
+  # Écrans Invité et Patient (avenant 2, K07) : la plus petite taille de texte permise, en points d'écran (px).
+  # Une vérification la mesure dans Chrome. Choisi au tour 88 : 18 (à revoir avec Hiba ; ce n'est pas une norme).
+  taille_texte_min_px: 18
+  # Bouton « Internet coupé » (brique 13). Restent toujours permis : cet ordinateur et le réseau local (192.168…, 10…,
+  # 172.16 à 31…, 100.64 à 100.127…, noms en .local, .lan, .home, .fritz.box, nom sans point).
+  # En plus, ces noms ou adresses (le robot, l'autre Mac), ex. ["robot-g1", "192.168.8.20", "10.42.0.0/24"] :
+  internet_coupe:
+    toujours_permis: []
+
+# Les 16 idées, comme des interrupteurs. "socle" = le minimum est prêt ; "a_faire" = pas encore construit.
+interrupteurs:
+  deux_mots_suffisent:       {actif: false, etat: a_faire, brique: 4}
+  interprete:                {actif: false, etat: a_faire, brique: 4}
+  carte_parlee:              {actif: true,  etat: socle,   brique: 1}
+  refus_explique:            {actif: true,  etat: socle,   brique: 7}
+  main_levee:                {actif: true,  etat: socle,   brique: 8}   # lu par le programme (brique 8)
+  merci_prenom:              {actif: false, etat: a_faire, brique: 9}
+  mode_village:              {actif: false, etat: a_faire, brique: 10}
+  bouton_internet_coupe:     {actif: false, etat: a_faire, brique: 13}
+  vote_public:               {actif: false, etat: socle,   brique: 7}   # lu par l'écran (/api/gardien/vote)
+  fiche_en_grand:            {actif: true,  etat: socle,   brique: 12}
+  raconte_ton_weekend:       {actif: false, etat: socle,   brique: 12}
+  robot_inconnu:             {actif: false, etat: a_faire, brique: 3}
+  visite_a_distance:         {actif: false, etat: a_faire, brique: 11}
+  mode_silence:              {actif: false, etat: a_faire, brique: 5}
+  carnet_du_jure:            {actif: false, etat: a_faire, brique: 12}
+  panneaux_pour_robots:      {actif: false, etat: a_faire, brique: 5}

@@ -1,0 +1,199 @@
+{
+  "marque": "inventé",
+  "robots": [],
+  "items": [
+    {
+      "id": "blanket",
+      "label": "Blanket",
+      "place": "supply-a",
+      "count": 9,
+      "low_at": 4
+    },
+    {
+      "id": "neck-pillow",
+      "label": "Neck pillow",
+      "place": "supply-a",
+      "count": 6,
+      "low_at": 3
+    },
+    {
+      "id": "large-pillow",
+      "label": "Large pillow",
+      "place": "supply-a",
+      "count": 3,
+      "low_at": 3
+    },
+    {
+      "id": "water-bottle",
+      "label": "Water bottle",
+      "place": "supply-b",
+      "count": 16,
+      "low_at": 6
+    },
+    {
+      "id": "exercise-sheet",
+      "label": "Exercise sheet",
+      "place": "supply-b",
+      "count": 24,
+      "low_at": 10
+    },
+    {
+      "id": "gloves",
+      "label": "Nitrile gloves (box)",
+      "place": "nurse-cabinet",
+      "count": 7,
+      "low_at": 4
+    },
+    {
+      "id": "masks",
+      "label": "Surgical masks (box)",
+      "place": "nurse-cabinet",
+      "count": 3,
+      "low_at": 4
+    },
+    {
+      "id": "towel",
+      "label": "Towel",
+      "place": "linen-shelf",
+      "count": 14,
+      "low_at": 6
+    },
+    {
+      "id": "therapy-band",
+      "label": "Therapy band",
+      "place": "linen-shelf",
+      "count": 6,
+      "low_at": 4
+    },
+    {
+      "id": "welcome-folder",
+      "label": "Welcome folder",
+      "place": "reception",
+      "count": 9,
+      "low_at": 5
+    }
+  ],
+  "zones": [
+    {
+      "id": "zone-therapy-2",
+      "name": "Therapy 2 · confidential talks",
+      "floor": 0,
+      "kind": "deaf",
+      "polygon": [
+        [
+          17,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          5.5
+        ],
+        [
+          17,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "zone-room-12",
+      "name": "Room 12 · rest",
+      "floor": 2,
+      "kind": "deaf",
+      "polygon": [
+        [
+          17,
+          0
+        ],
+        [
+          24,
+          0
+        ],
+        [
+          24,
+          5.5
+        ],
+        [
+          17,
+          5.5
+        ]
+      ]
+    },
+    {
+      "id": "zone-pool-edge",
+      "name": "Pool edge",
+      "floor": 0,
+      "kind": "restricted",
+      "polygon": [
+        [
+          11.4,
+          9.9
+        ],
+        [
+          21.6,
+          9.9
+        ],
+        [
+          21.6,
+          13.9
+        ],
+        [
+          11.4,
+          13.9
+        ]
+      ]
+    }
+  ],
+  "schedules": [
+    {
+      "id": "night-restock",
+      "label": "Night restock round",
+      "enabled": true,
+      "time": "02:30",
+      "robot_id": "r4"
+    }
+  ],
+  "destinations": {
+    "supply-a": [
+      "room-11",
+      "room-12",
+      "room-13",
+      "room-14",
+      "lounge"
+    ],
+    "supply-b": [
+      "room-11",
+      "room-12",
+      "room-13",
+      "room-14",
+      "lounge",
+      "nurse-station"
+    ],
+    "nurse-cabinet": [
+      "room-11",
+      "room-12",
+      "room-13",
+      "room-14"
+    ],
+    "linen-shelf": [
+      "therapy-1",
+      "therapy-2",
+      "pool"
+    ],
+    "reception": [
+      "hall",
+      "therapy-1",
+      "therapy-2"
+    ]
+  },
+  "requesters": [
+    "nurse",
+    "nurse",
+    "therapist",
+    "doctor",
+    "reception"
+  ]
+}

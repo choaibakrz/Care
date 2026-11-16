@@ -1,0 +1,35 @@
+# CARTE D'IDENTITÉ VIDE d'un vrai robot — à remplir avec la documentation du fabricant.
+# NON TESTÉ SUR VRAI ROBOT. Format : briques/b01_prise/carte.py ; liste des actions : briques/b01_prise/PRISE.md.
+#
+# Règles :
+# - Chaque chiffre vient de la doc du fabricant : écrire le lien et la date de lecture à côté.
+#   Pas dans la doc = « à vérifier », et on laisse 0. 0 = le robot refuse de bouger : c'est voulu.
+# - La prise applique EN PLUS les plafonds de reglages.yaml → securite (0,3 m/s, 15 N, 5 m) : la plus petite gagne.
+# - « capacites » : seulement ce qui est branché ET essayé dans la liaison (le test de conformité le vérifie).
+# - « vrai_robot » est écrit par le programme (selon la liaison) : on ne peut pas faire passer du simulé pour du réel.
+
+id: modele-vide              # court, sans espace, unique (ex. unitree-g1-1). Sert au ticket du gardien.
+nom: Robot à brancher        # ce qui s'affiche à l'écran
+genre: autre                 # humanoide, chien, bras, roues ou autre
+fabricant: à vérifier        # ex. Unitree, AGIBOT, Flexiv
+modele: à vérifier           # ex. G1 EDU ; et la version du logiciel du robot (à lire sur le robot)
+vrai_robot: true             # remplacé par le programme : true avec la vraie liaison, false avec le faux kit
+
+# Les 10 actions possibles : se_deplacer, regarder, ecouter, parler, saisir, poser, montrer, rejouer_geste,
+# arreter, etat. « arreter » et « etat » sont obligatoires. Ajouter les autres UNE PAR UNE, quand elles sont branchées.
+capacites: [arreter, etat]
+
+limites:
+  vitesse_max_m_s: 0.0       # à vérifier (doc du fabricant, lien + date). Un chiffre d'exemple n'est PAS une limite.
+  portee_max_m: 0.0          # à vérifier : distance max pour saisir ou montrer
+  charge_max_kg: 0.0         # à vérifier : poids max d'un objet tenu
+  force_max_n: 0.0           # à vérifier : force de serrage max
+
+# Gestes enregistrés du fabricant, par leur nom exact dans son kit (à vérifier). Jamais de saut, salto, course.
+gestes: []
+
+# position_fixe: table       # seulement pour un robot qui ne se déplace pas (bras) : le lieu où il est posé
+
+remarques: >-
+  Carte vide. Arrêt d'urgence PHYSIQUE : où ? (à vérifier). Chien de garde du fabricant : à vérifier.
+  Voir briques/b03_adaptateurs/fiches/ pour ce que la doc publique dit vraiment.

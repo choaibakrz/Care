@@ -1,0 +1,192 @@
+/* The emergency stop carries its own colours: it must not depend on the panel's theme tokens. */
+.estop {
+  position: fixed;
+  top: 14px;
+  right: 20px;
+  z-index: 1000;
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-family: 'Space Grotesk Variable', system-ui, sans-serif;
+}
+
+.estop-stop { position: relative; width: 232px; }
+
+/* Emergency mode switch: quiet when off, impossible to miss when on. */
+.mode { position: relative; width: 176px; }
+
+.mode-button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 52px;
+  padding: 0 12px;
+  border: 1px solid #b4483c;
+  border-radius: 14px;
+  background: #1a1210;
+  color: #ffd9d3;
+  text-align: left;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease;
+}
+
+.mode-button:not(.is-on):hover:not(:disabled) { background: #2a1714; border-color: #ff7a6b; }
+.mode-button.is-on:hover:not(:disabled) { filter: brightness(1.12); }
+.mode-button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+.mode-button:disabled { opacity: 0.55; cursor: not-allowed; }
+.mode-button .estop-text strong { font-size: 12.5px; }
+
+.mode-light { flex: none; width: 14px; height: 14px; border: 2px solid #ff7a6b; border-radius: 50%; }
+
+.mode-button.is-on {
+  border-color: #ffd34d;
+  background: repeating-linear-gradient(135deg, #b8261a 0 10px, #9e1f15 10px 20px);
+  color: #fff;
+  box-shadow: 0 0 0 3px rgb(255 211 77 / 30%);
+}
+
+.mode-button.is-on .mode-light { border-color: #ffd34d; background: #ffd34d; animation: mode-blink 1.2s steps(2, start) infinite; }
+
+@keyframes mode-blink { to { visibility: hidden; } }
+
+.mode-confirm, .mode-error {
+  position: absolute;
+  top: 62px;
+  right: 0;
+  width: 300px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #3d4d49;
+  border-radius: 14px;
+  background: #101917;
+  box-shadow: 0 24px 60px -18px rgb(0 0 0 / 75%);
+  color: #eef5f2;
+  font-size: 13px;
+}
+
+.mode-error { border-color: #ff7a6b; color: #ff9a8f; }
+.mode-confirm p { margin: 0 0 10px; line-height: 1.4; }
+.mode-confirm div { display: flex; gap: 8px; }
+.mode-confirm button { flex: 1; height: 34px; border: 1px solid #3d4d49; border-radius: 8px; background: #1e2b28; color: #eef5f2; font: inherit; font-size: 12.5px; font-weight: 600; cursor: pointer; }
+.mode-confirm button:first-child { border-color: #58d9b2; color: #58d9b2; }
+.mode-confirm button:hover { filter: brightness(1.2); }
+
+.estop-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 52px;
+  padding: 0 16px 0 10px;
+  border: 1px solid #ff9a8f;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #f2553f 0%, #d93a27 100%);
+  box-shadow: 0 1px 0 rgb(255 255 255 / 35%) inset, 0 10px 26px -10px rgb(217 58 39 / 80%);
+  color: #fff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+}
+
+.estop-button:hover { filter: brightness(1.08); box-shadow: 0 1px 0 rgb(255 255 255 / 35%) inset, 0 14px 30px -10px rgb(217 58 39 / 95%); }
+.estop-button:active { transform: translateY(1px) scale(0.99); }
+.estop-button:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+
+.estop-icon {
+  position: relative;
+  flex: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgb(255 255 255 / 28%);
+}
+
+.estop-icon::after {
+  content: '';
+  position: absolute;
+  inset: 11px;
+  border-radius: 3px;
+  background: #d93a27;
+}
+
+.estop-text { display: grid; line-height: 1.15; }
+.estop-text strong { font-size: 14px; font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; }
+.estop-text small { font-size: 11px; opacity: 0.9; }
+
+.estop-panel {
+  position: absolute;
+  top: 62px;
+  right: 0;
+  width: 340px;
+  max-width: calc(100vw - 40px);
+  /* The report can be taller than the window (many robots + fallback): it scrolls inside. */
+  max-height: calc(100vh - 96px);
+  max-height: calc(100dvh - 96px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 16px;
+  border: 1px solid #3d4d49;
+  border-radius: 16px;
+  background: #101917;
+  box-shadow: 0 24px 60px -18px rgb(0 0 0 / 75%);
+  color: #eef5f2;
+}
+
+.estop-panel-failed { border-color: #ff7a6b; box-shadow: 0 0 0 3px rgb(255 122 107 / 22%), 0 24px 60px -18px rgb(0 0 0 / 75%); }
+.estop-panel header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.estop-panel h2 { margin: 0; font-size: 15px; font-weight: 700; }
+.estop-close { width: 28px; height: 28px; border: 0; border-radius: 8px; background: #1e2b28; color: #eef5f2; font-size: 18px; line-height: 1; cursor: pointer; }
+.estop-close:hover:not(:disabled) { background: #2a3a36; }
+.estop-close:disabled { opacity: 0.35; cursor: wait; }
+.estop-demo { margin: 0 0 8px; padding: 6px 9px; border: 1px dashed #f1c063; border-radius: 8px; color: #f1c063; font-size: 12px; }
+.estop-panel ul { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+
+.estop-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  align-items: center;
+  padding: 9px 11px;
+  border-left: 4px solid #6f807b;
+  border-radius: 8px;
+  background: #18231f;
+}
+
+.estop-row strong { font-family: 'JetBrains Mono Variable', ui-monospace, monospace; font-size: 13px; }
+.estop-phase { justify-self: end; font-size: 12px; font-weight: 700; letter-spacing: 0.03em; text-transform: uppercase; }
+.estop-row small { grid-column: 1 / -1; color: #a9b9b4; font-size: 12px; }
+.estop-sending, .estop-sent { border-left-color: #f1c063; }
+.estop-sending .estop-phase, .estop-sent .estop-phase { color: #f1c063; }
+.estop-confirmed { border-left-color: #58d9b2; }
+.estop-confirmed .estop-phase { color: #58d9b2; }
+.estop-failed, .estop-unconfirmed { border-left-color: #ff7a6b; background: #2a1715; }
+.estop-failed .estop-phase, .estop-unconfirmed .estop-phase { color: #ff9a8f; }
+
+.estop-problem { margin: 0 0 8px; color: #ff9a8f; font-size: 13px; font-weight: 600; }
+
+.estop-physical {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #d93a27;
+  color: #fff;
+}
+
+.estop-physical strong { font-size: 15px; line-height: 1.25; }
+.estop-physical p { margin: 0; font-size: 12px; }
+.estop-physical code { padding: 6px 8px; border-radius: 6px; background: rgb(0 0 0 / 28%); font-family: 'JetBrains Mono Variable', ui-monospace, monospace; font-size: 11px; overflow-wrap: anywhere; }
+.estop-panel > button, .estop-physical button { height: 34px; border: 1px solid rgb(255 255 255 / 70%); border-radius: 8px; background: transparent; color: #fff; font: inherit; font-size: 13px; font-weight: 600; cursor: pointer; }
+.estop-panel > button:hover:not(:disabled), .estop-physical button:hover:not(:disabled) { background: rgb(255 255 255 / 16%); }
+.estop-physical button:disabled { opacity: 0.6; cursor: wait; }
+.estop-note { margin: 10px 0 0; color: #a9b9b4; font-size: 12px; }
+
+@media (max-width: 720px) {
+  .estop { top: auto; right: 12px; bottom: 12px; flex-direction: column-reverse; align-items: flex-end; }
+  .estop-stop, .mode { width: 200px; }
+  .mode-confirm, .mode-error { top: auto; bottom: 62px; width: min(300px, calc(100vw - 24px)); }
+  .estop-panel { top: auto; bottom: 62px; width: min(340px, calc(100vw - 24px)); }
+}

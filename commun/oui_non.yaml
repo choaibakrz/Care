@@ -1,0 +1,20 @@
+# Les « oui » et les « non », pour confirmer une action à risque. Accents et majuscules ignorés.
+# ATTENTION : aucun mot qui apparaît dans les QUESTIONS du robot (« confirm », « 确认 »…) : sinon le robot
+# pourrait se répondre à lui-même s'il s'entend. Un test le vérifie.
+oui:
+  fr: ["oui", "ouais", "d'accord", "vas-y"]
+  de: ["ja", "jawohl", "genau", "mach"]
+  gsw: ["jo", "jaa", "ja", "gärn", "scho"]
+  it: ["sì", "si", "certo", "va bene"]
+  en: ["yes", "yeah", "yep", "sure", "go ahead"]
+  zh: ["是", "是的", "好", "好的", "对", "可以"]
+partout: ["ok", "okay"]
+non:
+  fr: ["non", "annule", "pas question", "surtout pas"]
+  de: ["nein", "abbrechen", "auf keinen fall"]
+  gsw: ["nei", "nöd", "nöö"]
+  it: ["no", "annulla", "assolutamente no"]
+  en: ["no", "nope", "cancel", "don't"]
+  zh: ["不", "不要", "取消", "别"]
+# Une négation rend la réponse douteuse (le robot redemande) : « pas d'accord », « not okay », « nicht ok ».
+negations: ["pas", "ne", "n'", "not", "nicht", "kein", "keine", "never", "jamais"]

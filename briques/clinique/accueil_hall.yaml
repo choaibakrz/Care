@@ -1,0 +1,106 @@
+# La clinique en boîte — l'accueil du hall (cahier 5.9). Les phrases du robot, les mots d'une simple arrivée, les
+# mots qui font reconnaître la langue d'une phrase tapée, et la règle du hall sur la santé.
+# Allemand, italien, anglais : écrits par l'agent, PAS RELUS par quelqu'un qui parle la langue.
+# Espagnol : écrit par l'agent le 14.11.2026, À FAIRE RELIRE par les deux personnes de l'équipe qui parlent espagnol
+# (feuille de relecture : docs/projet/RELECTURE_ESPAGNOL.md). Tant que ce n'est pas relu : « pas relu », jamais « vérifié ».
+
+# Les mots d'une simple arrivée : saluer, dire « je suis », remercier. Avec le nom, ce sont les SEULS mots permis
+# pour que le robot donne la chambre. Un mot de plus (« je cherche », « ne … pas », « où ») : il appelle un humain.
+mots_d_arrivee: [bonjour, bonsoir, salut, je, suis, m, appelle, mon, nom, est, c, moi, madame, monsieur, merci,
+                 guten, tag, morgen, abend, hallo, gruezi, gruss, gott, ich, bin, heisse, mein, name, ist, frau, herr,
+                 danke, bitte, buongiorno, buon, giorno, buonasera, salve, ciao, sono, mi, chiamo, il, mio, nome, e,
+                 signora, signor, grazie, hello, hi, hey, good, afternoon, evening, my, is, i, am, it, s, mrs, mr, ms,
+                 thanks, thank, you, please, there,
+                 hola, buenos, dias, buenas, tardes, noches, soy, gracias]
+# Espagnol : HUIT mots seulement. Chaque mot de cette liste compte SEUL et dans n'importe quel ordre : un mot de
+# trop ouvre la porte à la phrase d'un proche. Retirés après la relecture du 14.11.2026, exemples à l'appui :
+#   senora, senor (« Mi señora es Giulia B. » = ma femme est…) ; es (« Es Giulia B. » = une question dite sans « ? ») ;
+#   por, favor (« Es por Giulia B. », « Llamo por Giulia B. ») ; me, llamo (« me llamó Giulia B. » = elle m'a appelé :
+#   l'accent disparaît) ; nombre. « no », « el », « la », « de », « busco », « donde » n'y ont jamais été.
+# Conséquence : « Me llamo Giulia B. » et « Mi nombre es Giulia B. » appellent un humain (sûr, mais gênant).
+# « Soy Giulia B. » donne la chambre. À décider avec les relecteurs et Hiba : docs/projet/RELECTURE_ESPAGNOL.md.
+
+# La règle du hall : une phrase en français simple, et les mots qui la déclenchent (sans accents).
+# « debuts » : le mot commence ainsi. « entiers » : le mot entier. « pourquoi » + « personne » : une question
+# « pourquoi » sur quelqu'un. Seule Hiba change cette règle.
+# Cette règle choisit seulement CE QUE LE ROBOT RÉPOND. La sûreté ne dépend pas d'elle : toute phrase qui n'est pas
+# une simple arrivée appelle un humain, et le robot ne donne alors aucune chambre.
+# Espagnol (14.11.2026) : AUCUN mot espagnol n'est ajouté ici, parce que seule Hiba change cette règle. Une question
+# de santé en espagnol reçoit donc « je ne trouve pas ce nom » ou « je ne suis pas sûr de comprendre », et un humain
+# est appelé (aucune chambre dite).
+# Mots proposés à Hiba : voir docs/projet/RELECTURE_ESPAGNOL.md.
+regle_sante:
+  phrase: "Dans le hall, le robot ne dit rien sur la santé."
+  debuts: [sante, maladie, malade, diagnos, operation, opere, medicament, traitement, douleur, blessure, souffr,
+           hospitalis, cancer, gesundheit, krankheit, erkrank, operiert, medikament, behandlung, schmerz,
+           verletz, krebs, malattia, malat, operazione, intervento, medicin, farmac, dolore, ricover, health,
+           illness, disease, surgery, medication, treatment, injur, admitted, wrong]
+  entiers: [mal, male, krank, fehlt, sick, ill, pain, hurt]
+  pourquoi: [pourquoi, warum, wieso, weshalb, perche, why]
+  personne: [madame, monsieur, elle, il, frau, herr, sie, er, signora, signor, lei, lui, mrs, mr, ms, she, he]
+
+# Les mots courants d'une arrivée, pour deviner la langue d'une phrase TAPÉE (mots entiers, sans accents).
+# À la voix, c'est la brique 4 qui reconnaît la langue (tâche T20).
+mots_des_langues:
+  fr: [bonjour, bonsoir, salut, je, suis, appelle, madame, monsieur, pourquoi, ici, est, elle, mon, nom, quelle, quel,
+       merci, ai, une, cherche, ou]
+  de: [guten, tag, morgen, abend, gruezi, gruss, gott, hallo, ich, bin, heisse, frau, herr, warum, wieso, hier, ist,
+       mein, was, ihre, danke, bitte, habe, eine, wo, nicht]
+  it: [buongiorno, buon, giorno, buonasera, salve, ciao, sono, chiamo, signora, signor, perche, mio, nome, che, ha,
+       ho, scusi, grazie, dove, non, sta]
+  en: [hello, hi, hey, good, morning, afternoon, evening, my, name, is, am, i, it, why, here, mrs, mr, she, the,
+       thanks, have, where, what, with, was]
+  es: [hola, buenos, dias, buenas, tardes, noches, soy, llamo, senora, senor, nombre, gracias, donde, tengo, estoy,
+       aqui, esta, favor, busco, usted]
+  # Pas « que » (il faisait prendre « Que voulez-vous » pour de l'espagnol), pas « no » (italien aussi), pas « es »
+  # (allemand aussi), pas « por ».
+
+# Le nom d'une langue, en français, pour le message à l'étage.
+noms_des_langues: {fr: français, de: allemand, it: italien, en: anglais, es: espagnol}
+
+phrases:
+  fr:
+    arrivee: "Bonjour, {prenom}. Votre chambre est la {chambre}, à l'étage {etage}."
+    programme: "Votre programme commence à {heure}."
+    seul: "Je ne vous accompagne pas. À la sortie de l'ascenseur, on vous attend."
+    chemin: "Le chemin est sur mon écran."
+    sante: "Dans le hall, je ne parle pas de santé. Je transmets à l'équipe. Une personne de l'accueil vient vous voir."
+    inconnu: "Je ne trouve pas ce nom dans les arrivées d'aujourd'hui. J'appelle une personne de l'accueil. Un instant, s'il vous plaît."
+    pas_compris: "Je ne suis pas sûr de comprendre. J'appelle une personne de l'accueil. Un instant, s'il vous plaît."
+    sans_etage: "Bonjour, {prenom}. Je ne sais pas à quel étage vous envoyer. J'appelle une personne de l'accueil. Un instant, s'il vous plaît."
+  de:
+    arrivee: "Guten Tag, {prenom}. Ihr Zimmer ist die Nummer {chambre}, im Stock {etage}."
+    programme: "Ihr Programm beginnt um {heure} Uhr."
+    seul: "Ich begleite Sie nicht. Am Ausgang des Aufzugs werden Sie erwartet."
+    chemin: "Der Weg steht auf meinem Bildschirm."
+    sante: "In der Eingangshalle spreche ich nicht über Gesundheit. Ich gebe es an das Team weiter. Eine Person vom Empfang kommt zu Ihnen."
+    inconnu: "Ich finde diesen Namen nicht bei den heutigen Ankünften. Ich rufe eine Person vom Empfang. Einen Moment, bitte."
+    pas_compris: "Ich bin nicht sicher, ob ich Sie verstehe. Ich rufe eine Person vom Empfang. Einen Moment, bitte."
+    sans_etage: "Guten Tag, {prenom}. Ich weiss nicht, in welchen Stock ich Sie schicken soll. Ich rufe eine Person vom Empfang. Einen Moment, bitte."
+  it:
+    arrivee: "Buongiorno, {prenom}. La sua camera è la numero {chambre}, al piano {etage}."
+    programme: "Il suo programma comincia alle {heure}."
+    seul: "Non la accompagno. All'uscita dell'ascensore, la aspettano."
+    chemin: "Il percorso è sul mio schermo."
+    sante: "Nell'atrio non parlo di salute. Lo trasmetto al personale. Una persona dell'accoglienza viene da lei."
+    inconnu: "Non trovo questo nome tra gli arrivi di oggi. Chiamo una persona dell'accoglienza. Un momento, per favore."
+    pas_compris: "Non sono sicuro di capire. Chiamo una persona dell'accoglienza. Un momento, per favore."
+    sans_etage: "Buongiorno, {prenom}. Non so a quale piano mandarla. Chiamo una persona dell'accoglienza. Un momento, per favore."
+  en:
+    arrivee: "Hello, {prenom}. Your room is number {chambre}, on floor {etage}."
+    programme: "Your programme starts at {heure}."
+    seul: "I am not coming with you. Someone will meet you when you leave the lift."
+    chemin: "The way is on my screen."
+    sante: "In the entrance hall I do not talk about health. I am passing this on to the team. A person from reception is coming to you."
+    inconnu: "I cannot find this name in today's arrivals. I am calling a person from reception. One moment, please."
+    pas_compris: "I am not sure I understand. I am calling a person from reception. One moment, please."
+    sans_etage: "Hello, {prenom}. I do not know which floor to send you to. I am calling a person from reception. One moment, please."
+  es:  # écrit par l'agent le 14.11.2026 — à faire relire (docs/projet/RELECTURE_ESPAGNOL.md). Sans « le / la / lo » : va pour tous.
+    arrivee: "Buenos días, {prenom}. Su habitación es la número {chambre}, en la planta {etage}."
+    programme: "Su programa empieza a las {heure}."
+    seul: "No voy con usted. Al salir del ascensor, una persona del equipo estará esperando."
+    chemin: "El camino está en mi pantalla."
+    sante: "Aquí, en la entrada, no hablo de salud. Aviso al equipo. Una persona de recepción viene enseguida."
+    inconnu: "No encuentro ese nombre en las llegadas de hoy. Llamo a una persona de recepción. Un momento, por favor."
+    pas_compris: "No estoy seguro de haber entendido bien. Llamo a una persona de recepción. Un momento, por favor."
+    sans_etage: "Buenos días, {prenom}. No sé a qué planta debe ir. Llamo a una persona de recepción. Un momento, por favor."

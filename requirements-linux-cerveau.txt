@@ -1,0 +1,3 @@
+# Pour tester le cerveau sur Linux (dans le nuage) : llama-cpp-python construit depuis les sources (5 à 10 min).
+# Sur Mac, on utilise le programme llama.cpp (llama-server), installé par preparer_mac.sh.
+llama-cpp-python[server]==0.3.36

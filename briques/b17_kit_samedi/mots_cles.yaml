@@ -1,0 +1,80 @@
+# Les mots-clés du kit du samedi matin (brique 17), en français, allemand et anglais.
+#
+# COMPLÉTER : ajouter un mot dans la bonne liste, puis relancer « python3 lancer.py tests briques/b17_kit_samedi ».
+# - Majuscules, accents, ß et tirets ne comptent pas (« Begrüßung » = « begrussung », « e-stop » = « e stop »).
+# - Un mot qui finit par * = tous les mots qui commencent ainsi (apport* → apporter, apporte, apportez).
+# - Un groupe de mots (« quatre pattes ») est cherché tel quel, mot entier.
+# - Éviter les petits mots courants (« va », « prendre », « montrer », « zeigen », « show ») : ils se trouvent
+#   partout (« prendre en compte », « montrer au jury ») et trompent le kit.
+# Ce que chaque capacité demande (briques, risques, preuves) est dans connaissances.yaml, pas ici.
+
+# Le genre de robot. Les clés sont celles des cartes d'identité (briques/b01_prise/carte.py).
+genres:
+  humanoide: [humanoïde*, humanoide*, bipède*, "deux jambes", humanoid*, zweibein*, "two legs", "two legged", biped*]
+  chien: [chien*, quadrupède*, "quatre pattes", hund*, roboterhund*, vierbeiner*, dog, dogs, "robot dog*", quadruped*, "four legs", "four legged"]
+  bras: ["bras robot*", "bras articulé*", "bras manipulateur*", manipulateur*, cobot*, roboterarm*, greifarm*, industriearm*, "robot arm*", "robotic arm*", manipulator*]
+  roues: ["à roues", "robot mobile", "base mobile", roulant*, "auf rädern", fahrbar*, "mobiler roboter", "mobile robot*", "mobile base", wheeled, "on wheels"]
+  autre: [drone*, drohne*, "robot volant", flugroboter*]
+
+# Les capacités demandées par le défi. Même ordre que le scénario de démonstration.
+capacites:
+  parler: [parler, parle, parlez, parole, dialogu*, convers*, accueill*, répond*, renseign*, sprech*, sprich*, sprache, gespräch*, begrüss*, empfang*, antwort*, auskunft*, speak*, speech, talk*, greet*, welcom*, answer*, dialog*]
+  plusieurs_langues: ["plusieurs langues", "dans sa langue", "langue du visiteur", langues, multilingu*, plurilingu*, mehrsprachig*, "mehreren sprachen", sprachen, "seiner sprache", "ihrer sprache", multilingual, "several languages", "multiple languages", languages, "their language", "own language"]
+  voir: [reconna*, repér*, détect*, caméra*, vision, visuel*, identifi*, étiquette*, panneau*, pancarte*, "lire un", "lire le", "lire la", erkenn*, kamera*, sehen, finden, etikett*, schild*, lesen, recogni*, detect*, camera*, identif*, label*, "find the", "look for", locate, locates, locating, "read the"]
+  se_deplacer: [déplac*, navigu*, naviguer, condui*, guid*, accompagn*, amener, amène*, "se rendre", rejoindre, parcour*, marcher, bewegen, beweg*, navigier*, führ*, begleit*, hinfahr*, laufen, gehen, move, moves, moving, navigat*, walk*, guide*, escort*, drive*, "go to"]
+  saisir: [saisi*, attrap*, apport*, ramass*, transport*, livrer, livrez, livraison*, remettre, objet, objets, greif*, nimm, bring*, abhol*, liefer*, überreich*, gegenstand*, gegenstände*, grasp*, grab*, "pick up", "picks up", fetch*, deliver*, carry*, carri*, "hand over", "hands over", object, objects]
+  gestes: [geste, gestes, gestu*, danse*, danser, salue*, saluer, "montrer du doigt", "pointer du doigt", "indiquer du doigt", gesten, gestik*, tanz*, wink*, "zeigt auf", "zeigen auf", gesture*, danc*, wave, waves, waving, "point at", "point to"]
+  soin_assistance: [soin, soins, soign*, assistance, assistant*, "aide à la personne", "personne âgée", "personnes âgées", malade*, hôpital*, infirmi*, mannequin*, santé, pflege*, patient*, krank*, senior*, betreu*, gesundheit*, care, caregiv*, nurs*, elderly, hospital*, healthcare, assistive]
+  demander_aide: ["demander de l'aide", "demande de l'aide", "appeler un humain", "appeler un responsable", "lever la main", "ne sait pas", incertain*, "hilfe holen", "um hilfe", "einen menschen", unsicher*, "ask for help", "asks for help", "call a human", "call staff", uncertain*, "does not know"]
+  memoire_personnes: [prénom*, "se souvenir", souvien*, mémoris*, "reconnaître la personne", vorname*, vornamen*, erinner*, wiedererkenn*, remember*, "first name*", "recognise the person", "recognize the person"]
+  plusieurs_robots: ["plusieurs robots", "deux robots", "trois robots", "robots ensemble", flotte*, essaim*, "mehrere roboter", "zwei roboter", "drei roboter", roboterschwarm*, schwarm*, "multiple robots", "several robots", "two robots", "three robots", fleet*, swarm*, "multi robot*"]
+  pilotage_humain: ["pilotage à distance", "commande à distance", "contrôle à distance", "visite à distance", télécommand*, téléop*, télépilot*, pilotage, piloter, fernsteuer*, ferngesteuert*, teleop*, "remote control*", remotely, "human in the loop"]
+  afficher: [écran*, affich*, tablette*, bildschirm*, anzeige*, display*, screen*, tablet*]
+  garder_trace: [journal, journaux, traçab*, "compte rendu", historique*, protokoll*, nachvollzieh*, aufzeichn*, logbuch*, log, logs, logging, traceab*, "audit trail"]
+
+# Les langues demandées. Les clés courtes sont celles de commun/langues.yaml quand le projet les connaît.
+langues:
+  fr: [français, francais, french, französisch*, francese, frankophon*]
+  de: [allemand, german, deutsch, hochdeutsch*, tedesco]
+  gsw: ["suisse allemand", schweizerdeutsch*, "swiss german", dialekt*, mundart*]
+  it: [italien, italienne, italian, italienisch*, italiano]
+  en: [anglais, english, englisch*, inglese]
+  zh: [chinois, chinese, chinesisch*, mandarin, cinese, 中文, 汉语, 普通话]
+  es: [espagnol, spanish, spanisch*, español]
+  pt: [portugais, portuguese, portugiesisch*]
+  ja: [japonais, japanese, japanisch*]
+  ar: [arabe, arabic, arabisch*]
+  ru: [russe, russian, russisch*]
+  rm: [romanche, rumantsch, rätoroman*, romansh]
+
+# Le nom de chaque langue, pour le plan.
+noms_des_langues: {fr: français, de: allemand, gsw: suisse allemand, it: italien, en: anglais, zh: chinois,
+                   es: espagnol, pt: portugais, ja: japonais, ar: arabe, ru: russe, rm: romanche}
+
+# Pour deviner la langue du TEXTE du défi : de petits mots très courants.
+langue_du_texte:
+  fr: [le, la, les, des, une, est, et, pour, avec, dans, du, que, qui, sur, doit]
+  de: [der, die, das, und, ist, ein, eine, mit, für, den, zu, nicht, von, muss, soll]
+  en: [the, and, is, to, of, with, for, that, must, be, should, will, are]
+  it: [gli, della, degli, che, per, con, una, sono, deve, nel]
+
+# Les critères du jury.
+# titres : un titre (ligne « # … » ou ligne finie par « : ») avec ces mots → les lignes de liste en dessous sont des critères.
+# lignes : une ligne avec ces mots est un critère, où qu'elle soit. Un nombre suivi de « points » aussi.
+criteres:
+  titres: [critère*, critere*, jury, évaluation*, barème*, notation, kriteri*, bewertung*, punkte*, criteria, criterion, judging, scoring, evaluation*, rubric*, points]
+  lignes: [critère*, barème*, kriteri*, bewertungskriteri*, criteria, criterion, "le jury évalue", "le jury regarde", "le jury note", "die jury bewertet", "jury will", "jury evaluates"]
+
+# Les contraintes de sécurité (mêmes règles que pour les critères).
+securite:
+  titres: [sécurité, règles, contraintes, interdictions, sicherheit*, regeln, vorgaben, einschränkung*, safety, rules, constraints, restrictions]
+  lignes: ["arrêt d'urgence", "bouton d'arrêt", "distance de sécurité", "vitesse maximale", "vitesse max", interdit*, "ne doit pas", "ne doivent pas", "ne jamais", enfant*, "not aus", notaus*, "not halt", nothalt*, abstand*, verboten*, "darf nicht", "dürfen nicht", höchstgeschwindigkeit*, kinder*, "emergency stop", "e stop", estop, "must not", never, forbidden, prohibited, children, "speed limit", "maximum speed", "keep a distance", "safety distance"]
+
+# Les durées : un nombre suivi d'une de ces unités.
+durees:
+  secondes: [s, sec, seconde*, sekunde*, second*]
+  minutes: [min, mins, minute*, minuten]
+  heures: [h, heure*, stunde*, std, hour*, hrs]
+
+# Une durée sur une ligne avec un de ces mots = la durée de la démonstration.
+mots_demonstration: [démonstration*, démo*, présentation*, passage*, pitch*, vorführung*, präsentation*, demo*, presentation*, showcase*]

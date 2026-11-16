@@ -1,0 +1,11 @@
+# Les mots fixés d'avance pour le mode interprète (demande de Hiba, 12.11.2026). Hiba peut lire et changer ce fichier.
+# À gauche le mot français, à droite sa traduction anglaise, toujours la même. « aussi » : les autres formes du mot français.
+# LES TRADUCTIONS ANGLAISES SONT PROPOSÉES PAR UN AGENT D'IA : à confirmer par Hiba (question Q27). Pas relues.
+marque: proposé par un agent d'IA, à confirmer par Hiba
+confirme_par:
+mots:
+  - {fr: "soignant", en: "caregiver", aussi: ["soignante", "soignants", "soignantes"]}
+  - {fr: "course", en: "errand", aussi: ["courses"]}
+  - {fr: "boîte", en: "box", aussi: ["boite", "boîtes"]}
+  - {fr: "palier", en: "level", aussi: ["paliers"]}
+  - {fr: "seuil d'arrêt", en: "stop threshold", aussi: ["seuils d'arrêt", "seuil d arrêt"]}

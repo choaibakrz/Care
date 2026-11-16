@@ -1,0 +1,252 @@
+# Le lexique du cerveau « à règles » : des mots-clés par action et par langue.
+# Ce cerveau ne demande aucun modèle. Il sert aux tests, et en dernier secours.
+# Ajouter des mots : une ligne par langue. Les accents et majuscules sont ignorés.
+# zh : pas d'espaces en chinois, on cherche le mot n'importe où dans la phrase.
+
+verbes:
+  arreter:
+    fr: [stop, arrête, arrete-toi, arrête-toi, halte, arrêtez, ne bouge pas, ne bouge plus]
+    de: [stopp, halt, anhalten, aufhören, beweg dich nicht, bleib stehen]
+    gsw: [stopp, halt, hör uf, bliib stah]
+    it: [fermati, ferma, basta, non muoverti]
+    en: [stop, halt, freeze, don't move, stay still]
+    zh: [停, 别动, 停下]
+  se_deplacer:
+    fr: [va, vas, aller, allez, rends-toi, avance, viens, rejoins, recule, déplace-toi]
+    de: [geh, gehe, fahr, fahre, lauf, laufe, komm, beweg dich]
+    gsw: [gang, gönd, lauf, chum]
+    it: [vai, andare, vieni, avanza, raggiungi, arretra, spostati]
+    en: [go, move, walk, come, head, step]
+    zh: [去, 走到, 前往, 过去, 往前走, 向前走, 朝前走, 前进, 后退, 往后走, 向后走, 往左走, 向左走, 往右走, 向右走, 倒退, 退后]
+  regarder:
+    fr: [regarde, regardez]
+    de: [schau, sieh, guck]
+    gsw: [lueg, luag]
+    it: [guarda]
+    en: [look]
+    zh: [看]
+  saisir:
+    # « serre plus fort », « stringi più forte », « squeeze harder » (15.11.2026) : pour la scène de Petit Suisse.
+    # Jamais « serre » ou « squeeze » seuls : « ça me serre la poitrine » n'est pas un ordre (relecture du 15.11).
+    fr: [prends, prend, attrape, saisis, ramasse, serre plus fort]
+    de: [nimm, greif, hol, heb]
+    gsw: [nimm, hol]
+    it: [prendi, afferra, raccogli, stringi più forte]
+    en: [take, grab, pick, fetch, squeeze harder]
+    zh: [拿, 抓, 取]
+  poser:
+    fr: [pose, dépose, mets]
+    de: [leg, stell]
+    gsw: [leg, stell]
+    it: [posa, metti, appoggia]
+    en: [put, place, drop]
+    zh: [放]
+  montrer:
+    fr: [montre, indique]
+    de: [zeig, zeige]
+    gsw: [zeig]
+    it: [indica, mostra]
+    en: [show, point]
+    zh: [指]
+  ecouter:
+    fr: [écoute]
+    de: [hör zu]
+    gsw: [los]
+    it: [ascolta]
+    en: [listen]
+    zh: [听]
+  etat:
+    fr: [batterie, état]
+    de: [akku, batterie, zustand]
+    gsw: [akku, batterie]
+    it: [batteria, stato]
+    en: [battery, status]
+    zh: [电量, 电池, 状态]
+
+# Gestes : le nom du geste (dans la carte d'identité) et ses mots.
+gestes:
+  saluer:
+    fr: [salue, coucou, fais signe]
+    de: [winke, wink]
+    gsw: [wink, grüezi]
+    it: [saluta]
+    en: [wave]
+    zh: [挥手, 打招呼]
+  applaudir:
+    fr: [applaudis]
+    de: [klatsch, klatsche]
+    gsw: [klatsch]
+    it: [applaudi]
+    en: [clap]
+    zh: [鼓掌]
+  incliner:
+    fr: [incline, révérence]
+    de: [verbeug]
+    gsw: [verneig]
+    it: [inchina]
+    en: [bow]
+    zh: [鞠躬]
+  assis:
+    fr: [assis]
+    de: [sitz]
+    gsw: [sitz]
+    it: [seduto, siediti]
+    en: [sit]
+    zh: [坐下]
+  donner_la_patte:
+    fr: [patte]
+    de: [pfote]
+    gsw: [pfötli]
+    it: [zampa]
+    en: [paw]
+    zh: [握手]
+  # Deux gestes de tête (Reachy Mini, 15.11.2026). Leur nom dans la carte est « non » et « oui », mais on ne les
+  # demande JAMAIS avec le seul mot « non » ou « oui » (ce sont des réponses) : il faut parler de la tête.
+  # Écrits par un agent, pas relus par quelqu'un qui parle la langue : à faire relire (NON_TESTE.md).
+  # Relecture du 15.11.2026 : en anglais, jamais le mot « head » (c'est déjà un verbe de déplacement : la phrase
+  # deviendrait un ordre d'aller quelque part) ; en chinois, les formes longues seulement (« 点头 » est dans
+  # « 有点头疼 », « j'ai un peu mal à la tête »).
+  # Limite connue : une phrase qui PARLE de quelqu'un (« elle secoue la tête ») est prise pour une demande de geste.
+  non:
+    fr: [secoue la tête, fais non de la tête]
+    de: [schüttle den kopf, schüttel den kopf]
+    gsw: [schüttle de chopf]
+    it: [scuoti la testa]
+    en: [shake no]
+    zh: [摇摇头]
+  oui:
+    fr: [hoche la tête, fais oui de la tête]
+    de: [nicke mit dem kopf]
+    gsw: [nick mit em chopf]
+    it: [annuisci]
+    en: [nod yes]
+    zh: [点点头]
+  # Se lever et se coucher (Reachy Mini, 15.11.2026) : notre réveil lent et notre coucher lent. Des ordres dits AU
+  # robot (« réveille-toi »), jamais « je me réveille la nuit ». En anglais, pas de « go » (c'est un verbe de
+  # déplacement). Écrits par un agent, pas relus par quelqu'un qui parle la langue : à faire relire.
+  lever_la_tete:
+    fr: [réveille-toi, lève la tête]
+    de: [wach auf]
+    gsw: [wach uf]
+    it: [svegliati]
+    en: [wake up now]
+    zh: [醒一醒]
+  coucher_la_tete:
+    fr: [endors-toi, couche la tête]
+    de: [schlaf ein]
+    gsw: [schlaf i]
+    it: [addormentati]
+    en: [sleep now]
+    zh: [去睡觉]
+  # Les trois gestes de la main Leadtron DH116 (15.11.2026). Des ordres dits AU robot, avec le mot « main ».
+  # Écrits par un agent, pas relus par quelqu'un qui parle la langue : à faire relire (NON_TESTE.md).
+  preparer_la_main:
+    fr: [prépare la main]
+    de: [bereite die hand vor]
+    gsw: [mach d'hand parat]
+    it: [prepara la mano]
+    en: [prepare the hand]
+    zh: [准备好手]
+  tenir_doucement:
+    fr: [tiens doucement]
+    de: [halte sanft]
+    gsw: [heb sanft]
+    it: [tieni delicatamente]
+    en: [hold gently]
+    zh: [轻轻拿住]
+  # Les gestes « qui font de l'effet » de la main (15.11.2026, demande de Hiba). Des phrases dites AU robot ; jamais un
+  # verbe déjà pris par une autre action (« attrape », « montre », « move », « go »…). Pas relus par des locuteurs.
+  attraper:
+    fr: [tiens fort, tiens bien]
+    de: [halte fest]
+    gsw: [heb fescht]
+    it: [tieni forte]
+    en: [hold tight]
+    zh: [抓紧]
+  poing:
+    fr: [ferme le poing, fais le poing]
+    de: [mach eine faust]
+    gsw: [mach e fuscht]
+    it: [fai il pugno]
+    en: [make a fist]
+    zh: [握拳]
+  victoire:
+    fr: [signe de la victoire, fais la victoire]
+    de: [siegeszeichen]
+    gsw: [siegeszeiche]
+    it: [segno della vittoria]
+    en: [victory sign, peace sign]
+    zh: [比个耶]
+  pouce_leve:
+    fr: [lève le pouce, pouce levé]
+    de: [daumen hoch]
+    gsw: [duume ufe]
+    it: [pollice in su]
+    en: [thumbs up]
+    zh: [竖起大拇指]
+  pointer:
+    fr: [pointe l'index, pointe du doigt]
+    de: [zeig mit dem finger]
+    gsw: [zeig mit em finger]
+    it: [punta il dito]
+    en: [point your finger]
+    zh: [伸出食指]
+  rock:
+    fr: [signe du rock, fais le rock]
+    de: [rockzeichen]
+    gsw: [rockzeiche]
+    it: [segno del rock]
+    en: [rock sign]
+    zh: [摇滚手势]
+  je_t_aime:
+    fr: [signe je t'aime, dis je t'aime avec la main]
+    de: [ich liebe dich zeichen]
+    gsw: [ich ha di gern zeiche]
+    it: [segno ti amo]   # pas « ti voglio bene » : « bene » veut aussi dire « oui » en italien (un essai le refuse)
+    en: [i love you sign]
+    zh: [我爱你手势]
+  compter:
+    fr: [compte jusqu'à cinq, compte sur tes doigts]
+    de: [zähl bis fünf]
+    gsw: [zell bis füf]
+    it: [conta fino a cinque]
+    en: [count to five]
+    zh: [数到五]
+  vague:
+    fr: [fais la vague]
+    de: [mach die welle]
+    gsw: [mach d'wälle]
+    it: [fai l'onda]
+    en: [do the wave]
+    zh: [做波浪]
+  pierre_feuille_ciseaux:
+    fr: [pierre feuille ciseaux, chifoumi]
+    de: [schere stein papier]
+    gsw: [schäri stei papier]
+    it: [sasso carta forbice]
+    en: [rock paper scissors]
+    zh: [石头剪刀布]
+  bouger_les_doigts:
+    fr: [bouge les doigts]
+    de: [bewege die finger]
+    gsw: [beweg d'finger]
+    it: [muovi le dita]
+    en: [wiggle the fingers, wiggle your fingers]  # pas « move » : c'est déjà un verbe de déplacement
+    zh: [动动手指]
+  ouvrir_la_main:
+    fr: [ouvre la main]
+    de: [öffne die hand]
+    gsw: [mach d'hand uf]
+    it: [apri la mano]
+    en: [open the hand]
+    zh: [张开手]
+  verser:
+    fr: [verse]
+    de: [gieß, giess]
+    gsw: [schänk]
+    it: [versa]
+    en: [pour]
+    zh: [倒水, 倒一杯, 倒茶, 倒饮料]  # jamais « 倒 » seul : « 倒退 » = reculer
+
+# Direction par défaut quand on demande de regarder ou montrer sans cible.
+cible_defaut: devant

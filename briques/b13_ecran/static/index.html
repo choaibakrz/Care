@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinic Pilot — supervision du robot</title>
+<link rel="stylesheet" href="/static/ecran.css">
+<link rel="stylesheet" href="/main_humaine/main_humaine.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">Q1</span><div><strong>Clinic Pilot</strong><small>Supervision du robot</small></div></div>
+  <div class="robot-identity"><strong id="nom-robot">…</strong><span id="mention" class="mention">…</span><span id="liaison" class="pastille">liaison ?</span></div>
+  <nav class="top-actions" aria-label="Navigation principale"><a href="/jury" class="pastille">Écran du jury</a><button id="theme" class="theme-button" type="button" aria-label="Passer au thème sombre">☾</button><button id="rearmer">Réarmer</button><button id="arret" class="arret" title="Arrêt d'urgence">Arrêt d'urgence</button></nav>
+</header>
+
+<main>
+  <section class="dashboard-head">
+    <div><p class="eyebrow">CENTRE DE SUPERVISION</p><h1>État du robot</h1><p class="intro">Position, commandes et événements de la session au même endroit.</p></div>
+    <div class="head-status"><span class="signal-dot"></span><span id="etat" class="etat">Connexion au robot…</span></div>
+  </section>
+
+  <section class="dashboard-grid">
+    <div class="main-column">
+      <section class="panel map-panel">
+        <div class="section-heading"><div><p class="eyebrow">POSITION</p><h2>Carte de mission</h2></div><span class="live-pill"><i></i> En direct</span></div>
+        <canvas id="monde" width="800" height="480" aria-label="Vue de dessus du robot"></canvas>
+        <div class="map-caption"><span class="map-key"><i class="key-robot"></i> robot</span><span class="map-key"><i class="key-trace"></i> trajectoire</span><span class="map-key"><i class="key-place"></i> points d'intérêt</span></div>
+      </section>
+
+      <section class="panel command-card">
+        <div><p class="eyebrow">ACTION</p><h2>Envoyer une commande</h2><p class="panel-note">La demande est vérifiée avant exécution.</p></div>
+        <form id="formulaire">
+          <select id="langue" aria-label="Langue de la commande">
+            <option value="">Langue automatique</option>
+            <option value="fr">Français</option><option value="de">Deutsch</option><option value="gsw">Schweizerdeutsch</option>
+            <option value="it">Italiano</option><option value="en">English</option><option value="zh">中文</option>
+          </select>
+          <input id="texte" placeholder="Ex. : va à la cuisine" autocomplete="off">
+          <button>Envoyer</button>
+          <button type="button" id="je-parle" hidden title="Maintenir appuyé pendant que vous parlez">Parler</button>
+        </form>
+      </section>
+
+      <section class="panel test-panel">
+        <div class="section-heading"><div><p class="eyebrow">MODE TEST</p><h2>Simuler un incident</h2></div><span class="panel-note">Réservé à l'équipe</span></div>
+        <div class="pannes">
+          <button data-panne="lenteur">Lenteur</button><button data-panne="refus">Refus</button><button data-panne="perte_liaison">Perte de liaison</button>
+          <button data-panne="batterie_faible">Batterie faible</button><button data-panne="arret_ignore">Arrêt ignoré</button><button id="reparer">Réparer</button>
+        </div>
+      </section>
+    </div>
+
+    <aside class="side-column">
+      <section class="panel robot-card">
+        <div class="robot-card-head"><div><p class="eyebrow">UNITÉ ACTIVE</p><h2 id="robot-card-name">PrimeBOT Q1</h2></div><span class="secure-mark">● surveillé</span></div>
+        <img src="/static/primebot-q1.png" alt="PrimeBOT Q1" class="robot-still">
+        <div class="robot-card-foot"><span>Robot simulé</span><span id="robot-card-status">Prêt</span></div>
+      </section>
+      <section class="panel truth-panel"><div class="section-heading"><div><p class="eyebrow">MESURES</p><h2>Fiche de vérité</h2></div><span class="secure-mark">Vérifiée</span></div><div class="truth-card"><table id="fiche"></table></div></section>
+      <section class="panel journal-panel"><div class="section-heading"><div><p class="eyebrow">ACTIVITÉ</p><h2>Journal en direct</h2></div></div><ol id="journal"></ol></section>
+    </aside>
+  </section>
+</main>
+<script src="/static/ecran.js"></script>
+<script src="/main_humaine/main_humaine.js"></script>
+</body>
+</html>

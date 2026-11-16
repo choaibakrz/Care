@@ -1,0 +1,22 @@
+[
+ {
+  "fichier": "aller_cuisine.wav",
+  "texte": "请去厨房。",
+  "compris_par_base": "请去厨房。"
+ },
+ {
+  "fichier": "regarder_table.wav",
+  "texte": "请看桌子。",
+  "compris_par_base": "请看桌子。"
+ },
+ {
+  "fichier": "stop.wav",
+  "texte": "停下。",
+  "compris_par_base": "停下。"
+ },
+ {
+  "fichier": "appel_porte.wav",
+  "texte": "你好机器人，请去门口。",
+  "compris_par_base": "你好机器人,请去门口。"
+ }
+]

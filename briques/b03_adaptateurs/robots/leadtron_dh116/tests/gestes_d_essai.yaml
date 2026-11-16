@@ -1,0 +1,142 @@
+# COPIE FIGÉE pour les essais (15.11.2026) du fichier gestes.yaml d'origine. Les essais jouent CETTE copie, pas le vrai
+# fichier : l'équipe peut régler le vrai gestes.yaml sur la vraie main sans casser un seul essai. Ne pas régler ici.
+# NON TESTÉ SUR VRAI ROBOT : aucun de ces gestes n'est essayé sur la vraie main.
+# LES GESTES de la main Leadtron DH116 (main gauche). C'est l'ÉQUIPE qui règle ce fichier, sur place. La liaison le relit
+# à CHAQUE geste : pas besoin de relancer le programme, ni de refaire le test de conformité, pour changer une forme.
+# (Les NOMS des gestes, eux, sont dans carte.yaml : en ajouter un, c'est refaire le test de conformité.)
+# « preparer_la_main » n'est pas ici : il est écrit dans liaison.py (allumer, régler, mise en position de départ).
+#
+# DÉCISION DE HIBA (responsable du projet), le 15.11.2026 : « personne ne s'approche de la main, seuls des objets seront
+# à son contact ; ne pas être trop prudent », puis : « je te laisse faire le max de ton intelligence, je veux vraiment
+# que tu me sortes des commandes qui sortent de l'ordinaire, je veux que ça fasse un effet waouh de suite ».
+# Les limites sont donc celles des exemples du fabricant. JAMAIS un doigt de personne dans la main.
+#
+# COMMENT ÉCRIRE UN GESTE : une suite d'étapes. Chaque étape, sur une ligne :
+#   positions : les SIX doigts, de 0 (ouvert) à 10000 (fermé à fond). Moteurs : pouce_ecartement (le pouce vient en face
+#               des doigts), pouce_flexion (le pouce se plie), index, majeur, annulaire, auriculaire.
+#   vitesse   : de 1 à 20000 positions par seconde (20000 = toute la course en une demi-seconde). Sinon : celle de « defauts ».
+#   courant   : de 1 à 1000 pour mille (1000 = toute la force). Sinon : celui de « defauts ».
+#   pause_s   : la pause APRÈS l'étape, de 0 à 3 secondes. Sinon : celle de « defauts ».
+#   attendre  : false = ne pas attendre que les doigts soient arrivés ; l'étape suivante part après la pause (voir « vague »).
+#   Une étape spéciale : {au_hasard: [geste_1, geste_2, …]} = la liaison joue UN de ces gestes du fichier, tiré au hasard.
+# L'étape suivante part quand tous les doigts sont arrivés (ou arrêtés sur un objet après avoir avancé). Un doigt déjà à
+# sa place n'a pas à bouger : ce n'est pas un échec.
+#
+# LA LIAISON REFUSE (rien ne part vers la main) : une valeur hors de ces limites ou qui n'est pas un nombre entier
+# (« oui », « .nan », 3500.5, un texte), un doigt en trop ou en moins, une ligne écrite DEUX FOIS, plus de 30 étapes,
+# un geste estimé à plus de 25 secondes, un geste absent ou illisible. Jamais une valeur ramenée en silence.
+#
+# TOUTES CES VALEURS SONT DES VALEURS DE DÉPART, PAS MESURÉES, À RÉGLER SUR LA VRAIE MAIN — surtout le pouce : on ne
+# sait pas à partir de quelle position il touche les autres doigts, ni si 8000 le pose bien « par-dessus ».
+# Régler main VIDE d'abord, un geste à la fois.
+
+defauts: {vitesse: 12000, courant: 800, pause_s: 0}    # pour les gestes d'expression ; une étape peut dire autre chose
+
+gestes:
+  # Tout à 0 : la main ouverte.
+  ouvrir_la_main:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}}
+
+  # Une prise DOUCE : les doigts se ferment en partie, lentement, avec un courant moyen.
+  tenir_doucement:
+    etapes:
+      - {positions: {pouce_ecartement: 5000, pouce_flexion: 5000, index: 6000, majeur: 6000, annulaire: 6000, auriculaire: 6000}, vitesse: 6000, courant: 600}
+
+  # Tenir FORT le doudou : d'abord les quatre doigts, puis le pouce par-dessus. Toute la force (1000).
+  # Un doigt qui s'arrête sur le doudou avant sa cible compte comme arrivé (il dit « couple atteint »).
+  attraper:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 8500, majeur: 8500, annulaire: 8500, auriculaire: 8500}, vitesse: 10000, courant: 1000}
+      - {positions: {pouce_ecartement: 7000, pouce_flexion: 7000, index: 8500, majeur: 8500, annulaire: 8500, auriculaire: 8500}, vitesse: 10000, courant: 1000}
+
+  # Fermer à 7000, rouvrir, trois fois, en 6 secondes environ. Le pouce ne vient qu'à 3000 (choix prudent :
+  # on ne sait pas s'il touche l'index quand tout se ferme ensemble ; à régler).
+  bouger_les_doigts:
+    etapes:
+      - {positions: {pouce_ecartement: 3000, pouce_flexion: 3000, index: 7000, majeur: 7000, annulaire: 7000, auriculaire: 7000}, vitesse: 8000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, vitesse: 8000}
+      - {positions: {pouce_ecartement: 3000, pouce_flexion: 3000, index: 7000, majeur: 7000, annulaire: 7000, auriculaire: 7000}, vitesse: 8000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, vitesse: 8000}
+      - {positions: {pouce_ecartement: 3000, pouce_flexion: 3000, index: 7000, majeur: 7000, annulaire: 7000, auriculaire: 7000}, vitesse: 8000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, vitesse: 8000}
+
+  # Le poing : les quatre doigts à fond, puis le pouce par-dessus.
+  poing:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+
+  # Le V : annulaire et auriculaire repliés, puis le pouce par-dessus ; index et majeur tendus.
+  victoire:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 10000, auriculaire: 10000}}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 0, annulaire: 10000, auriculaire: 10000}}
+
+  # Le pouce levé : les quatre doigts à fond, le pouce tendu.
+  pouce_leve:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+
+  # Montrer du doigt : majeur, annulaire, auriculaire repliés, puis le pouce par-dessus ; l'index tendu.
+  pointer:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+
+  # Les cornes : majeur et annulaire repliés, puis le pouce par-dessus ; index et auriculaire tendus.
+  rock:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 0}}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 0}}
+
+  # « Je t'aime » en langue des signes américaine : majeur et annulaire repliés ; pouce, index, auriculaire tendus.
+  je_t_aime:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 0}}
+
+  # Compter jusqu'à cinq : part du poing (pouce replié), puis ouvre un doigt à la fois, 0,6 s de pause :
+  # index, majeur, annulaire, auriculaire, pouce (« un, deux, trois, quatre, cinq »).
+  compter:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}, pause_s: 0.6}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 10000}, pause_s: 0.6}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 0, annulaire: 10000, auriculaire: 10000}, pause_s: 0.6}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 0, annulaire: 0, auriculaire: 10000}, pause_s: 0.6}
+      - {positions: {pouce_ecartement: 8000, pouce_flexion: 8000, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, pause_s: 0.6}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, pause_s: 0.6}
+
+  # La vague : les doigts se ferment l'un après l'autre (auriculaire, annulaire, majeur, index, 0,15 s d'écart),
+  # puis se rouvrent dans le même ordre ; deux fois. « attendre: false » = l'étape suivante part après la pause,
+  # sans attendre que le doigt soit arrivé (la dernière étape de chaque moitié attend, et vérifie tout le monde).
+  vague:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 10000}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 10000, auriculaire: 10000}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 10000}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 0}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 0, auriculaire: 0}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 0, annulaire: 0, auriculaire: 0}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 10000}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 10000, auriculaire: 10000}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 10000, annulaire: 10000, auriculaire: 10000}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 10000}}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 10000, auriculaire: 0}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 10000, annulaire: 0, auriculaire: 0}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 10000, majeur: 0, annulaire: 0, auriculaire: 0}, pause_s: 0.15, attendre: false}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}}
+
+  # Pierre, feuille, ciseaux : trois petits battements rapides, puis UNE forme tirée au hasard par la liaison :
+  # pierre (= poing), feuille (= ouvrir_la_main), ciseaux (= victoire). Le tirage se lit ensuite dans l'état de la main.
+  pierre_feuille_ciseaux:
+    etapes:
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 4000, majeur: 4000, annulaire: 4000, auriculaire: 4000}, vitesse: 16000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, vitesse: 16000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 4000, majeur: 4000, annulaire: 4000, auriculaire: 4000}, vitesse: 16000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, vitesse: 16000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 4000, majeur: 4000, annulaire: 4000, auriculaire: 4000}, vitesse: 16000}
+      - {positions: {pouce_ecartement: 0, pouce_flexion: 0, index: 0, majeur: 0, annulaire: 0, auriculaire: 0}, vitesse: 16000}
+      - {au_hasard: [poing, ouvrir_la_main, victoire]}

@@ -1,0 +1,32 @@
+# PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot. Carte d'identité préparée d'avance (clinique en boîte, avenant 3, M01) : « Unitree G1 », deux jambes, deux bras.
+# Personne de l'équipe n'a vu ce robot. Seule une personne de l'équipe enlève la marque, en écrivant la date où le
+# vrai robot a été vu. Les chiffres viennent de l'avenant de Hiba, ou sont des choix pour le FAUX ROBOT : tous à vérifier.
+# Le format est celui des autres cartes ; ce qui n'a pas de place dans le format est dans « remarques ».
+id: faux-unitree-g1
+nom: Unitree G1 (carte préparée sans le robot)
+genre: humanoide
+fabricant: Unitree (carte préparée sans le robot)
+modele: G1
+vrai_robot: false
+capacites: [se_deplacer, saisir, poser, arreter, etat]
+limites:
+  vitesse_max_m_s: 0.3   # marche lente : un choix de prudence, pas un chiffre du fabricant ; à vérifier samedi
+  portee_max_m: 0.6   # pour le faux robot seulement ; à remplir samedi
+  charge_max_kg: 1.0   # pour le faux robot seulement (un objet léger) ; à remplir samedi
+  force_max_n: 15   # pour le faux robot seulement ; à remplir samedi
+gestes: []
+remarques: >-
+  PRÉPARÉE SANS LE ROBOT — non testé sur vrai robot.
+  Unitree G1 : deux jambes, deux bras.
+  Taille : environ 1,3 m.
+  Poids : environ 35 kg.
+  Batterie : environ 2 heures.
+  Mains : à remplir samedi.
+  Charge par bras : à remplir samedi.
+  Il marche.
+  Il peut tomber.
+  Limites pour la démonstration : marche lente ; au moins 2 m entre lui et toute personne ; ni escalier ni ascenseur ;
+  il pose l'objet sur une table, il ne le donne pas de la main à la main ; jamais sans une personne à l'arrêt.
+  Pour le faux robot seulement : on fait comme s'il pouvait saisir un objet léger.
+  Voix, écoute, gestes : à remplir samedi.
+  Version : il faut peut-être la version faite pour les développeurs : à vérifier samedi.
