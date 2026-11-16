@@ -29,7 +29,7 @@ The patient app is served by the Node server used by Google Cloud Run. Run it
 from the repository root, not from this directory:
 
 ```bash
-cd /Users/choaibakile/Downloads/LeukerBadHack
+cd <repository-root>
 npm start
 ```
 

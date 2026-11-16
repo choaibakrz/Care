@@ -97,7 +97,7 @@ team's own machines. Tests run with network access disabled for the program.
 
 ## French–English glossary
 
-The robot-side system is written in French (see [why](../README.md#languages-of-this-repository)). These are the names
+The robot-side system is written in French (see [why](../README.md#languages-of-this-repository)). These are the main names
 a reader meets in the code and in the commands.
 
 | French name | English | Where it appears |
@@ -106,7 +106,7 @@ a reader meets in the code and in the commands.
 | `prise` | socket: the single entry point to a robot | `b01_prise` |
 | `ticket` | signed, single-use permission | `b01_prise/ticket.py` |
 | `carte` | a robot's card: what it can do, and its limits | `carte.yaml` |
-| `faux robot` / `vrai robot` | fake (simulated) robot / real robot | `b02_faux_robot`, labels on every result |
+| `faux robot` / `vrai robot` | fake (simulated) robot / real robot | `b02_faux_robot`; results are labelled `testé sur faux robot` or `testé sur vrai robot` |
 | `adaptateur` | adapter: translates the ten actions for one robot | `b03_adaptateurs`, `adaptateur.py` |
 | `liaison` | link: the only file that talks to a manufacturer's kit | `liaison.py` |
 | `doublure` | stand-in for a manufacturer's kit, used by tests | `doublure.py` |
@@ -125,11 +125,11 @@ a reader meets in the code and in the commands.
 | `chef de démo` | demo conductor | `b15_chef_demo` |
 | `clinique` | clinic: the care scenario | `briques/clinique` |
 | `commun` | shared code | `commun/` |
-| `geste` | gesture (a named, recorded movement) | `rejouer_geste`, `gestes.yaml` |
+| `geste` | gesture: a named movement, written in advance as a list of steps | `rejouer_geste`, `gestes.yaml` |
 | `arrêt d'urgence` | emergency stop | `arret_urgence` |
 | `réarmer` | re-arm after an emergency stop | `rearmer` |
 | `signe de vie` | sign of life (heartbeat for the watchdog) | `signe_de_vie` |
-| `réglages` | settings | `reglages.yaml`, `reglages.exemple.yaml` |
+| `réglages` | settings | `reglages.exemple.yaml` (template), `reglages.yaml` (local, not committed) |
 | `lancer` | to launch: the entry point | `lancer.py` |
 | `brancher` | to plug in (connect) a robot | `lancer.py brancher` |
 | `outils` | tools (helper scripts) | `outils/` |

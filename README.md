@@ -52,20 +52,21 @@ The details are in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) and [`docs/SAF
 
 ## Reception and room tablets
 
-Around the robots, the clinic prototype has two screens for people: an **admin console** for reception and the care
-team, and a **patient companion** on the tablet of each room.
+Around the robots, the clinic prototype has two screens for people: an **admin console** for an administrator at the
+reception desk, and a **patient companion** on the tablet in each room.
 
 ```mermaid
 flowchart LR
-    A[Admin console<br/>reception] -- "1 · admit: first name,<br/>record reference, room" --> S[(Clinic server)]
+    A[Admin console<br/>reception] -- "1 · admit a patient,<br/>ask for a code" --> S[(Clinic server)]
     S -- "2 · one-time code<br/>15 minutes, single use" --> A
     A -. "3 · staff type the code<br/>on the room tablet" .-> T[Room tablet<br/>patient companion]
     T -- "4 · code" --> S
-    S -- "5 · room session,<br/>first name only" --> T
+    S -- "5 · room session: room and<br/>first name, no record reference" --> T
 ```
 
-The tablet needs no e-mail address, phone number or password. The medical record reference stays in the admin
-console and is never sent to the tablet. All patients are invented. Rules, code references and limits:
+The tablet needs no e-mail address, phone number or password. The medical record reference is kept on the clinic
+server and shown only in the admin console; it is never sent to the tablet. All patients are invented. The rules as
+the code applies them, what was run and what was only read, and the known limits:
 [`docs/PATIENT_ROOM_PAIRING.md`](docs/PATIENT_ROOM_PAIRING.md).
 
 ## What is real today
@@ -78,7 +79,7 @@ console and is never sent to the tablet. All patients are invented. Rules, code 
 | Camera model for medical supplies | Trained by teammates during the event; training code in `models/`. The weights are not in this repository and the model is not wired into the guardian. |
 | Small robot head (Reachy Mini) | Adapter written and reviewed, tested on a stand-in only. The real one never moved: six of its nine motors did not answer. |
 | Reception, floor delivery, night stock round, therapy game | Planned roles. They run on **simulated** robots. |
-| Admin console and room tablets | A room tablet is paired with a one-time code from the admin console. Run on the team's computers and tablet with **invented patients**; never on a clinic network. |
+| Admin console and room tablets | A room tablet is paired with a one-time code from the admin console. Run in browsers on the team's computers with **invented patients**. On a real tablet: to be verified. Never on a clinic network. |
 | Nurses | **None consulted yet.** Every screen about their work is labelled *our guess*. |
 | Certification, law | **Nothing is certified.** No specialist has reviewed the project. All patient data is invented. |
 
@@ -165,13 +166,15 @@ The team works in French and in English, and the repository shows it:
 
 - **In English:** this page, [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md), [`docs/SAFETY.md`](docs/SAFETY.md),
   [`docs/PATIENT_ROOM_PAIRING.md`](docs/PATIENT_ROOM_PAIRING.md), [`SECURITY.md`](SECURITY.md),
-  [`CONTRIBUTING.md`](CONTRIBUTING.md), and the clinic server, admin console and patient companion in `implementation/`.
-- **In French:** the robot-side system in `briques/` (names, comments and tests), the working documents in
-  `docs/projet/`, and the files named in capitals at the root (`NON_TESTE.md`, `DECISIONS.md`, …). French with simple
-  words was a project rule, so that every member of the team could read and check every line.
+  [`CONTRIBUTING.md`](CONTRIBUTING.md), and most of the clinic server, admin console and patient companion in
+  `implementation/`.
+- **In French:** the robot-side system (`briques/`, `commun/`, `lancer.py`, `outils/`, `tests_bout_en_bout/`: names,
+  comments and tests), most working documents in `docs/projet/`, and these files at the root: `README.fr.md`,
+  `AGENTS.md`, `BRANCHER_UN_ROBOT.md`, `DECISIONS.md`, `LICENCES.md`, `NON_TESTE.md`,
+  `PAROLES_DES_SOIGNANTS.modele.md`. Writing in French with simple words is one of the project's written rules.
 
-A [French–English glossary](docs/ARCHITECTURE.md#frenchenglish-glossary) gives the English word for every French name
-used in the code.
+A [French–English glossary](docs/ARCHITECTURE.md#frenchenglish-glossary) gives the English word for the main French
+names used in the code.
 
 ## How this was built
 
