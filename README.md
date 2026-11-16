@@ -79,7 +79,7 @@ the code applies them, what was run and what was only read, and the known limits
 | Camera model for medical supplies | Trained by teammates during the event; training code in `models/`. The weights are not in this repository and the model is not wired into the guardian. |
 | Small robot head (Reachy Mini) | Adapter written and reviewed, tested on a stand-in only. The real one never moved: six of its nine motors did not answer. |
 | Reception, floor delivery, night stock round, therapy game | Planned roles. They run on **simulated** robots. |
-| Admin console and room tablets | A room tablet is paired with a one-time code from the admin console. Run in browsers on the team's computers with **invented patients**. On a real tablet: to be verified. Never on a clinic network. |
+| Admin console and room tablets | A room tablet is paired with a one-time code from the admin console. Run on the team's computers with **invented patients**; the pairing by code was also done on a real iPad during the event. Never on a clinic network. |
 | Nurses | **None consulted yet.** Every screen about their work is labelled *our guess*. |
 | Certification, law | **Nothing is certified.** No specialist has reviewed the project. All patient data is invented. |
 

@@ -83,10 +83,11 @@ All in [`implementation/server/src/patient/rooms.rs`](../implementation/server/s
   with a tablet-sized window.
 - **Read in the code, not timed or tested:** the 15-minute expiry, the 30-day limit, the two-minute online rule,
   the revocation at discharge, and the replacement of a session by a new code.
-- **On a real tablet:** the team's set-up for the pitch is a Mac that plays the reception desk, running the server,
-  and an iPad in the room, both on the same Wi-Fi network. The repository's runbook, written earlier, says the
-  patient pages were *not tried on real phone hardware or iPad Safari*. Nothing in the repository records a run on a
-  real iPad: **to be verified with the team**.
+- **On a real tablet:** during the event the team paired a **real iPad** with a room by typing the code, with a Mac
+  playing the reception desk and running the server, both on the same Wi-Fi network. This is reported by the team;
+  the repository holds no recording or log of that run, and the runbook's older sentence (*not tried on real phone
+  hardware or iPad Safari*) dates from before it. Only the pairing was tried on the iPad: the durations and the
+  discharge rule above were not.
 - **Never** run in a clinic or on a clinic network.
 
 ## What the set-up needs
